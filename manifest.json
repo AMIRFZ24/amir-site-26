@@ -1,1 +1,15 @@
-
+{
+  "name": "دستیار AMIR",
+  "short_name": "دستیار",
+  "start_url": "/amir-site-26/index.html",
+  "display": "standalone",
+  "background_color": "#0a0d18",
+  "theme_color": "#0a0d18",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/1163/1163624.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
