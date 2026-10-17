@@ -941,5 +941,23 @@ setTimeout(()=>{if(!('IntersectionObserver' in window))return;const io=new Inter
  [...document.querySelectorAll('.lks>*,.hb>*,.credit,footer')].forEach((e,i)=>{const r=e.getBoundingClientRect();e.style.setProperty('--i',i%3);if(r.top>innerHeight){e.classList.add('sr')}io.observe(e)})},2200);
 })();
 </script>
+ <div id="offline-banner" style="display: none; position: fixed; top: 0; left: 0; right: 0; background: #e74c3c; color: white; text-align: center; padding: 10px; z-index: 1000; font-family: Tahoma, sans-serif; font-size: 0.9rem;">
+  ⚠️ اتصال اینترنت شما قطع است. لطفاً فیلترشکن خود را بررسی کنید.
+</div>
+
+<script>
+  function updateOnlineStatus() {
+    const banner = document.getElementById('offline-banner');
+    if (navigator.onLine) {
+      banner.style.display = 'none';
+    } else {
+      banner.style.display = 'block';
+    }
+  }
+  
+  window.addEventListener('online', updateOnlineStatus);
+  window.addEventListener('offline', updateOnlineStatus);
+  updateOnlineStatus();
+</script>
 </body>
 </html>
