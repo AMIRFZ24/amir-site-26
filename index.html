@@ -166,6 +166,33 @@ body{background:linear-gradient(135deg,#d6e6ff 0%,#efe0ff 48%,#d3fbe9 100%)}
 .tpop,:root[data-theme="dark"] .tpop{display:flex;flex-direction:column;gap:8px;padding:10px;min-width:170px}.tpop button{margin:0;padding:11px 14px}
 
 /* ===== new features css ===== */
+ .card, .lk {
+  position: relative;
+}
+.card::before, .lk::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(45deg, var(--b1), var(--b2), var(--b3), var(--b1));
+  background-size: 300% 300%;
+  z-index: -1;
+  animation: borderGlow 4s linear infinite;
+  opacity: 0.8;
+}
+.card::after, .lk::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  background: var(--glass);
+  z-index: -1;
+}
+@keyframes borderGlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 .gpl{display:grid;grid-template-columns:1fr 1fr 36px;gap:8px;margin-bottom:8px}.gph span{color:var(--mu);font-size:.8rem;text-align:center}
 .gin,.gpl input,.scf input{font:inherit;font-weight:700;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.45);background:rgba(255,255,255,.2);color:var(--tx);text-align:center;min-width:0;width:100%;outline:none;box-shadow:inset 0 2px 8px rgba(0,0,0,.08)}
 :root[data-theme="dark"] .gin,:root[data-theme="dark"] .gpl input,:root[data-theme="dark"] .scf input{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.16)}
