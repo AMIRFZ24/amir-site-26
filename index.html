@@ -9,121 +9,6 @@
 <meta property="og:title" content="دستیار AMIR"><meta property="og:site_name" content="دستیار AMIR"><meta name="application-name" content="دستیار AMIR"><meta name="apple-mobile-web-app-title" content="دستیار AMIR">
 <title>دستیار AMIR</title>
 <style>
- 
-/* ===== اصلاح دکمه شناور دستیار هوش مصنوعی ===== */
-
-#aib {
-    position: fixed !important;
-
-    left: 16px !important;
-    right: auto !important;
-    bottom: calc(16px + env(safe-area-inset-bottom, 0px)) !important;
-
-    z-index: 99999 !important;
-
-    width: 58px !important;
-    height: 58px !important;
-    min-width: 58px !important;
-    min-height: 58px !important;
-
-    display: grid !important;
-    place-items: center !important;
-
-    padding: 0 !important;
-    margin: 0 !important;
-
-    border-radius: 50% !important;
-    box-sizing: border-box !important;
-
-    visibility: visible !important;
-    opacity: 1 !important;
-    pointer-events: auto !important;
-
-    transform: translateZ(0);
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
-}
-
-/* ===== اصلاح پنجره چت ===== */
-
-#aim {
-    position: fixed !important;
-    inset: 0 !important;
-
-    z-index: 99998 !important;
-
-    width: 100% !important;
-    height: 100% !important;
-
-    height: 100dvh !important;
-    box-sizing: border-box !important;
-
-    padding-top: max(12px, env(safe-area-inset-top, 0px)) !important;
-    padding-right: 12px !important;
-    padding-left: 12px !important;
-    padding-bottom: max(12px, env(safe-area-inset-bottom, 0px)) !important;
-
-    overflow: hidden !important;
-    overscroll-behavior: contain;
-}
-
-/* حفظ اندازه و اسکرول محتوای چت */
-
-#ais {
-    box-sizing: border-box !important;
-    width: min(440px, 100%) !important;
-    max-width: 100% !important;
-
-    max-height: 100% !important;
-    min-height: 0 !important;
-
-    overflow-y: auto !important;
-    overscroll-behavior: contain;
-    -webkit-overflow-scrolling: touch;
-}
-
-/* ===== تنظیمات اختصاصی موبایل ===== */
-
-@media screen and (max-width: 768px) {
-    #aib {
-        left: 14px !important;
-        bottom: calc(18px + env(safe-area-inset-bottom, 0px)) !important;
-
-        width: 56px !important;
-        height: 56px !important;
-        min-width: 56px !important;
-        min-height: 56px !important;
-
-        z-index: 99999 !important;
-    }
-
-    #aim {
-        padding-top: max(10px, env(safe-area-inset-top, 0px)) !important;
-        padding-right: 10px !important;
-        padding-left: 10px !important;
-        padding-bottom: max(10px, env(safe-area-inset-bottom, 0px)) !important;
-    }
-
-    #ais {
-        width: 100% !important;
-        max-width: 100% !important;
-        border-radius: 20px !important;
-    }
-}
-
-/* نمایش صحیح در گوشی‌های کوچک */
-
-@media screen and (max-width: 380px) {
-    #aib {
-        left: 12px !important;
-        bottom: calc(14px + env(safe-area-inset-bottom, 0px)) !important;
-
-        width: 52px !important;
-        height: 52px !important;
-        min-width: 52px !important;
-        min-height: 52px !important;
-    }
-}
 :root{--bg1:#fff;--bg2:#fff;--glass:rgba(244,247,255,.6);--bd:rgba(30,40,80,.1);--bo:.25;--lg:rgba(255,255,255,.85);--pn:linear-gradient(135deg,rgba(108,140,255,.16),rgba(0,224,160,.07));--tx:#14182b;--mu:#5b6482;--ac:#00b97a;--up:#00a86b;--dn:#e5384f;--sh:0 8px 32px rgba(40,60,120,.15);--b1:#6c8cff;--b2:#00e0a0;--b3:#ffb86c;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg1:#0a0d18;--bg2:#0a0d18;--glass:rgba(16,20,38,.62);--bd:rgba(255,255,255,.18);--bo:.4;--lg:rgba(255,255,255,.07);--pn:linear-gradient(135deg,rgba(255,255,255,.1),rgba(255,255,255,.02));--tx:#fff;--mu:#c3cae6;--ac:#3dffb0;--up:#3dffb0;--dn:#ff6b81;--sh:0 8px 32px rgba(0,0,0,.45);--b1:#4b5cff;--b2:#00c98d;--b3:#a855f7;color-scheme:dark}}
@@ -138,8 +23,7 @@ body{font-family:'VazirEmb','Vazirmatn',Tahoma,sans-serif;color:var(--tx);backgr
 .wrap{position:relative;z-index:1;max-width:1100px;margin:auto;padding:18px 16px 40px}
 .glass{background:var(--glass);border:1px solid var(--bd);box-shadow:var(--sh),inset 0 1px 1px var(--lg),inset 0 0 22px var(--lg);backdrop-filter:blur(16px) saturate(180%);-webkit-backdrop-filter:blur(16px) saturate(180%);border-radius:22px}
 header{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.logo{font-weight:800
-      ;font-size:1.3rem;display:flex;align-items:center;gap:10px}
+.logo{font-weight:800;font-size:1.3rem;display:flex;align-items:center;gap:10px}
 .logo i{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,var(--b1),var(--b2));display:grid;place-items:center;color:#fff;font-style:normal}
 @keyframes sp{50%{transform:rotate(180deg) scale(1.1)}}
 .tg{border:1px solid var(--bd);cursor:pointer;min-width:66px;padding:8px 12px;border-radius:16px;display:flex;flex-direction:column;align-items:center;gap:2px;font:inherit;font-size:1.3rem;color:var(--tx)}.tg small{font-size:.72rem;font-weight:600}
@@ -425,14 +309,7 @@ body{top:0!important}
 .goog-text-highlight{background:none!important;box-shadow:none!important}
 .hrC{row-gap:8px}.hrC>#lgb{grid-column:1;grid-row:2;justify-self:start}
 
-#gtcard{display:none!important}.lgrow{display:flex;justify-content:center;margin:12px 0}#lgb small{white-space:nowrap}.tpop.lgp{min-width:160px}
-
-.gtcard{width:fit-content;max-width:100%;margin:12px auto;padding:8px 14px;border-radius:18px;display:flex;justify-content:center;align-items:center}
-.gtranslate_wrapper:empty{display:none}.gtf{color:var(--mu);font-size:.8rem}.gtf[hidden]{display:none}
-.gtranslate_wrapper{direction:ltr;display:flex;justify-content:center;align-items:center;min-height:28px}
-.gtranslate_wrapper .gt_switcher a,.gtranslate_wrapper .gt_switcher .gt_selected a{color:var(--tx)!important}
-.gtranslate_wrapper .gt_switcher .gt_selected,.gtranslate_wrapper .gt_switcher{background:transparent!important}
-.gtranslate_wrapper .gt_switcher .gt_option{background:var(--cd)!important;border:1px solid var(--bd)!important;border-radius:12px}
+#lgb small{white-space:nowrap}.tpop.lgp{min-width:160px}
 .wxh{font-weight:700;font-size:.9rem;margin:16px 0 8px}
 .wxhr{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
 .wxhr .at{flex:none;min-width:62px;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 6px}.wxhr .at b{font-size:.75rem}.wxhr .at i{margin:0;line-height:1.1}.wxhr .at span{font-size:.9rem}
@@ -615,7 +492,6 @@ document.addEventListener('click',close);addEventListener('scroll',close,{passiv
 <div class="grid" id="g"></div>
 <div class="glass conv"><h2>ماشین حساب طلا</h2><div class="cr"><div class="f"><label>وزن / تعداد</label><input id="gw" inputmode="decimal" value="10"></div><div class="f"><label>نوع</label><select id="gs"><option value=".75">گرم ۱۸ عیار</option><option value="1">گرم ۲۴ عیار</option><option value="7.3197">سکه تمام (۸٫۱۳۳ گرم)</option></select></div></div><div class="res" id="gr"></div></div>
 
-<div hidden><b id="tl1"></b><button id="tsw"></button><b id="tl2"></b><textarea id="tin"></textarea><button id="tgo"></button><div id="tout"></div></div>
 
 <div class="md" id="md" hidden><div class="sheet"><button class="xb" id="x" aria-label="بستن">✕</button><div class="mh"><div class="ic" id="mi"></div><div><div class="nm" id="mn"></div><div class="sy" id="ms"></div></div></div><div class="tm"><span id="mp"></span><small>تومان</small></div><div class="us" id="mu"></div><div class="rg" id="rg"><button data-r="h" class="on">روز</button><button data-r="d">هفته</button><button data-r="w">ماه</button></div><canvas id="cv"></canvas><div class="live"><span class="dot"></span><span>نمودار زنده — بروزرسانی هر ۳ ثانیه</span></div></div></div>
 <div class="credit glass"><span>Site created by Amir Alizadeh</span></div>
@@ -881,9 +757,6 @@ function nSave(){try{localStorage.setItem('nl',JSON.stringify(NL))}catch(e){}}
 document.getElementById('nadd').onclick=()=>{const t=NT.value.trim();if(!t)return;NL.unshift({t:t,d:0});NT.value='';nSave();nShow();if(NU.firstChild)NU.firstChild.classList.add('nw')};
 NU.onclick=e=>{const b=e.target.closest('button'),l0=e.target.closest('li');if(!b&&l0&&!NU.dataset.b){nTog(l0);return}if(!b||NU.dataset.b)return;NU.dataset.b=1;b.closest('li').classList.add('rm');const i=+b.dataset.i;setTimeout(()=>{NL.splice(i,1);nSave();delete NU.dataset.b;nShow()},400)};
 nShow();
-let tdir=0;document.getElementById('tsw').onclick=()=>{tdir^=1;document.getElementById('tl1').textContent=tdir?'انگلیسی':'فارسی';document.getElementById('tl2').textContent=tdir?'فارسی':'انگلیسی'};
-document.getElementById('tgo').onclick=async()=>{const q=document.getElementById('tin').value.trim(),o=document.getElementById('tout');if(!q)return;o.textContent='...';try{const j=await(await fetch('https://api.mymemory.translated.net/get?q='+encodeURIComponent(q)+'&langpair='+(tdir?'en|fa':'fa|en'))).json();o.textContent=j.responseData.translatedText}catch(e){o.textContent='';const a=document.createElement('a');a.href='https://translate.google.com/?sl='+(tdir?'en':'fa')+'&tl='+(tdir?'fa':'en')+'&text='+encodeURIComponent(q)+'&op=translate';a.target='_blank';a.rel='noopener';a.textContent='باز کردن در گوگل ترنسلیت ↗';o.append('ترجمهٔ مستقیم از این صفحه ممکن نیست. ',a)}};
-document.getElementById('tgo').onclick=async()=>{const q=document.getElementById('tin').value.trim(),o=document.getElementById('tout'),bt=document.getElementById('tgo');if(!q)return;bt.disabled=true;o.textContent='در حال ترجمه...';try{const s=window.claude&&await claude.use('sample');if(!s)throw 0;const r=await s('Translate the following text from '+(tdir?'English to Persian (Farsi)':'Persian (Farsi) to English')+'. Output ONLY the translation and nothing else. Text: '+q,{modelTier:'quick',cache:false});o.textContent=r.text.trim()}catch(e){o.textContent='';const a=document.createElement('a');a.href='https://translate.google.com/?sl='+(tdir?'en':'fa')+'&tl='+(tdir?'fa':'en')+'&text='+encodeURIComponent(q)+'&op=translate';a.target='_blank';a.rel='noopener';a.textContent='باز کردن در گوگل ترنسلیت ↗';o.append('ترجمه در این صفحه انجام نشد. ',a)}bt.disabled=false};
 const AVF=document.getElementById('avf'),AV2=document.getElementById('av2'),AVD=AV2.innerHTML;
 document.getElementById('avb').onclick=e=>{e.stopPropagation();AVF.click()};document.getElementById('ave').onclick=e=>{e.stopPropagation();AVF.click()};
 const PF=document.getElementById('pfm');
@@ -1119,7 +992,7 @@ vpnCheck();
 <button id="aib" class="glass" type="button" aria-label="دستیار هوشمند"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="11" rx="3.5"/><path d="M12 4v4"/><circle cx="12" cy="3.5" r="1"/><circle cx="9" cy="13" r="1.2" fill="currentColor"/><circle cx="15" cy="13" r="1.2" fill="currentColor"/><path d="M9.5 16.5h5M2 12.5v3M22 12.5v3"/></svg></button>
 <div class="md" id="aim" hidden><div class="sheet" id="ais"><button class="xb" id="aix" type="button" aria-label="بستن">✕</button>
 <div class="aih"><b>🤖 دستیار هوشمند</b><small>مدل فعلی: <span id="aimn"></span></small>
-<div class="aisel"><select id="aims" class="gin" aria-label="انتخاب مدل"><option value="claude-sonnet-4-6">کلود (Claude)</option><option value="gpt-5.5">جی‌پی‌تی (GPT)</option><option value="gemini-2.5-flash">جمنای (Gemini)</option><option value="deepseek-chat">دیپ‌سیک (DeepSeek)</option></select><select id="aip" class="gin" aria-label="شخصیت دستیار"><option value="normal">😊 معمولی</option><option value="funny">😜 شوخ‌طبع</option></select></div><div class="aimode glass" role="group" aria-label="حالت پاسخ"><button type="button" data-m="fast">⚡ حالت سریع</button><button type="button" data-m="think">🧠 حالت تفکر</button></div><button id="aic" type="button" class="aic" aria-label="پاک کردن حافظه" title="پاک کردن حافظه"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v6M14 10v6"/></svg></button></div>
+<div class="aisel"><select id="aims" class="gin" aria-label="انتخاب مدل"><option value="gemini-1.5-flash">جمنای (سریع)</option><option value="gemini-1.5-pro">جمنای (دقیق)</option></select><select id="aip" class="gin" aria-label="شخصیت دستیار"><option value="normal">😊 معمولی</option><option value="funny">😜 شوخ‌طبع</option></select></div><div class="aimode glass" role="group" aria-label="حالت پاسخ"><button type="button" data-m="fast">⚡ حالت سریع</button><button type="button" data-m="think">🧠 حالت تفکر</button></div><button id="aic" type="button" class="aic" aria-label="پاک کردن حافظه" title="پاک کردن حافظه"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v6M14 10v6"/></svg></button></div>
 <div id="aimm" class="aimm"></div>
 <div id="aipv" class="aipv" hidden><img alt=""><button type="button" id="aipx" aria-label="حذف عکس">✕</button></div>
 <div class="aif"><button id="aiclip" type="button" class="aiclip" aria-label="افزودن عکس"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5l-8.6 8.6a5 5 0 0 1-7.1-7.1l8.8-8.8a3.3 3.3 0 0 1 4.7 4.7l-8.8 8.8a1.7 1.7 0 0 1-2.4-2.4l8-8"/></svg></button><input id="aifile" type="file" accept="image/*" hidden><input id="aiin" class="gin" dir="auto" placeholder="پیام خود را بنویس…" autocomplete="off"><button id="ais2" type="button" class="wb">ارسال</button></div></div></div>
@@ -1150,7 +1023,6 @@ vpnCheck();
 .aicp{display:block;margin:8px 0 0 auto;padding:5px 11px;border-radius:10px;border:1px solid var(--bd);background:rgba(255,255,255,.14);backdrop-filter:blur(8px);color:var(--tx);font:inherit;font-size:.74rem;font-weight:700;cursor:pointer}
 .aif{display:flex;gap:8px;align-items:stretch}.aif input{flex:1;min-width:0;width:auto!important}.aif .wb{background:linear-gradient(135deg,var(--b1),color-mix(in srgb,var(--b1) 76%,#000))!important;width:auto!important;flex:none;padding:0 20px;margin:0!important}
 </style>
-<script src="https://js.puter.com/v2/"></script>
 <script>
 (function(){
 const B=document.getElementById('aib'),M=document.getElementById('aim'),S=document.getElementById('aims'),N=document.getElementById('aimn'),L=document.getElementById('aimm'),I=document.getElementById('aiin'),SB=document.getElementById('ais2');
@@ -1205,22 +1077,27 @@ function prices(){try{return A.filter(a=>!a.h).map(a=>a.n+' ('+a.s+'): '+(+cv(a)
 function city(t){if(!/هوا|دما|باران|برف|گرم|سرد|باد/.test(t))return null;
  const m=t.match(/(?:هوای|هوا\s*(?:در|ی)?|دمای|دما\s*در)\s*([آ-ی\u200c]+(?:\s[آ-ی\u200c]+)?)/);let c=m&&m[1].replace(/\s*(چطوره|چطور|چگونه|چیه|چنده|الان|امروز|فردا|هست)$/,'').trim();
  if(!c||/^(چطوره|چطور|الان|امروز)$/.test(c)){try{c=localStorage.getItem('wxcity')}catch(e){}}return c||null}
-function txt(r){if(typeof r==='string')return r;const c=r&&r.message&&r.message.content;return Array.isArray(c)?c.map(x=>x.text||'').join(''):(c||(r&&r.text)||String(r))}
 async function send(){const t=I.value.trim()||(pend?'این تصویر را بررسی و تحلیل کن.':'');if(!t||busy)return;busy=true;I.value='';const t0=Date.now(),pi=pend;pend=null;PV.hidden=true;FI.value='';add('u',t,t0,undefined,undefined,pi&&pi.thumb);hist.push({role:'user',content:t+(pi?' [تصویر پیوست شد]':'')});
  const w=add('a','');w.dataset.m=S.value;w.innerHTML='<div class="aisp"></div>';
- try{let ctx='\n\nقیمت‌های لحظه‌ای سایت (به دلار آمریکا؛ طلای ۱۸ عیار هر گرم، اونس‌ها هر اونس): '+prices()+'\nبرای قیمت‌ها فقط از همین داده‌ها استفاده کن و از خودت عدد نساز.';
+ try{
+  let ctx='\n\nقیمت‌های لحظه‌ای سایت (به دلار آمریکا؛ طلای ۱۸ عیار هر گرم، اونس‌ها هر اونس): '+prices()+'\nبرای قیمت‌ها فقط از همین داده‌ها استفاده کن و از خودت عدد نساز.';
   const c=city(t);if(c)ctx+='\n'+await weather(c)+'\nبرای آب‌وهوا فقط از همین داده واقعی استفاده کن.';
-  if(!window.puter)throw {message:'سرویس Puter بارگذاری نشد (اینترنت یا فیلترشکن؟)'};
-  const msgs=[{role:'system',content:PERS[PS.value]+MI[MODE]+ctx}].concat(hist.slice(-10));let note='';
-  const callAI=o=>pi?puter.ai.chat(msgs[0].content+'\n\nپیام کاربر: '+t,pi.full,o):puter.ai.chat(msgs,o);
-  let r;try{r=await callAI({model:S.value})}catch(e1){
-   if(e1&&e1.error&&/auth|sign|login|permission|popup/i.test(JSON.stringify(e1)))throw e1;
-   r=await callAI();note='\n\n(مدل «'+S.value+'» در Puter جواب نداد؛ مدل پیش‌فرض استفاده شد)'}
-  if(r&&r.success===false)throw r;
-  let a=txt(r),k='';const tm=a.match(/<think>([\s\S]*?)<\/think>([\s\S]*)/i);
-  if(MODE==='think'&&tm&&tm[2].trim()){k=tm[1].trim();a=tm[2].trim()}else a=a.replace(/<\/?think>/gi,'').trim();
-  fill(w,a+note,k);hist.push({role:'assistant',content:a});store.push({r:'u',c:t,t:t0,i:pi?pi.thumb:''},{r:'a',c:a,t:Date.now(),m:S.value,k:k});saveMem()}
- catch(e){const d=e&&(e.message||(e.error&&(e.error.message||e.error))||(typeof e==='string'?e:''));w.textContent='خطا در ارتباط با هوش مصنوعی'+(d?': '+(typeof d==='string'?d:JSON.stringify(d)):'')+'\nاگر پنجرهٔ ورود Puter باز شد، وارد شو (یا اجازهٔ popup بده)؛ سایت باید با http/https باز شود نه فایل مستقیم.';hist.pop()}
+  const conversation=hist.slice(-10,-1).map(x=>(x.role==='user'?'کاربر: ':'دستیار: ')+x.content).join('\n');
+  const imageNote=pi?'\nکاربر تصویر پیوست کرده است، اما این نسخه طبق ساختار متنی درخواست Gemini تصویر را به API ارسال نمی‌کند. اگر پاسخ به تصویر وابسته است، از کاربر بخواه تصویر را توصیف کند.':'';
+  const modePrompt=MODE==='think'
+   ?'\nپیش از پاسخ، مسئله را با دقت بررسی کن و پاسخ نهایی را دقیق، منظم و در صورت نیاز مرحله‌بندی‌شده ارائه بده. جزئیات استدلال خصوصی را نمایش نده.'
+   :'\nپاسخ را سریع، کوتاه و مستقیم ارائه بده.';
+  const prompt=PERS[PS.value]+modePrompt+ctx+imageNote+(conversation?'\n\nگفت‌وگوی اخیر:\n'+conversation:'')+'\n\nپیام کاربر:\n'+t;
+  const apiKey='AQ.Ab8RN6JKCqG6Lz9Ig-d_p-WS_R3-5QEjqnKOyGXoZsrq9ozahw';
+  const endpoint='https://generativelanguage.googleapis.com/v1beta/models/'+encodeURIComponent(S.value)+':generateContent?key='+encodeURIComponent(apiKey);
+  const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:prompt}]}]})});
+  if(!response.ok)throw new Error('Gemini API request failed');
+  const data=await response.json();
+  const answer=data&&data.candidates&&data.candidates[0]&&data.candidates[0].content&&data.candidates[0].content.parts&&data.candidates[0].content.parts[0]&&data.candidates[0].content.parts[0].text;
+  if(typeof answer!=='string'||!answer.trim())throw new Error('Empty Gemini response');
+  const a=answer.trim();
+  fill(w,a);hist.push({role:'assistant',content:a});store.push({r:'u',c:t,t:t0,i:pi?pi.thumb:''},{r:'a',c:a,t:Date.now(),m:S.value});saveMem();
+ }catch(e){w.textContent='خطا در ارتباط با هوش مصنوعی. لطفاً اینترنت خود را بررسی کنید و مطمئن شوید کلید API جمنای معتبر است.';hist.pop()}
  busy=false;L.scrollTop=L.scrollHeight}
 let pend=null;const PV=document.getElementById('aipv'),FI=document.getElementById('aifile');
 const clearPv=()=>{pend=null;PV.hidden=true;FI.value=''};
