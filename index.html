@@ -1088,8 +1088,8 @@ async function send(){const t=I.value.trim()||(pend?'این تصویر را بر
    ?'\nپیش از پاسخ، مسئله را با دقت بررسی کن و پاسخ نهایی را دقیق، منظم و در صورت نیاز مرحله‌بندی‌شده ارائه بده. جزئیات استدلال خصوصی را نمایش نده.'
    :'\nپاسخ را سریع، کوتاه و مستقیم ارائه بده.';
   const prompt=PERS[PS.value]+modePrompt+ctx+imageNote+(conversation?'\n\nگفت‌وگوی اخیر:\n'+conversation:'')+'\n\nپیام کاربر:\n'+t;
-  const apiKey='AQ.Ab8RN6JKCqG6Lz9Ig-d_p-WS_R3-5QEjqnKOyGXoZsrq9ozahw';
-  const endpoint='https://generativelanguage.googleapis.com/v1beta/models/'+encodeURIComponent(S.value)+':generateContent?key='+encodeURIComponent(apiKey);
+  const apiKey = 'AQ.Ab8RN6JJBWrG1BaP5uTRVcHApU9NcIbtRzsQ-PiXf7aiC3OZhA';
+  const endpoint = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AQ.Ab8RN6JJBWrG1BaP5uTRVcHApU9NcIbtRzsQ-PiXf7aiC3OZhA';
   const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:prompt}]}]})});
   if(!response.ok)throw new Error('Gemini API request failed');
   const data=await response.json();
