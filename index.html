@@ -941,31 +941,5 @@ setTimeout(()=>{if(!('IntersectionObserver' in window))return;const io=new Inter
  [...document.querySelectorAll('.lks>*,.hb>*,.credit,footer')].forEach((e,i)=>{const r=e.getBoundingClientRect();e.style.setProperty('--i',i%3);if(r.top>innerHeight){e.classList.add('sr')}io.observe(e)})},2200);
 })();
 </script>
-<div id="offline-banner" style="display: none; position: fixed; top: 0; left: 0; right: 0; background: #e74c3c; color: white; text-align: center; padding: 10px; z-index: 10000; font-family: Tahoma, sans-serif; font-size: 0.9rem;">
-  ⚠️ اتصال اینترنت شما قطع است. لطفاً فیلترشکن خود را بررسی کنید.
-</div>
-
-<script>
-  function checkInternet() {
-    var banner = document.getElementById('offline-banner');
-    
-    // یه درخواست کوچیک به گوگل می‌فرستیم تا ببینیم اینترنت (یا فیلترشکن) وصله یا نه
-    fetch('https://www.google.com/favicon.ico', { mode: 'no-cors', cache: 'no-store' })
-      .then(function() {
-        // اگه جواب داد، یعنی اینترنت و فیلترشکن سالمه
-        if(banner) banner.style.display = 'none';
-      })
-      .catch(function() {
-        // اگه ارور داد، یعنی فیلترشکن قطع شده یا اینترنت نیست
-        if(banner) banner.style.display = 'block';
-      });
-  }
-
-  // چک کردن موقع باز شدن سایت
-  window.addEventListener('load', checkInternet);
-  
-  // چک کردن مداوم هر ۵ ثانیه
-  setInterval(checkInternet, 5000);
-</script>
 </body>
 </html>
