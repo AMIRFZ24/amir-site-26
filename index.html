@@ -942,5 +942,24 @@ setTimeout(()=>{if(!('IntersectionObserver' in window))return;const io=new Inter
  [...document.querySelectorAll('.lks>*,.hb>*,.credit,footer')].forEach((e,i)=>{const r=e.getBoundingClientRect();e.style.setProperty('--i',i%3);if(r.top>innerHeight){e.classList.add('sr')}io.observe(e)})},2200);
 })();
 </script>
+ <!-- دکمه بازگشت به بالا -->
+<button id="backToTop" aria-label="بازگشت به بالا" style="position: fixed; bottom: 20px; right: 20px; z-index: 999; width: 48px; height: 48px; border-radius: 50%; border: 2px solid var(--bc, var(--b1)); background: var(--cd, var(--glass)); color: var(--tx); font-size: 1.5rem; cursor: pointer; display: none; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); backdrop-filter: blur(10px); transition: all 0.3s;">
+  ↑
+</button>
+ <script>
+  const btt = document.getElementById('backToTop');
+  
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      btt.style.display = 'flex';
+    } else {
+      btt.style.display = 'none';
+    }
+  });
+
+  btt.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+ </script>
 </body>
 </html>
