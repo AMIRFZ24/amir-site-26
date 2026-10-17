@@ -9,6 +9,121 @@
 <meta property="og:title" content="دستیار AMIR"><meta property="og:site_name" content="دستیار AMIR"><meta name="application-name" content="دستیار AMIR"><meta name="apple-mobile-web-app-title" content="دستیار AMIR">
 <title>دستیار AMIR</title>
 <style>
+ 
+/* ===== اصلاح دکمه شناور دستیار هوش مصنوعی ===== */
+
+#aib {
+    position: fixed !important;
+
+    left: 16px !important;
+    right: auto !important;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px)) !important;
+
+    z-index: 99999 !important;
+
+    width: 58px !important;
+    height: 58px !important;
+    min-width: 58px !important;
+    min-height: 58px !important;
+
+    display: grid !important;
+    place-items: center !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    border-radius: 50% !important;
+    box-sizing: border-box !important;
+
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+
+    transform: translateZ(0);
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* ===== اصلاح پنجره چت ===== */
+
+#aim {
+    position: fixed !important;
+    inset: 0 !important;
+
+    z-index: 99998 !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    height: 100dvh !important;
+    box-sizing: border-box !important;
+
+    padding-top: max(12px, env(safe-area-inset-top, 0px)) !important;
+    padding-right: 12px !important;
+    padding-left: 12px !important;
+    padding-bottom: max(12px, env(safe-area-inset-bottom, 0px)) !important;
+
+    overflow: hidden !important;
+    overscroll-behavior: contain;
+}
+
+/* حفظ اندازه و اسکرول محتوای چت */
+
+#ais {
+    box-sizing: border-box !important;
+    width: min(440px, 100%) !important;
+    max-width: 100% !important;
+
+    max-height: 100% !important;
+    min-height: 0 !important;
+
+    overflow-y: auto !important;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ===== تنظیمات اختصاصی موبایل ===== */
+
+@media screen and (max-width: 768px) {
+    #aib {
+        left: 14px !important;
+        bottom: calc(18px + env(safe-area-inset-bottom, 0px)) !important;
+
+        width: 56px !important;
+        height: 56px !important;
+        min-width: 56px !important;
+        min-height: 56px !important;
+
+        z-index: 99999 !important;
+    }
+
+    #aim {
+        padding-top: max(10px, env(safe-area-inset-top, 0px)) !important;
+        padding-right: 10px !important;
+        padding-left: 10px !important;
+        padding-bottom: max(10px, env(safe-area-inset-bottom, 0px)) !important;
+    }
+
+    #ais {
+        width: 100% !important;
+        max-width: 100% !important;
+        border-radius: 20px !important;
+    }
+}
+
+/* نمایش صحیح در گوشی‌های کوچک */
+
+@media screen and (max-width: 380px) {
+    #aib {
+        left: 12px !important;
+        bottom: calc(14px + env(safe-area-inset-bottom, 0px)) !important;
+
+        width: 52px !important;
+        height: 52px !important;
+        min-width: 52px !important;
+        min-height: 52px !important;
+    }
+}
 :root{--bg1:#fff;--bg2:#fff;--glass:rgba(244,247,255,.6);--bd:rgba(30,40,80,.1);--bo:.25;--lg:rgba(255,255,255,.85);--pn:linear-gradient(135deg,rgba(108,140,255,.16),rgba(0,224,160,.07));--tx:#14182b;--mu:#5b6482;--ac:#00b97a;--up:#00a86b;--dn:#e5384f;--sh:0 8px 32px rgba(40,60,120,.15);--b1:#6c8cff;--b2:#00e0a0;--b3:#ffb86c;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg1:#0a0d18;--bg2:#0a0d18;--glass:rgba(16,20,38,.62);--bd:rgba(255,255,255,.18);--bo:.4;--lg:rgba(255,255,255,.07);--pn:linear-gradient(135deg,rgba(255,255,255,.1),rgba(255,255,255,.02));--tx:#fff;--mu:#c3cae6;--ac:#3dffb0;--up:#3dffb0;--dn:#ff6b81;--sh:0 8px 32px rgba(0,0,0,.45);--b1:#4b5cff;--b2:#00c98d;--b3:#a855f7;color-scheme:dark}}
@@ -23,7 +138,8 @@ body{font-family:'VazirEmb','Vazirmatn',Tahoma,sans-serif;color:var(--tx);backgr
 .wrap{position:relative;z-index:1;max-width:1100px;margin:auto;padding:18px 16px 40px}
 .glass{background:var(--glass);border:1px solid var(--bd);box-shadow:var(--sh),inset 0 1px 1px var(--lg),inset 0 0 22px var(--lg);backdrop-filter:blur(16px) saturate(180%);-webkit-backdrop-filter:blur(16px) saturate(180%);border-radius:22px}
 header{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.logo{font-weight:800;font-size:1.3rem;display:flex;align-items:center;gap:10px}
+.logo{font-weight:800
+      ;font-size:1.3rem;display:flex;align-items:center;gap:10px}
 .logo i{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,var(--b1),var(--b2));display:grid;place-items:center;color:#fff;font-style:normal}
 @keyframes sp{50%{transform:rotate(180deg) scale(1.1)}}
 .tg{border:1px solid var(--bd);cursor:pointer;min-width:66px;padding:8px 12px;border-radius:16px;display:flex;flex-direction:column;align-items:center;gap:2px;font:inherit;font-size:1.3rem;color:var(--tx)}.tg small{font-size:.72rem;font-weight:600}
