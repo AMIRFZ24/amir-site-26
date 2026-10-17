@@ -946,18 +946,26 @@ setTimeout(()=>{if(!('IntersectionObserver' in window))return;const io=new Inter
 </div>
 
 <script>
-  function updateOnlineStatus() {
-    const banner = document.getElementById('offline-banner');
-    if (navigator.onLine) {
-      banner.style.display = 'none';
-    } else {
-      banner.style.display = 'block';
+  function checkConnection() {
+    var banner = document.getElementById('offline-banner');
+    if (banner) {
+      if (navigator.onLine) {
+        banner.style.display = 'none';
+      } else {
+        banner.style.display = 'block';
+      }
     }
   }
   
-  window.addEventListener('online', updateOnlineStatus);
-  window.addEventListener('offline', updateOnlineStatus);
-  updateOnlineStatus();
+  // اجرای اولیه
+  window.onload = checkConnection;
+  
+  // گوش دادن به تغییرات شبکه
+  window.addEventListener('online', checkConnection);
+  window.addEventListener('offline', checkConnection);
+  
+  // چک کردن مداوم هر ۳ ثانیه (برای وقتی که فقط فیلترشکن قطع میشه و اینترنت وصله)
+  setInterval(checkConnection, 3000);
 </script>
 </body>
 </html>
