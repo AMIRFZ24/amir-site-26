@@ -1,4 +1,4 @@
-const CACHE_NAME = 'amir-site-v116';
+const CACHE_NAME = 'amir-site-v117';
 const urlsToCache = [
   '/amir-site-26/',
   '/amir-site-26/index.html'
