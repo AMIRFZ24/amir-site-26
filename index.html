@@ -11,7 +11,7 @@ window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();win
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%2300b97a'/%3E%3Cpath d='M9 24L16 7l7 17M11.5 19h9' fill='none' stroke='white' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
-<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="theme-color" content="#5b7cff">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><link rel="apple-touch-icon" href="icon-192.png"><meta name="mobile-web-app-capable" content="yes"><meta name="theme-color" content="#5b7cff">
 <meta property="og:title" content="دستیار AMIR"><meta property="og:site_name" content="دستیار AMIR"><meta name="application-name" content="دستیار AMIR"><meta name="apple-mobile-web-app-title" content="دستیار AMIR">
 <title>دستیار AMIR</title>
 <style>
@@ -345,14 +345,7 @@ body,:root[data-theme="dark"] body{background:var(--bg)!important}
 .wxg .at{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:3px;min-height:62px}.wxg .at b,.wxg .at span{display:block;width:100%;text-align:center;margin:0}
 .credit.glass{width:fit-content;max-width:100%;margin:26px auto 12px;padding:12px 24px;border-radius:18px}
 html,body,button,input,select,textarea,option{font-family:'VazirEmb','Vazirmatn',Tahoma,sans-serif}
-/* ===== gtranslate card ===== */
-.goog-te-banner-frame,iframe.skiptranslate,.skiptranslate>iframe{display:none!important}
-body{top:0!important}
-#goog-gt-tt,.goog-tooltip,.goog-te-balloon-frame{display:none!important}
-.goog-text-highlight{background:none!important;box-shadow:none!important}
-.hrC{row-gap:8px}.hrC>#lgb{grid-column:1;grid-row:2;justify-self:start}
-
-#lgb small{white-space:nowrap}.tpop.lgp{min-width:160px}
+.hrC{row-gap:8px}
 .wxh{font-weight:700;font-size:.9rem;margin:16px 0 8px}
 .wxhr{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
 .wxhr .at{flex:none;min-width:62px;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 6px}.wxhr .at b{font-size:.75rem}.wxhr .at i{margin:0;line-height:1.1}.wxhr .at span{font-size:.9rem}
@@ -405,8 +398,8 @@ body{word-spacing:.12em}
 .vpn2{margin-bottom:8px}
 .hb .tg{padding:14px 6px!important;justify-content:center;min-width:0;min-height:76px}
 .hrC>.tg{width:58px;height:58px;padding:0!important;justify-content:center;align-items:center}
-.hrC .tg small,#tl,#lgl{display:none!important}
-.hrC>#edb{grid-column:3;grid-row:2;justify-self:end}
+.hrC .tg small,#tl{display:none!important}
+.hrC>#edb{grid-column:2;grid-row:2;justify-self:center}
 #edb.on{background:linear-gradient(135deg,var(--b1),var(--b2))!important}
 #edb.on svg{color:#fff!important}
 .md .sheet>.xb{position:sticky!important;top:10px!important;left:auto!important;float:left;margin:-8px 0 0 -4px;z-index:6}
@@ -421,37 +414,26 @@ body.editing .lks>*,body.editing .hb>*{touch-action:none;-webkit-user-select:non
 #edbar[hidden]{display:none}
 #edbar button{font:inherit;font-weight:700;padding:7px 12px;border-radius:12px;border:1px solid var(--bd);background:var(--cd);color:var(--tx);cursor:pointer}
 #edd{background:linear-gradient(135deg,var(--b1),var(--b2))!important;color:#fff!important;border-color:transparent!important}
-#lgfx{position:fixed;inset:0;z-index:9999;pointer-events:none;overflow:hidden}
-#lgfx .w1,#lgfx .w2{position:absolute;left:var(--x);top:var(--y);width:40px;height:40px;margin:-20px;border-radius:50%;background:radial-gradient(circle,transparent 55%,var(--bc,var(--b1)) 100%);opacity:.5;animation:lgw 1s ease-out forwards}
-#lgfx .w2{animation-delay:.18s}
-#lgfx .bd{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:10px;padding:14px 20px;border-radius:20px;background:var(--cd);border:2px solid var(--bc,var(--b1));font-weight:700;color:var(--tx);animation:lgp .35s cubic-bezier(.2,.9,.3,1.4)}
-#lgfx .gl{display:inline-block;font-size:1.6rem;animation:lgs 1s linear infinite}
-#lgfx.end .bd{animation:lgo .35s forwards}
-@keyframes lgw{to{transform:scale(60);opacity:0}}
-@keyframes lgp{from{opacity:0;transform:translate(-50%,-50%) scale(.6)}}
-@keyframes lgs{to{transform:rotateY(360deg)}}
-@keyframes lgo{to{opacity:0;transform:translate(-50%,-50%) scale(.8)}}
 #wxm .wxr,#wxm #wxo{clear:both}#wxm .wxr{padding-top:4px}
 #wxm .sheet>.xb{margin-bottom:14px}#wxm #wxp{margin-bottom:14px}#wxm .wxr{margin-top:6px}
 #wxm .sheet>.xb,#wxm #wxp{margin-bottom:26px!important}#wxm h2{margin-bottom:26px!important;min-height:36px}#wxm .wxr{margin-top:0!important;padding-top:0!important}
 .md .sheet>.xb,#wxm #wxp{position:relative!important;top:0!important}
-#cb12 svg,#lgb svg,#edb svg{box-sizing:content-box!important;width:24px!important;height:24px!important;padding:8px;border-radius:12px;color:#fff!important;box-shadow:inset 0 1px 1px rgba(255,255,255,.45),0 4px 14px rgba(0,0,0,.18)}
-#cb12 svg{background:#a855f7}#lgb svg{background:#14b8a6}#edb svg{background:#f59e0b}
+#cb12 svg,#edb svg{box-sizing:content-box!important;width:24px!important;height:24px!important;padding:8px;border-radius:12px;color:#fff!important;box-shadow:inset 0 1px 1px rgba(255,255,255,.45),0 4px 14px rgba(0,0,0,.18)}
+#cb12 svg{background:#a855f7}#edb svg{background:#f59e0b}
 #edb.on{background:var(--cd)!important;outline:2px solid #f59e0b;outline-offset:2px}
 /* ===== glass icons ===== */
 .lk .li,.logo i,#ti{position:relative;isolation:isolate;overflow:hidden;border:1px solid rgba(255,255,255,.6)!important;backdrop-filter:blur(10px) saturate(170%);-webkit-backdrop-filter:blur(10px) saturate(170%);box-shadow:inset 0 1px 1px rgba(255,255,255,.75),inset 0 -8px 12px rgba(255,255,255,.1),0 8px 20px rgba(0,0,0,.2)!important}
 .lk .li::before,.logo i::before,#ti::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;background:linear-gradient(135deg,rgba(255,255,255,.62),rgba(255,255,255,.08) 58%,rgba(255,255,255,.22));pointer-events:none}
 #ti{display:inline-grid!important;place-items:center;width:40px;height:40px;border-radius:12px;font-size:1.25rem;background:rgba(120,140,200,.28)}
-.hb .tg svg,#cb12 svg,#lgb svg,#edb svg{box-sizing:content-box!important;width:22px!important;height:22px!important;padding:9px;border-radius:13px;border:1px solid rgba(255,255,255,.65);backdrop-filter:blur(10px) saturate(170%);-webkit-backdrop-filter:blur(10px) saturate(170%);box-shadow:inset 0 1px 1px rgba(255,255,255,.8),inset 0 -8px 12px rgba(255,255,255,.1),0 8px 18px rgba(0,0,0,.14)}
+.hb .tg svg,#cb12 svg,#edb svg{box-sizing:content-box!important;width:22px!important;height:22px!important;padding:9px;border-radius:13px;border:1px solid rgba(255,255,255,.65);backdrop-filter:blur(10px) saturate(170%);-webkit-backdrop-filter:blur(10px) saturate(170%);box-shadow:inset 0 1px 1px rgba(255,255,255,.8),inset 0 -8px 12px rgba(255,255,255,.1),0 8px 18px rgba(0,0,0,.14)}
 .hb .tg svg{color:var(--ac)!important;background:linear-gradient(135deg,rgba(255,255,255,.7),rgba(255,255,255,.12)),color-mix(in srgb,var(--ac) 20%,transparent)}
 :root[data-theme="dark"] .hb .tg svg{background:linear-gradient(135deg,rgba(255,255,255,.3),rgba(255,255,255,.04)),color-mix(in srgb,var(--ac) 28%,transparent)}
-#cb12 svg,#lgb svg,#edb svg{color:#fff!important}
+#cb12 svg,#edb svg{color:#fff!important}
 #cb12 svg{background:linear-gradient(135deg,rgba(255,255,255,.6),rgba(255,255,255,.06) 60%),rgba(168,85,247,.78)}
-#lgb svg{background:linear-gradient(135deg,rgba(255,255,255,.6),rgba(255,255,255,.06) 60%),rgba(20,184,166,.78)}
 #edb svg{background:linear-gradient(135deg,rgba(255,255,255,.6),rgba(255,255,255,.06) 60%),rgba(245,158,11,.8)}
 
 /* ===== scroll performance ===== */
-.lk .li,.logo i,#ti,.hb .tg svg,#cb12 svg,#lgb svg,#edb svg{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.lk .li,.logo i,#ti,.hb .tg svg,#cb12 svg,#edb svg{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
 .sr{filter:none!important;transition:opacity .55s,transform .75s cubic-bezier(.2,.9,.25,1.15);transition-delay:calc(var(--i,0)*70ms)}
 html.scr .credit,html.scr .at.nx,html.scr .ld,html.scr .lv,html.scr .lw i,html.scr .wxe,html.scr .wxc.act .rays,html.scr .wxc.act .cld,html.scr .wxc.act .dr,html.scr .wxc.act .sn,html.scr .wxc.wl .wxi,html.scr .az.wl .azi,html.scr .az.act .azs2{animation-play-state:paused!important}
 /* ===== Vazirmatn (embedded variable font, OFL) ===== */
@@ -518,9 +500,8 @@ html.lenis,html.lenis body{height:auto}
 .pane{will-change:translate}
 /* ===== GPU compositing hints ===== */
 .lk,.tg,.logo,.hello,.wxdb,.wxmore,.nwi,.xb,.tab,.card{will-change:transform}
-.lk .li,.hb .tg svg,#cb12 svg,#lgb svg,#edb svg,#ti{will-change:transform;translate:0 0 .01px}
-.lk,.tg,.logo,.hello{translate:0 0 .01px}.rplw i,#lgfx .w1,#lgfx .w2,#lgfx .bd,#lgfx .gl{will-change:transform,opacity;transform:translateZ(0)}
-.blob,.pane{will-change:translate,transform}
+.lk .li,.hb .tg svg,#cb12 svg,#edb svg,#ti{will-change:transform;translate:0 0 .01px}
+.lk,.tg,.logo,.hello{translate:0 0 .01px}.rplw i,.blob,.pane{will-change:translate,transform}
 .md:not([hidden]) .sheet{will-change:transform,opacity}
 .md:not([hidden]){will-change:opacity}
 .suspended *,.suspended *::before,.suspended *::after{animation-play-state:paused!important}
@@ -582,6 +563,14 @@ html.has-nm #wl{display:none!important}
 .nwstar.on{filter:none;opacity:1;transform:scale(1.1)}
 .nwstar:active{transform:scale(.85)}
 .nwnone{padding:16px;text-align:center;color:var(--mu)}
+
+/* ===== fixes: modal blur in dark theme, page edges ===== */
+:root[data-theme="dark"] .sheet{background:rgba(10,15,30,.9)!important;-webkit-backdrop-filter:blur(40px) saturate(160%)!important;backdrop-filter:blur(40px) saturate(160%)!important}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .sheet{-webkit-backdrop-filter:blur(40px) saturate(160%)!important;backdrop-filter:blur(40px) saturate(160%)!important}}
+.wrap{box-sizing:border-box;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media(min-width:768px){.wrap{padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}}
+.lks,.hb{width:100%;box-sizing:border-box}
+.lks>.lk,.hb>.tg{min-width:0;box-sizing:border-box}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
 <script>
@@ -605,68 +594,21 @@ html.has-nm #wl{display:none!important}
 </head>
 <body>
 <script>try{var m=localStorage.getItem('thm');if(m==='dark'||m==='light')document.documentElement.setAttribute('data-theme',m)}catch(e){}</script>
-<div id="splash" aria-hidden="true"><div class="spc"><div class="spl">دستیار AMIR</div><div class="spb"><i></i></div></div></div>
-<script>(function(){var s=document.getElementById('splash');if(!s)return;var t0=Date.now(),d=0;function out(){if(d)return;d=1;s.classList.add('out');setTimeout(function(){if(s.parentNode)s.parentNode.removeChild(s)},750)}setTimeout(function c(){if(document.documentElement.classList.contains('rdy')||Date.now()-t0>=3000)out();else setTimeout(c,60)},1000)})();</script>
+<div id="splash" aria-hidden="true"><div class="spc"><svg class="spg" viewBox="0 0 32 32" width="64" height="64" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#00b97a"/><path d="M9 24L16 7l7 17M11.5 19h9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="spl">دستیار AMIR</div><div class="spb"><i></i></div></div></div>
+<script>(function(){var s=document.getElementById('splash');if(!s)return;var sa=(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)||navigator.standalone===true;if(!sa){s.parentNode.removeChild(s);return}var t0=Date.now(),d=0;function out(){if(d)return;d=1;s.classList.add('out');setTimeout(function(){if(s.parentNode)s.parentNode.removeChild(s)},750)}setTimeout(function c(){if(document.documentElement.classList.contains('rdy')||Date.now()-t0>=2500)out();else setTimeout(c,60)},1000)})();</script>
 <div class="blob"></div><div class="blob"></div><div class="blob"></div>
 <div class="pane" style="top:8%;right:-8%;width:300px;height:380px;transform:rotate(18deg)"></div><div class="pane" style="bottom:8%;left:-8%;width:340px;height:260px;transform:rotate(-14deg)"></div><div class="pane" style="top:42%;left:42%;width:220px;height:220px;transform:rotate(30deg)"></div>
 <div class="wrap">
 <div class="nbar" id="netbar" role="status" aria-live="polite" data-q="na" translate="no"><svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><linearGradient id="nbgW" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#38bdf8"/><stop offset="1" stop-color="#6366f1"/></linearGradient><linearGradient id="nbgM" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#0ea5e9"/></linearGradient><linearGradient id="nbgN" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a1a1aa"/><stop offset="1" stop-color="#64748b"/></linearGradient><linearGradient id="nbgl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".6"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/></linearGradient></defs></svg><div class="nb-i"><span class="nb-ic" id="nbTI"></span><span class="nb-tx"><small>نوع اینترنت</small><b id="nbTT">…</b></span></div><div class="nb-i"><span class="nb-ic nb-q" id="nbQI"></span><span class="nb-tx"><small>کیفیت اینترنت</small><b id="nbQT">…</b></span></div></div>
 <header><div class="logo glass"><span>دستیار AMIR</span></div><div class="hb"><button class="tg glass" id="cb2" aria-label="تقویم"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ac)"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/><circle cx="8" cy="14" r=".6" fill="currentColor"/><circle cx="12" cy="14" r=".6" fill="currentColor"/><circle cx="16" cy="14" r=".6" fill="currentColor"/><circle cx="8" cy="18" r=".6" fill="currentColor"/><circle cx="12" cy="18" r=".6" fill="currentColor"/></svg><small>تقویم</small></button><button class="tg glass" id="cb4" aria-label="یادداشت"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ac)"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h5"/></svg><small>یادداشت</small></button><button class="tg glass" id="cb3" aria-label="ماشین حساب"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ac)"><rect x="5" y="2.5" width="14" height="19" rx="3"/><path d="M8.5 7h7"/><circle cx="9" cy="12" r=".7" fill="currentColor"/><circle cx="12" cy="12" r=".7" fill="currentColor"/><circle cx="15" cy="12" r=".7" fill="currentColor"/><circle cx="9" cy="16" r=".7" fill="currentColor"/><circle cx="12" cy="16" r=".7" fill="currentColor"/><circle cx="15" cy="16" r=".7" fill="currentColor"/></svg><small>ماشین حساب</small></button><button class="tg glass" id="cb7" aria-label="ماشین حساب مالی"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ac)"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/></svg><small>مالی</small></button><button class="tg glass" id="cb9" aria-label="معدل"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ac)"><path d="M3 9l9-5 9 5-9 5z"/><path d="M7 11.5V16c0 1.5 2.2 3 5 3s5-1.5 5-3v-4.5"/></svg><small>معدل</small></button><button class="tg glass" id="cb10" aria-label="برنامه هفتگی"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ac)"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><small>برنامه هفتگی</small></button><button class="tg glass" id="cb12" aria-label="ظاهر"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ac)"><path d="M12 3a9 9 0 1 0 0 18c1.2 0 1.8-.8 1.5-1.8-.3-1 .3-2 1.4-2H17a4 4 0 0 0 4-4c0-5-4-10-9-10z"/><circle cx="8" cy="11" r="1"/><circle cx="12" cy="7.5" r="1"/><circle cx="16" cy="11" r="1"/></svg></button><button class="tg glass" id="cb15" aria-label="کارهای روزانه"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ac)"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/></svg><small>کارهای روزانه</small></button><button class="tg glass" id="cb17" aria-label="خرج‌ها"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ac)"><path d="M3 7a2 2 0 0 1 2-2h13v4"/><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="16.5" cy="13.5" r="1"/></svg><small>خرج‌ها</small></button><button class="tg glass" id="cb5" aria-label="اخبار"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ac)"><path d="M4 5h13v14H6a2 2 0 0 1-2-2z"/><path d="M17 8h3v9a2 2 0 0 1-2 2"/><path d="M7 9h7M7 13h7"/></svg><small>اخبار</small></button><button class="tg glass" id="cbw" aria-label="آب‌وهوا"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ac)"><circle cx="8" cy="8" r="2.8"/><path d="M8 2v1.4M2 8h1.4M3.8 3.8l1 1M12.2 3.8l-1 1"/><path d="M8.5 20h8.5a3.5 3.5 0 0 0 .3-7 5 5 0 0 0-9.4 1.2A3 3 0 0 0 8.5 20z"/></svg><small>آب‌وهوا</small></button><button class="tg glass" id="tg" aria-label="تغییر تم"><span id="ti">🌙</span><small id="tl">تاریک</small></button></div></header>
-<div id="gte" style="position:absolute;left:-9999px;top:0;width:1px;height:1px;overflow:hidden" aria-hidden="true"></div>
-<button class="tg glass" id="lgb" type="button" aria-label="زبان" translate="no"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ac)"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.6 4 5.7 4 9s-1.4 6.4-4 9c-2.6-2.6-4-5.7-4-9s1.4-6.4 4-9z"/></svg><small id="lgl">فارسی</small></button><button class="tg glass" id="edb" type="button" aria-label="ویرایش چیدمان" aria-pressed="false"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ac)"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg><small>ویرایش</small></button>
-<script>
-(function(){
-const b=document.getElementById('lgb'),l=document.getElementById('lgl');if(!b||!l)return;
-const NAMES={fa:'فارسی',en:'English',system:'سیستم'};
-const rd=()=>{try{return localStorage.getItem('lgm')}catch(e){return null}};
-let mode=rd();if(!NAMES[mode])mode='fa';
-const sysLang=()=>String(navigator.language||'fa').toLowerCase().indexOf('fa')===0?'fa':'en';
-const want=m=>m==='system'?sysLang():m;
-const hasCk=()=>/(?:^|;\s*)googtrans=\/fa\/en/.test(document.cookie);
-function setCk(en){const d=location.hostname,x='; expires=Thu, 01 Jan 1970 00:00:00 GMT';
- if(en){document.cookie='googtrans=/fa/en; path=/';if(d.indexOf('.')>0)document.cookie='googtrans=/fa/en; path=/; domain=.'+d}
- else{document.cookie='googtrans=;path=/'+x;document.cookie='googtrans=;path=/;domain='+d+x;document.cookie='googtrans=;path=/;domain=.'+d+x}}
-let loaded=false;
-window.gtInit=function(){try{new google.translate.TranslateElement({pageLanguage:'fa',includedLanguages:'fa,en',autoDisplay:false},'gte')}catch(e){}};
-function load(){if(loaded)return;loaded=true;const s=document.createElement('script');s.src='https://translate.google.com/translate_a/element.js?cb=gtInit';s.async=true;document.head.appendChild(s)}
-function combo(cb){let t=0;const i=setInterval(()=>{const c=document.querySelector('select.goog-te-combo');if(c){clearInterval(i);cb(c)}else if(++t>40){clearInterval(i);cb(null)}},250)}
-const isTr=()=>/translated-(ltr|rtl)/.test(document.documentElement.className);
-function setCombo(v,fb){combo(c=>{if(!c){fb();return}c.value=v;c.dispatchEvent(new Event('change'))})}
-function apply(lang){
- if(lang==='en'){setCk(true);if(!loaded)load();else setCombo('en',()=>location.reload())}
- else{
-  if(!loaded){if(hasCk())setCk(false);return}
-  setCombo('fa',()=>{setCk(false);location.reload()});
-  setTimeout(()=>{if(isTr()){setCk(false);location.reload()}},1800)}
-}
-const paint=()=>{l.textContent=NAMES[mode]};
-function fx(lang){const r=b.getBoundingClientRect(),o=document.createElement('div');o.id='lgfx';o.setAttribute('translate','no');
- o.innerHTML='<i class="w1"></i><i class="w2"></i><div class="bd"><span class="gl">🌐</span><b>'+(lang==='en'?'Translating…':'در حال ترجمه…')+'</b></div>';
- o.style.setProperty('--x',(r.left+r.width/2)+'px');o.style.setProperty('--y',(r.top+r.height/2)+'px');document.body.append(o);
- const t0=Date.now(),to=lang==='en',iv=setInterval(()=>{if((to===isTr()&&Date.now()-t0>700)||Date.now()-t0>7000){clearInterval(iv);o.classList.add('end');
-  setTimeout(()=>{o.remove();document.querySelectorAll('.lks>*,.hb>*,.hrC>*').forEach((e,i)=>e.animate([{opacity:0,transform:'translateY(14px) scale(.9)'},{opacity:1,transform:'none'}],{duration:420,delay:i*35,easing:'cubic-bezier(.2,.9,.3,1.2)',fill:'backwards'}))},380)}},120)}
-paint();apply(want(mode));
-let pop=null;const close=()=>{if(pop){pop.remove();pop=null}};
-b.addEventListener('click',e=>{e.stopPropagation();
- if(pop){close();return}
- if(typeof tpClose==='function')tpClose();load();
- const r=b.getBoundingClientRect(),p=document.createElement('div');
- p.className='tpop lgp notranslate';p.setAttribute('translate','no');
- p.innerHTML=[['fa','🇮🇷'],['en','🇬🇧'],['system','💻']].map(x=>'<button type="button" data-m="'+x[0]+'" class="'+(mode===x[0]?'on':'')+'"><span>'+x[1]+'</span>'+NAMES[x[0]]+(mode===x[0]?' ✓':'')+'</button>').join('');
- p.onclick=ev=>{ev.stopPropagation();const t=ev.target.closest('button');if(!t)return;
-  mode=t.dataset.m;try{localStorage.setItem('lgm',mode)}catch(_){}
-  paint();close();if((want(mode)==='en')!==isTr())fx(want(mode));apply(want(mode))};
- p.style.visibility='hidden';document.body.append(p);
- const w=p.offsetWidth;let left=r.left+r.width/2-w/2;left=Math.max(8,Math.min(left,innerWidth-w-8));
- p.style.top=(r.bottom+8)+'px';p.style.left=left+'px';p.style.right='auto';p.style.visibility='';
- pop=p});
-document.addEventListener('click',close);addEventListener('scroll',close,{passive:true});addEventListener('keydown',e=>{if(e.key==='Escape')close()});
-})();
-</script>
+
+<button class="tg glass" id="edb" type="button" aria-label="ویرایش چیدمان" aria-pressed="false"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ac)"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg><small>ویرایش</small></button>
+
 <div class="clk"><div class="clock"><b id="ck"></b></div><div class="clock" id="cc"><span id="dt"></span></div></div>
 <div class="hello pf" id="hl" hidden><div class="avw"><div class="av2" id="av2"><svg viewBox="0 0 32 32" width="56" height="56"><circle cx="16" cy="12.5" r="5" fill="#fff"/><path d="M6 27c1.5-5.5 6-8 10-8s8.5 2.5 10 8z" fill="#fff"/></svg></div><button class="avc" id="avb" type="button" aria-label="انتخاب عکس">📷</button><span class="pf-on sm" role="status" aria-label="آنلاین" title="آنلاین"></span></div><input type="file" id="avf" accept="image/*" style="position:absolute;opacity:0;width:1px;height:1px;pointer-events:none" tabindex="-1"><b id="hn" dir="auto"></b><small class="hbio" id="hbio" hidden></small><button class="avE" id="ave" type="button" hidden>ویرایش</button><small id="hs" hidden></small></div>
 <div id="wx" hidden><div id="wi2"></div><b id="wt"></b><small id="wd"></small></div>
 <div class="md" id="wxm" hidden><div class="sheet wxs" id="wxs"><div class="sheet-head"><h2><span class="wxe" id="wxe">🌤️</span>آب‌وهوا</h2><button class="wxp" id="wxp" type="button" aria-label="ویرایش شهر" hidden></button><button class="wxrf" id="wxrf" type="button" aria-label="به‌روزرسانی" title="به‌روزرسانی" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></svg></button><button class="xb" id="wxmx" type="button" aria-label="بستن">✕</button></div><div class="sheet-body" data-lenis-prevent><div class="wxr"><input class="gin" id="wxq" dir="auto" maxlength="60" placeholder="نام شهر" autocomplete="off" enterkeyhint="search"><button class="wb" id="wxb" type="button">جستجو</button></div><div id="wxo" aria-live="polite"></div></div></div></div>
+<div class="md" id="wxdm" hidden><div class="sheet wxdsh"><div class="sheet-head"><h3 id="wxdt">نمودار ساعتی</h3><button class="xb" id="wxdx" type="button" aria-label="بستن">✕</button></div><div class="sheet-body" data-lenis-prevent><div id="wxdy"></div></div></div></div>
 
 <div class="lks"><button type="button" class="glass lk" data-k="l2" data-url="https://724.ir/topup"><span class="li" style="background:#16a34a"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2.5" width="11" height="19" rx="3"/><path d="M13.2 6.8L9.8 12.3h2.6l-1 5 3.4-5.8h-2.6z" fill="#fff" stroke-width="1"/></svg></span><b>خرید شارژ</b></button><button type="button" class="glass lk" data-k="l3" data-url="https://724.ir/internet"><span class="li" style="background:#0ea5e9"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9a14 14 0 0 1 19 0"/><path d="M5.8 12.6a9.4 9.4 0 0 1 12.4 0"/><path d="M9.1 16a4.8 4.8 0 0 1 5.8 0"/><circle cx="12" cy="19.4" r="1.3" fill="#fff" stroke="none"/></svg></span><b>خرید اینترنت</b></button></div>
 <div class="md" id="fm" hidden><div class="sheet"><div class="sheet-head"><h3 style="margin:0 0 12px">ماشین حساب مالی</h3><button class="xb" id="fmx" aria-label="بستن">✕</button></div><div class="sheet-body" data-lenis-prevent><div class="fmt" id="fmt"></div><div id="fmp"></div><small class="nwn" id="fmn"></small></div></div></div>
@@ -708,7 +650,7 @@ hs.onchange=ms.onchange=push;
 
 <div class="md" id="md" hidden><div class="sheet"><div class="sheet-head"><div class="mh"><div class="ic" id="mi"></div><div><div class="nm" id="mn"></div><div class="sy" id="ms"></div></div></div><button class="xb" id="x" aria-label="بستن">✕</button></div><div class="sheet-body" data-lenis-prevent><div class="tm"><span id="mp"></span><small>تومان</small></div><div class="us" id="mu"></div><div class="rg" id="rg"><button data-r="h" class="on">روز</button><button data-r="d">هفته</button><button data-r="w">ماه</button></div><canvas id="cv"></canvas><div class="live"><span class="dot"></span><span>نمودار زنده — بروزرسانی هر ۳ ثانیه</span></div></div></div></div>
 <div class="credit glass"><span>Site created by Amir Alizadeh</span></div>
-<footer>قیمت‌ها نمونه و تقریبی هستند و هر ۳ ثانیه به‌صورت شبیه‌سازی‌شده بروزرسانی می‌شوند.</footer>
+<footer>قیمت‌ها نمونه و تقریبی هستند و هر ۳ ثانیه به‌صورت شبیه‌سازی‌شده بروزرسانی می‌شوند.<button id="btt" class="btt" type="button" aria-label="بازگشت به بالا" title="بازگشت به بالا"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button></footer>
 </div>
 <script>
 const A=[
@@ -1074,7 +1016,7 @@ const fd=n=>String(n).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]);
 function bioShow(v){BIC.textContent=fd(v.length)+'/'+fd(100);if(HB){HB.textContent=v;HB.hidden=!v.trim()}}
 function pfBioLoad(){if(document.activeElement===BIO)return;let v='';try{v=(localStorage.getItem('bio')||'').slice(0,100)}catch(e){}BIO.value=v;bioShow(v)}
 function bioSave(){const v=BIO.value.replace(/\s*\n+\s*/g,' ').slice(0,100);if(v!==BIO.value)BIO.value=v;try{if(v.trim())localStorage.setItem('bio',v);else localStorage.removeItem('bio')}catch(e){}bioShow(v)}
-BIO.addEventListener('input',bioSave);BIO.addEventListener('blur',bioSave);addEventListener('pagehide',bioSave);
+let bioDirty=false;BIO.addEventListener('input',()=>{bioDirty=true;bioSave()});BIO.addEventListener('blur',()=>{if(bioDirty)bioSave()});addEventListener('pagehide',()=>{if(bioDirty)bioSave()});
 BIO.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();BIO.blur()}});
 pfBioLoad();
 /* --- نشانگر آنلاین --- */
@@ -1102,7 +1044,7 @@ WI.innerHTML=wicon('sun');
 WX.onclick=()=>{if(WX.dataset.l)return;WX.dataset.l=1;WX.classList.add('wl');WD.textContent='در حال دریافت موقعیت...';if(!navigator.geolocation)return wxErr('موقعیت مکانی پشتیبانی نمی‌شود');navigator.geolocation.getCurrentPosition(async p=>{WD.textContent='در حال دریافت آب‌وهوا...';try{const j=await(await fetch('https://api.open-meteo.com/v1/forecast?latitude='+p.coords.latitude+'&longitude='+p.coords.longitude+'&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code&timezone=auto')).json(),c=j.current,w=wcode(c.weather_code);WX.classList.remove('wl');WX.classList.add('act');WX.dataset.t=w[1];delete WX.dataset.l;WI.innerHTML=wicon(w[1]);WI.classList.remove('pop');void WI.offsetWidth;WI.classList.add('pop');WT.textContent=FA(String(Math.round(c.temperature_2m)))+'° — '+w[0];WD.textContent='رطوبت '+FA(String(c.relative_humidity_2m))+'٪ · باد '+FA(String(Math.round(c.wind_speed_10m)))+' کیلومتر بر ساعت'}catch(e){wxErr('دریافت آب‌وهوا از این صفحه ممکن نیست')}},()=>wxErr('دسترسی به موقعیت داده نشد'),{timeout:12000})};
 
 (function(){const S=['✨','💫','⭐','💖','🧿'];addEventListener('click',e=>{if(window.jf||document.body.classList.contains('editing'))return;const el=e.target.closest('.glass,.tg,.at,.lk,.fmt button,.rg button,.tpop button');if(!el||el.closest('.hb')||e.target.closest('input,textarea,select'))return;const dl=false;if(dl&&el._b){e.stopPropagation();e.preventDefault();return}const an=el.animate([{transform:'scale(1)'},{transform:'scale(.9,1.08)',offset:.25},{transform:'scale(1.07,.94)',offset:.5},{transform:'scale(.97,1.03)',offset:.75},{transform:'scale(1)'}],{duration:240,easing:'ease-out'});for(let k=0;k<0;k++){const p=document.createElement('i'),a=Math.random()*6.283,d=26+Math.random()*26;p.className='sp';p.textContent=S[Math.floor(Math.random()*S.length)];p.style.cssText='left:'+e.clientX+'px;top:'+e.clientY+'px;--x:'+Math.cos(a)*d+'px;--y:'+(Math.sin(a)*d-24)+'px';document.body.append(p);setTimeout(()=>p.remove(),700)}if(dl){e.stopPropagation();e.preventDefault();let t=e.target;while(t&&!t.click)t=t.parentElement;el._b=1;const go=()=>{if(!el._b)return;el._b=0;window.jf=1;(t||el).click();window.jf=0};an.onfinish=go;setTimeout(go,380)}},true)})();
-if(window.visualViewport){const vv=visualViewport,EI=document.getElementById('ei'),rs=document.documentElement.style,upd=()=>{const kb=Math.max(0,innerHeight-vv.height-vv.offsetTop);if(kb!==window.__kb){window.__kb=kb;rs.setProperty('--kb',kb+'px');document.querySelectorAll('.md').forEach(m=>m.classList.toggle('kb',kb>80))}if(Math.round(vv.height)!==window.__vh){window.__vh=Math.round(vv.height);rs.setProperty('--vh',window.__vh+'px')}if(kb>80&&document.activeElement===EI)setTimeout(()=>EI.scrollIntoView({block:'end',behavior:'smooth'}),60)};vv.addEventListener('resize',upd);vv.addEventListener('scroll',upd)}{const hd=document.querySelector('header'),lg=hd.querySelector('.logo'),mk=c=>{const d=document.createElement('div');d.className=c;return d},A=mk('hrA'),C=mk('hrC');A.append(lg);C.append(document.getElementById('tg'),document.getElementById('hl'),document.getElementById('cb12'),document.getElementById('lgb'),document.getElementById('edb'));hd.prepend(A,C)}
+if(window.visualViewport){const vv=visualViewport,EI=document.getElementById('ei'),rs=document.documentElement.style,upd=()=>{const kb=Math.max(0,innerHeight-vv.height-vv.offsetTop);if(kb!==window.__kb){window.__kb=kb;rs.setProperty('--kb',kb+'px');document.querySelectorAll('.md').forEach(m=>m.classList.toggle('kb',kb>80))}if(Math.round(vv.height)!==window.__vh){window.__vh=Math.round(vv.height);rs.setProperty('--vh',window.__vh+'px')}if(kb>80&&document.activeElement===EI)setTimeout(()=>EI.scrollIntoView({block:'end',behavior:'smooth'}),60)};vv.addEventListener('resize',upd);vv.addEventListener('scroll',upd)}{const hd=document.querySelector('header'),lg=hd.querySelector('.logo'),mk=c=>{const d=document.createElement('div');d.className=c;return d},A=mk('hrA'),C=mk('hrC');A.append(lg);C.append(document.getElementById('tg'),document.getElementById('hl'),document.getElementById('cb12'),document.getElementById('edb'));hd.prepend(A,C)}
 ['ca','gw'].forEach(id=>document.getElementById(id).closest('.conv').style.display='none');document.querySelector('.grid').style.display='none';
 document.querySelector('.lks').after(document.querySelector('.hb'));
 document.getElementById('gr').closest('.conv').after(document.getElementById('ca').closest('.conv'));document.querySelectorAll('.conv,.clock,.wxc').forEach(rv);
@@ -1153,6 +1095,66 @@ function wxInner(c,day){c=+c;const n=day===0;
  return '<g transform="translate(0 4)">'+CLD('#cfd8e6')+'</g>'}
 function wxIcon(c,day,sz,st){return '<svg class="wxs'+(st?' wxst':'')+'" viewBox="0 0 64 64" width="'+(sz||64)+'" height="'+(sz||64)+'" aria-hidden="true">'+wxInner(c,day)+'</svg>'}
 window.wxIcon=wxIcon;
+/* ===== مودال نمودار ساعتی هر روز؛ از همان داده‌های hourly که قبلاً گرفته شده ===== */
+function wxDay(w,k){
+ const M=document.getElementById('wxdm'),T0=document.getElementById('wxdt'),host=document.getElementById('wxdy');if(!M||!T0||!host||!w||!w.hourly||!w.daily)return;
+ const h=w.hourly,ds=w.daily.time[k],idx=[];h.time.forEach((x,i)=>{if(String(x).slice(0,10)===ds)idx.push(i)});if(!idx.length)return;
+ const dt=new Date(ds+'T12:00:00'),n=idx.length,T=v=>fa(Math.round(v))+'°';
+ T0.textContent=dt.toLocaleDateString('fa-IR',{weekday:'long'})+' '+dt.toLocaleDateString('fa-IR',{day:'numeric',month:'long'});
+ const tv=idx.map(i=>h.temperature_2m[i]),mn=Math.min(...tv),mx=Math.max(...tv),iMx=tv.indexOf(mx),iMn=tv.indexOf(mn);
+ const wnd=h.wind_speed_10m?idx.map(i=>h.wind_speed_10m[i]):null,pp=h.precipitation_probability?idx.map(i=>h.precipitation_probability[i]):null;
+ const hasP=!!(pp&&pp.some(v=>v>10)),S=n>12?38:56,PL=26,PR=26,PT=34,PH=128,BH=hasP?34:0,GAP=hasP?10:0;
+ const By=PT+PH,bBot=By+GAP+BH,XL=bBot+18,IY=XL+8,Ht=IY+26,Wc=PL+(n-1)*S+PR;
+ const pad=Math.max(1,(mx-mn)*.14),y0=mn-pad,y1=mx+pad,Y=v=>PT+PH*(1-(v-y0)/(y1-y0)),X=i=>PL+i*S;
+ const el=(t,a)=>{const e=document.createElementNS('http://www.w3.org/2000/svg',t);for(const q in a)e.setAttribute(q,a[q]);return e};
+ const svg=el('svg',{viewBox:'0 0 '+Wc+' '+Ht,width:Wc,height:Ht,role:'img','aria-label':'نمودار دمای ساعتی'}),gid='wxdg'+Date.now();
+ const defs=el('defs',{}),gr=el('linearGradient',{id:gid,x1:0,y1:0,x2:0,y2:1});
+ gr.append(el('stop',{offset:0,'stop-color':'#2563eb','stop-opacity':.62}),el('stop',{offset:1,'stop-color':'#2563eb','stop-opacity':0}));defs.append(gr);svg.append(defs);
+ const ax=document.createElement('div');ax.className='wxdy-y';ax.style.height=Ht+'px';
+ for(let i=0;i<4;i++){const v=y0+(y1-y0)*i/3;svg.append(el('line',{x1:0,x2:Wc,y1:Y(v),y2:Y(v),style:'stroke:var(--bd);stroke-width:1;opacity:.55'}));const sp=document.createElement('span');sp.textContent=T(v);sp.style.top=Y(v)+'px';ax.append(sp)}
+ /* خط‌های نقطه‌چین کمینه و بیشینه */
+ svg.append(el('line',{x1:0,x2:Wc,y1:Y(mx),y2:Y(mx),stroke:'#f97316','stroke-width':1.5,'stroke-dasharray':'6 5',opacity:.95}));
+ svg.append(el('line',{x1:0,x2:Wc,y1:Y(mn),y2:Y(mn),stroke:'#06b6d4','stroke-width':1.5,'stroke-dasharray':'6 5',opacity:.95}));
+ /* میله‌های احتمال بارش */
+ if(hasP){svg.append(el('line',{x1:0,x2:Wc,y1:bBot,y2:bBot,style:'stroke:var(--bd);stroke-width:1'}));
+  pp.forEach((v,i)=>{if(!(v>10))return;const bh=Math.max(4,v/100*BH);svg.append(el('rect',{x:X(i)-8,y:bBot-bh,width:16,height:bh,rx:4,fill:'rgba(96,165,250,.38)'}));
+   if(v>=30){const t=el('text',{x:X(i),y:bBot-bh-3,'text-anchor':'middle','font-size':9,'font-weight':700,fill:'#60a5fa'});t.textContent=fa(String(Math.round(v)))+'٪';svg.append(t)}})}
+ /* منحنی: ناحیه با گرادیانت + خط ضخیم */
+ let d='M'+X(0)+','+Y(tv[0]);for(let i=1;i<n;i++){const m=(X(i-1)+X(i))/2;d+=' C'+m+','+Y(tv[i-1])+' '+m+','+Y(tv[i])+' '+X(i)+','+Y(tv[i])}
+ svg.append(el('path',{d:d+' L'+X(n-1)+','+By+' L'+X(0)+','+By+' Z',fill:'url(#'+gid+')'}));
+ svg.append(el('path',{d:d,fill:'none',stroke:'#3b82f6','stroke-width':4,'stroke-linecap':'round','stroke-linejoin':'round',style:'filter:drop-shadow(0 2px 6px rgba(59,130,246,.45))'}));
+ const nowH=String(w.current&&w.current.time||'').slice(0,13);let nowI=-1;
+ idx.forEach((gi,i)=>{const hh=String(h.time[gi]).slice(11,13),isNow=String(h.time[gi]).slice(0,13)===nowH;if(isNow)nowI=i;
+  svg.append(el('circle',{cx:X(i),cy:Y(tv[i]),r:3.4,style:'fill:var(--bg1);stroke:#3b82f6;stroke-width:2'}));
+  if(i%3===0||i===iMx||i===iMn){const t=el('text',{x:X(i),y:Y(tv[i])-10,'text-anchor':'middle','font-size':10.5,'font-weight':700,style:'fill:var(--tx)'});t.textContent=T(tv[i]);svg.append(t)}
+  const tl=el('text',{x:X(i),y:XL,'text-anchor':'middle','font-size':10.5,'font-weight':isNow?800:400,style:'fill:'+(isNow?'#3b82f6':'var(--mu)')});tl.textContent=fa(hh);svg.append(tl);
+  const ic=el('svg',{x:X(i)-11,y:IY,width:22,height:22,viewBox:'0 0 64 64','class':'wxst'});ic.innerHTML=wxInner(h.weather_code[gi],h.is_day[gi]);svg.append(ic)});
+ /* انتخاب نقطه + Tooltip */
+ const vl=el('line',{y1:PT-8,y2:bBot,style:'stroke:#3b82f6;stroke-width:1.2;stroke-dasharray:3 3;opacity:.8',display:'none'}),hl=el('circle',{r:6.5,style:'fill:#3b82f6;stroke:#fff;stroke-width:2.5',display:'none'});svg.append(vl,hl);
+ const tip=document.createElement('div');tip.className='wxdy-tip';tip.hidden=true;
+ const pick=i=>{i=Math.max(0,Math.min(n-1,i));const gi=idx[i],cd=h.weather_code[gi],dy=h.is_day[gi];
+  vl.setAttribute('x1',X(i));vl.setAttribute('x2',X(i));vl.removeAttribute('display');hl.setAttribute('cx',X(i));hl.setAttribute('cy',Y(tv[i]));hl.removeAttribute('display');
+  tip.innerHTML='<b>'+fa(String(h.time[gi]).slice(11,16))+'</b> '+wem(cd,dy)+' '+wc(cd)[0]+'<br>دما: <b>'+T(tv[i])+'</b>'
+   +(wnd&&typeof wnd[i]==='number'?'<br>باد: <b>'+fa(String(Math.round(wnd[i])))+'</b> کیلومتر/ساعت':'')
+   +(pp&&typeof pp[i]==='number'?'<br>احتمال بارش: <b>'+fa(String(Math.round(pp[i])))+'٪</b>':'');
+  tip.hidden=false;const tw=tip.offsetWidth,th=tip.offsetHeight;let l=X(i)-tw/2;l=Math.max(4,Math.min(l,Wc-tw-4));let t=Y(tv[i])-th-16;if(t<4)t=Y(tv[i])+16;tip.style.left=l+'px';tip.style.top=t+'px'};
+ const at=e=>pick(Math.round((e.clientX-svg.getBoundingClientRect().left-PL)/S));
+ svg.addEventListener('pointerdown',at);svg.addEventListener('pointermove',e=>{if(e.pointerType==='mouse')at(e)});
+ /* مونتاژ */
+ const wrap=document.createElement('div');wrap.className='wxdy-wrap';
+ const sc=document.createElement('div');sc.className='wxdy-sc';sc.setAttribute('data-lenis-prevent','');
+ const inn=document.createElement('div');inn.className='wxdy-in';inn.style.cssText='width:'+Wc+'px;height:'+Ht+'px';inn.append(svg,tip);sc.append(inn);
+ const ov=document.createElement('div');ov.className='wxdy-ov';ov.style.height=Ht+'px';
+ const pill=(txt,top,c)=>{const p=document.createElement('span');p.className='wxdy-pill';p.style.cssText='top:'+top+'px;--pc:'+c;p.textContent=txt;ov.append(p)};
+ pill('بیشینه: '+T(mx),Math.max(2,Y(mx)-25),'#f97316');pill('کمینه: '+T(mn),Math.min(Ht-24,Y(mn)+6),'#06b6d4');
+ wrap.append(ax,sc,ov);
+ const hint=document.createElement('div');hint.className='wxdy-hint';hint.textContent='برای دیدن جزئیات هر ساعت، روی نمودار بزنید یا ماوس را روی آن ببرید';
+ host.textContent='';host.append(wrap,hint);
+ M.hidden=false;
+ requestAnimationFrame(()=>{if(nowI>=0){sc.scrollLeft=Math.max(0,X(nowI)-sc.clientWidth/2);pick(nowI)}else sc.scrollLeft=0});
+}
+{const M=document.getElementById('wxdm'),X0=document.getElementById('wxdx');if(M&&X0){X0.onclick=()=>closeP(M);M.onclick=e=>{if(e.target===M)closeP(M)};
+ addEventListener('keydown',e=>{if(e.key==='Escape'&&!M.hidden&&!M.classList.contains('out')){e.stopPropagation();closeP(M)}},true)}}
 function show(p,c,w){
  const we=document.getElementById('wxe');if(we)we.innerHTML=wxIcon(c.weather_code,c.is_day,30);
  const x=wc(c.weather_code),row=mk('div','wxc act'),ic=mk('div','wxi'),tx=mk('div','wxt');
@@ -1172,13 +1174,15 @@ function show(p,c,w){
  const T=n=>fa(Math.round(n))+'°';
  const ext=mk('div','wxext');ext.hidden=true;
  const mb=mk('button','wxmore','نتایج بیشتر ▾');mb.type='button';mb.setAttribute('aria-expanded','false');
- let isOpen=false;mb.onclick=()=>{const sh=document.getElementById('wxs'),from=sh?sh.offsetHeight:0;isOpen=!isOpen;let to=0;
+ const lb=mk('button','wxmore wxless','نمایش کمتر ▴');lb.type='button';let isOpen=false;const tgl=want=>{if(want===isOpen)return;const sh=document.getElementById('wxs'),from=sh?sh.offsetHeight:0;isOpen=want;let to=0;
  if(sh){ext.hidden=!isOpen;sh.style.transition='none';sh.style.overflow='hidden';sh.style.height='auto';to=sh.offsetHeight}
  if(isOpen){ext.classList.remove('wxcl');ext.hidden=false}else{ext.classList.add('wxcl');ext.hidden=false;setTimeout(()=>{if(!isOpen)ext.hidden=true},230)}
  if(sh){sh.style.height=from+'px';void sh.offsetHeight;sh.style.transition='height .42s cubic-bezier(.2,.9,.25,1)';sh.style.height=to+'px';clearTimeout(sh._t);
   sh._t=setTimeout(()=>{sh.style.height='';sh.style.transition='';sh.style.overflow=''},460);
   setTimeout(()=>{try{(sh.querySelector('.sheet-body')||sh).scrollTo({top:isOpen?Math.max(0,ext.offsetTop-70):0,behavior:'smooth'})}catch(e){}},isOpen?140:0)}
- mb.textContent=isOpen?'نتایج کمتر ▴':'نتایج بیشتر ▾';mb.setAttribute('aria-expanded',String(isOpen))};
+ mb.hidden=isOpen;mb.setAttribute('aria-expanded',String(isOpen))};mb.onclick=()=>tgl(true);
+  /* دکمهٔ پایین لیست: اول نرم به بالا برمی‌گردد، بعد لیست بسته می‌شود */
+  lb.onclick=()=>{const bd=document.querySelector('#wxs .sheet-body');if(!bd||bd.scrollTop<40){tgl(false);return}let done=0;const t0=performance.now(),fin=()=>{if(done)return;done=1;tgl(false)};try{bd.scrollTo({top:0,behavior:'smooth'})}catch(e){bd.scrollTop=0}const chk=()=>{if(bd.scrollTop<=3||performance.now()-t0>800)fin();else requestAnimationFrame(chk)};requestAnimationFrame(chk)};
  try{const h=w&&w.hourly;if(h&&h.time&&h.time.length){
   const days=[...new Set(h.time.map(x=>x.slice(0,10)))].slice(0,7),nowH=String(c.time||'').slice(0,13),dd0=w.daily;
   const tabs=mk('div','wxdt'),box=mk('div','wxch'),rd=mk('div','wxrd'),ttl=mk('div','wxh'),sun=mk('div','wxsun');tabs.setAttribute('role','tablist');let sel=0;
@@ -1243,17 +1247,17 @@ function show(p,c,w){
   dd.time.slice(0,7).forEach((ds,k)=>{const dt=new Date(ds+'T12:00:00'),row2=mk('div','at wxdr'),nm=mk('div','');
    nm.append(mk('b','',k===0?'امروز':dt.toLocaleDateString('fa-IR',{weekday:'long'})),mk('small','',dt.toLocaleDateString('fa-IR',{month:'long',day:'numeric'})));
    const pv=dd.precipitation_probability_max&&dd.precipitation_probability_max[k],pp=mk('span','wxpp');if(typeof pv==='number'){pp.innerHTML=DROP;pp.append(fa(Math.round(pv))+'٪');pp.title='احتمال بارش'}
-   row2.append(nm,pp,(()=>{const e=mk('span','e');e.innerHTML=wxIcon(dd.weather_code[k],1,28,1);return e})(),mk('span','t',T(dd.temperature_2m_max[k])+' / '+T(dd.temperature_2m_min[k])));wk.append(row2)});
+   row2.append(nm,pp,(()=>{const e=mk('span','e');e.innerHTML=wxIcon(dd.weather_code[k],1,28,1);return e})(),mk('span','t',T(dd.temperature_2m_max[k])+' / '+T(dd.temperature_2m_min[k])));row2.tabIndex=0;row2.setAttribute('role','button');row2.setAttribute('aria-label','نمودار ساعتی '+nm.textContent);row2.onclick=()=>wxDay(w,k);row2.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();wxDay(w,k)}};wk.append(row2)});
   ext.append(mk('div','wxh','پیش‌بینی هفتهٔ آینده'),wk)}}catch(e){}
- if(ext.childNodes.length)o.append(mb,ext);
+ if(ext.childNodes.length){ext.append(lb);o.append(mb,ext)}
  return setAQ}
 const WM=c=>{c=+c;if([200,386,389,392,395].includes(c))return 95;if([179,182,185,227,230,317,320,323,326,329,332,335,338,350,362,365,368,371,374,377].includes(c))return 71;if([176,263,266,281,284,293,296,299,302,305,308,311,314,353,356,359].includes(c))return 63;if([143,248,260].includes(c))return 45;if(c===113)return 0;if(c===116)return 2;return 3};
 async function fcast(p){
- for(let k=0;k<2;k++){try{const w=await J('https://api.open-meteo.com/v1/forecast?latitude='+p.latitude+'&longitude='+p.longitude+'&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,is_day&hourly=temperature_2m,weather_code,is_day&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,sunrise,sunset&forecast_days=7&timezone=auto');if(w&&w.current)return w}catch(e){}}
+ for(let k=0;k<2;k++){try{const w=await J('https://api.open-meteo.com/v1/forecast?latitude='+p.latitude+'&longitude='+p.longitude+'&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,is_day&hourly=temperature_2m,weather_code,is_day,wind_speed_10m,precipitation_probability&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,sunrise,sunset&forecast_days=7&timezone=auto');if(w&&w.current)return w}catch(e){}}
  const j=await J('https://wttr.in/'+p.latitude+','+p.longitude+'?format=j1'),cc=j.current_condition[0],d0=j.weather[0].date;
  let hr=+((/(\d+):\d+ (AM|PM)/.exec(cc.localObsDateTime||'')||[])[1]||12);const pm=/PM/.test(cc.localObsDateTime||'');hr=(hr%12)+(pm?12:0);
- const hz={time:[],temperature_2m:[],weather_code:[],is_day:[]};
- j.weather.forEach(d=>d.hourly.forEach(h=>{const H=Math.floor(+h.time/100);hz.time.push(d.date+'T'+String(H).padStart(2,'0')+':00');hz.temperature_2m.push(+h.tempC);hz.weather_code.push(WM(h.weatherCode));hz.is_day.push(H>=6&&H<18?1:0)}));
+ const hz={time:[],temperature_2m:[],weather_code:[],is_day:[],wind_speed_10m:[],precipitation_probability:[]};
+ j.weather.forEach(d=>d.hourly.forEach(h=>{const H=Math.floor(+h.time/100);hz.time.push(d.date+'T'+String(H).padStart(2,'0')+':00');hz.temperature_2m.push(+h.tempC);hz.weather_code.push(WM(h.weatherCode));hz.is_day.push(H>=6&&H<18?1:0);hz.wind_speed_10m.push(+h.windspeedKmph||0);hz.precipitation_probability.push(+h.chanceofrain||0)}));
  return{current:{time:d0+'T'+String(Math.floor(hr/3)*3).padStart(2,'0')+':00',temperature_2m:+cc.temp_C,relative_humidity_2m:+cc.humidity,apparent_temperature:+cc.FeelsLikeC,weather_code:WM(cc.weatherCode),wind_speed_10m:+cc.windspeedKmph,is_day:hr>=6&&hr<18?1:0},hourly:hz,daily:{time:j.weather.map(d=>d.date),weather_code:j.weather.map(d=>WM(d.hourly[4]&&d.hourly[4].weatherCode)),temperature_2m_max:j.weather.map(d=>+d.maxtempC),temperature_2m_min:j.weather.map(d=>+d.mintempC),precipitation_probability_max:j.weather.map(d=>Math.max(0,...d.hourly.map(x=>+x.chanceofrain||0))),sunrise:j.weather.map(d=>{const t=T24(d.astronomy&&d.astronomy[0]&&d.astronomy[0].sunrise);return t?d.date+'T'+t:null}),sunset:j.weather.map(d=>{const t=T24(d.astronomy&&d.astronomy[0]&&d.astronomy[0].sunset);return t?d.date+'T'+t:null})}}}
 async function go(){
  const city=q.value.trim();if(!city){msg('نام شهر را وارد کن');return}
@@ -1474,6 +1478,24 @@ document.querySelectorAll('.sheet-head').forEach(h=>{if(ro)ro.observe(h);set(h)}
 .xpwt{text-align:center;font-weight:700;font-size:.88rem;margin-bottom:6px}
 .xpcv{position:relative;height:250px}
 </style>
+<style id="wx-day">
+/* ===== weather: day cards -> hourly chart modal; bottom "show less" button ===== */
+.wxd7 .wxdr{cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .15s,border-color .2s}
+.wxd7 .wxdr:active{transform:scale(.985)}
+@media(hover:hover){.wxd7 .wxdr:hover{border-color:var(--bc,var(--b1))}}
+.wxd7 .wxdr:focus-visible{outline:2px solid var(--bc,var(--b1));outline-offset:2px}
+.wxmore[hidden]{display:none}.wxless{margin:14px 0 4px}
+.wxdy-wrap{position:relative;display:flex;direction:ltr;overflow:hidden;border-radius:18px;background:var(--glass);border:1px solid var(--bd);-webkit-backdrop-filter:blur(12px) saturate(160%);backdrop-filter:blur(12px) saturate(160%)}
+.wxdy-y{position:relative;flex:none;width:36px}
+.wxdy-y span{position:absolute;right:4px;transform:translateY(-50%);font-size:10px;line-height:1;color:var(--mu);white-space:nowrap}
+.wxdy-sc{flex:1;min-width:0;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+.wxdy-in{position:relative}.wxdy-in svg{display:block;cursor:crosshair}
+.wxdy-ov{position:absolute;left:36px;right:0;top:0;pointer-events:none}
+.wxdy-pill{position:absolute;left:6px;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:700;direction:rtl;white-space:nowrap;color:var(--tx);background:color-mix(in srgb,var(--pc) 22%,color-mix(in srgb,var(--bg1) 80%,transparent));border:1px solid color-mix(in srgb,var(--pc) 65%,transparent)}
+.wxdy-tip{position:absolute;z-index:3;pointer-events:none;min-width:136px;padding:8px 11px;border-radius:12px;direction:rtl;text-align:right;font-size:.76rem;line-height:1.75;color:var(--tx);background:color-mix(in srgb,var(--bg1) 90%,transparent);border:1px solid var(--bd);box-shadow:0 6px 20px rgba(0,0,0,.18);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.wxdy-tip[hidden]{display:none}.wxdy-tip b{font-weight:800}
+.wxdy-hint{text-align:center;font-size:.72rem;color:var(--mu);margin:10px 0 2px}
+</style>
 <style id="cls-guard">
 /* ===== Layout-shift (CLS) guards: fixed sizes for images & cards ===== */
 img,video,canvas{max-width:100%;height:auto}
@@ -1635,7 +1657,7 @@ setTimeout(()=>{let st=null;try{st=JSON.parse(sessionStorage.getItem(KEY)||'null
    document.getElementById('ibs').textContent='در سافاری دکمهٔ اشتراک‌گذاری (⬆️) را بزن و «Add to Home Screen» را انتخاب کن.';
   }else{hide()}
  });
- if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}
+ 
 })();
 </script>
 <style id="dark-glow">
@@ -1654,6 +1676,101 @@ setTimeout(()=>{let st=null;try{st=JSON.parse(sessionStorage.getItem(KEY)||'null
 :root[data-theme="dark"] .sheet,:root[data-theme="dark"] .tpop{box-shadow:0 0 30px -6px color-mix(in srgb,var(--glow) 42%,transparent)!important}
 :root[data-theme="dark"] .tg.on,:root[data-theme="dark"] .lk.on,:root[data-theme="dark"] .tab.on,:root[data-theme="dark"] .dy.on,:root[data-theme="dark"] .at.on,:root[data-theme="dark"] .rg button.on,:root[data-theme="dark"] .wxdb.on,:root[data-theme="dark"] .fmt button.on{box-shadow:0 0 20px -1px color-mix(in srgb,var(--glow) 55%,transparent)!important}
 @media(hover:hover){:root[data-theme="dark"] .tg:hover:not(.on),:root[data-theme="dark"] .lk:hover:not(.on),:root[data-theme="dark"] .nwi:hover:not(.on),:root[data-theme="dark"] .az:hover:not(.on),:root[data-theme="dark"] .vsb:hover:not(.on),:root[data-theme="dark"] .wb:hover:not(.on),:root[data-theme="dark"] .card:hover:not(.on),:root[data-theme="dark"] .tab:hover:not(.on),:root[data-theme="dark"] .dy:hover:not(.on),:root[data-theme="dark"] .at:hover:not(.on){box-shadow:0 0 24px -1px color-mix(in srgb,var(--glow) 55%,transparent)!important}}
+</style>
+<style id="pwa-extra">
+/* ===== PWA: full-screen, safe areas, overscroll ===== */
+:root{--sat:env(safe-area-inset-top,0px);--sab:env(safe-area-inset-bottom,0px);--sal:env(safe-area-inset-left,0px);--sar:env(safe-area-inset-right,0px)}
+html,body{overscroll-behavior-y:contain}
+.wrap{padding-left:max(16px,var(--sal))!important;padding-right:max(16px,var(--sar))!important}
+@media(min-width:760px){.wrap{padding-left:max(24px,var(--sal))!important;padding-right:max(24px,var(--sar))!important}}
+@media(display-mode:standalone){html,body{min-height:100vh;min-height:100dvh;background-color:var(--bg,#f4f6ff)}body{-webkit-user-select:none;user-select:none}input,textarea{-webkit-user-select:text;user-select:text}}
+#splash .spg{display:block;border-radius:18px;box-shadow:0 8px 24px rgba(0,185,122,.35);animation:spPulse 1.4s ease-in-out infinite}
+@keyframes spPulse{50%{transform:scale(1.07)}}
+/* ===== pull to refresh ===== */
+#ptr{position:fixed;left:50%;top:calc(var(--sat) + 8px);z-index:10001;pointer-events:none;opacity:0;transform:translate(-50%,-64px);will-change:transform,opacity}
+#ptr .ptri{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--cd,#fff);border:1px solid var(--bd,rgba(0,0,0,.12));color:var(--ac,var(--b1,#5b7cff));box-shadow:0 8px 22px rgba(0,0,0,.18)}
+#ptr svg{transform:rotate(var(--r,0deg))}
+#ptr.spin svg{animation:ptrs .8s linear infinite}
+@keyframes ptrs{to{transform:rotate(360deg)}}
+/* ===== update banner ===== */
+#updbar{position:fixed;left:50%;bottom:calc(var(--sab) + 14px);z-index:10001;display:flex;align-items:center;gap:12px;padding:10px 12px 10px 16px;border-radius:18px;width:max-content;max-width:calc(100% - 24px);font-size:.88rem;font-weight:700;transform:translate(-50%,140%);transition:transform .35s cubic-bezier(.2,.9,.25,1.1)}
+#updbar.on{transform:translate(-50%,0)}
+#updbar[hidden]{display:none}
+#updbar button{border:0;border-radius:12px;padding:8px 14px;font:inherit;font-weight:800;color:#fff;cursor:pointer;background:linear-gradient(135deg,var(--b1),color-mix(in srgb,var(--b1) 76%,#000))}
+#updbar button:disabled{opacity:.6}
+/* ===== back to top (footer corner) ===== */
+footer{position:relative;padding-inline:56px}
+.btt{position:absolute;inset-inline-end:10px;top:50%;margin-top:-18px;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;padding:0;cursor:pointer;border:1px solid var(--bd,rgba(0,0,0,.12));background:var(--cd,#fff);color:var(--ac,var(--b1,#5b7cff));box-shadow:0 4px 14px rgba(0,0,0,.14);transition:transform .15s}
+.btt:active{transform:scale(.88)}
+.btt svg{transition:transform .25s}.btt:hover svg{transform:translateY(-2px)}
+</style>
+<div id="ptr" aria-hidden="true"><span class="ptri"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.6-5.9M20 4v5h-5"/></svg></span></div>
+<div id="updbar" class="glass" role="status" hidden><span>نسخه جدید در دسترس است</span><button id="updbtn" type="button">به‌روزرسانی</button></div>
+<script>
+(function(){
+/* ---------- Pull to refresh ---------- */
+const ind=document.getElementById('ptr'),TH=72,MAX=120;let y0=0,dy=0,act=false,busy=false;
+const top=()=>(window.scrollY||document.documentElement.scrollTop||0)<=0;
+const blocked=t=>!!document.querySelector('.md:not([hidden])')||document.body.classList.contains('editing')||!!(t&&t.closest&&t.closest('input,textarea,select,[data-lenis-prevent],.tpop,#updbar'));
+function set(v,anim){ind.style.transition=anim?'transform .25s,opacity .25s':'none';ind.style.opacity=Math.min(1,v/36);ind.style.transform='translate(-50%,'+(v-64)+'px)';ind.style.setProperty('--r',(v*3.2)+'deg')}
+addEventListener('touchstart',e=>{if(busy||e.touches.length!==1||!top()||blocked(e.target)){act=false;return}y0=e.touches[0].clientY;dy=0;act=true},{passive:true});
+addEventListener('touchmove',e=>{if(!act||busy)return;const d=e.touches[0].clientY-y0;if(d<=0){dy=0;set(0);return}if(!top()){act=false;set(0,true);return}dy=Math.min(MAX,d*.5);if(e.cancelable)e.preventDefault();set(dy)},{passive:false});
+function release(){if(!act)return;act=false;if(dy>=TH*.8){busy=true;ind.classList.add('spin');set(64,true);setTimeout(()=>location.reload(),500)}else set(0,true)}
+addEventListener('touchend',release);addEventListener('touchcancel',()=>{act=false;set(0,true)});
+/* ---------- Back to top ---------- */
+const bt=document.getElementById('btt');if(bt)bt.onclick=()=>{try{if(window.__lenis){window.__lenis.scrollTo(0,{duration:1.1});return}}catch(e){}scrollTo({top:0,behavior:'smooth'})};
+/* ---------- Service worker + update banner ---------- */
+if(!('serviceWorker' in navigator))return;
+const bar=document.getElementById('updbar'),btn=document.getElementById('updbtn'),hadCtrl=!!navigator.serviceWorker.controller;let reg=null,waiting=null,shown=false,reloading=false;
+function show(w){if(w)waiting=w;if(shown)return;shown=true;bar.hidden=false;requestAnimationFrame(()=>requestAnimationFrame(()=>bar.classList.add('on')))}
+window.__showUpdate=show;
+btn.onclick=()=>{btn.disabled=true;if(waiting){waiting.postMessage({type:'SKIP_WAITING'});setTimeout(()=>{if(!reloading)location.reload()},2000)}else location.reload()};
+navigator.serviceWorker.addEventListener('controllerchange',()=>{if(reloading||!hadCtrl)return;reloading=true;location.reload()});
+navigator.serviceWorker.addEventListener('message',e=>{if(e.data&&e.data.type==='UPDATE_READY')show()});
+addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').then(r=>{reg=r;if(r.waiting&&navigator.serviceWorker.controller)show(r.waiting);
+ r.addEventListener('updatefound',()=>{const n=r.installing;if(n)n.addEventListener('statechange',()=>{if(n.state==='installed'&&navigator.serviceWorker.controller)show(n)})});r.update().catch(()=>{})}).catch(()=>{})});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&reg)reg.update().catch(()=>{})});
+})();
+</script>
+<style id="glass-modals">
+/* ===== modal body: dense, heavily blurred glass (readable) ===== */
+.sheet{background:rgba(240,245,255,.9)!important;-webkit-backdrop-filter:blur(40px) saturate(160%)!important;backdrop-filter:blur(40px) saturate(160%)!important}
+:root[data-theme="dark"] .sheet{background:rgba(10,15,30,.9)!important}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .sheet{background:rgba(10,15,30,.9)!important}}
+/* ===== modal header: sticky frosted glass ===== */
+.sheet-head{position:sticky!important;top:0!important;background:rgba(255,255,255,.7)!important;-webkit-backdrop-filter:blur(15px) saturate(180%)!important;backdrop-filter:blur(15px) saturate(180%)!important;border-bottom:1px solid rgba(255,255,255,.3)!important}
+:root[data-theme="dark"] .sheet-head{background:rgba(20,25,45,.7)!important}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .sheet-head{background:rgba(20,25,45,.7)!important}}
+.sheet-head h2,.sheet-head h3,.sheet-head .chd{color:var(--tx)}
+/* ===== main page: cards keep side margins ===== */
+.lks,.hb{width:100%;box-sizing:border-box;margin-inline:0}
+.lks>*,.hb>*{min-width:0;box-sizing:border-box}
+</style>
+<style id="fix-opaque">
+/* ===== fix: opaque modal sheets, readable bio box, visible red close button in profile ===== */
+:root .md .sheet{background:rgba(240,245,255,.95)!important;--pfr:#f0f5ff}
+:root[data-theme="light"] .md .sheet{background:rgba(240,245,255,.95)!important;--pfr:#f0f5ff}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .md .sheet{background:rgba(15,20,35,.95)!important;--pfr:#0f1423}}
+:root[data-theme="dark"] .md .sheet{background:rgba(15,20,35,.95)!important;--pfr:#0f1423}
+#pfm .pfb{box-shadow:0 0 0 4px var(--pfr),0 10px 28px rgba(0,0,0,.28)}
+/* bio box: solid background */
+:root .pf-bio{background:rgba(255,255,255,.8)!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;box-shadow:inset 0 1px 2px rgba(20,30,60,.08)!important}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .pf-bio{background:rgba(28,36,60,.95)!important;box-shadow:inset 0 1px 2px rgba(0,0,0,.35)!important}}
+:root[data-theme="dark"] .pf-bio{background:rgba(28,36,60,.95)!important;box-shadow:inset 0 1px 2px rgba(0,0,0,.35)!important}
+:root[data-theme="light"] .pf-bio{background:rgba(255,255,255,.8)!important}
+.pf-bio:focus{box-shadow:0 0 0 3px color-mix(in srgb,var(--b1) 25%,transparent)!important}
+/* profile close button: red cross on a solid light/dark chip (stays visible over the cover and over the frosted header) */
+:root #pfm .sheet-head .xb{color:#dc2626!important;background:rgba(255,255,255,.94)!important;border:1px solid rgba(220,38,38,.55)!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;box-shadow:0 2px 10px rgba(0,0,0,.2)!important}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) #pfm .sheet-head .xb{color:#ef4444!important;background:rgba(15,20,35,.94)!important;border-color:rgba(239,68,68,.6)!important}}
+:root[data-theme="dark"] #pfm .sheet-head .xb{color:#ef4444!important;background:rgba(15,20,35,.94)!important;border-color:rgba(239,68,68,.6)!important}
+:root[data-theme="light"] #pfm .sheet-head .xb{color:#dc2626!important;background:rgba(255,255,255,.94)!important;border-color:rgba(220,38,38,.55)!important}
+/* profile header: transparent over the cover (an !important .sheet-head rule elsewhere was painting it white), frosted only after scrolling */
+#pfm .sheet-head{background:transparent!important;border-bottom-color:transparent!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+:root #pfm .sheet.pf-scrolled .sheet-head{background:rgba(255,255,255,.88)!important;border-bottom-color:var(--bd)!important;-webkit-backdrop-filter:blur(16px) saturate(180%)!important;backdrop-filter:blur(16px) saturate(180%)!important}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) #pfm .sheet.pf-scrolled .sheet-head{background:rgba(15,20,35,.88)!important}}
+:root[data-theme="dark"] #pfm .sheet.pf-scrolled .sheet-head{background:rgba(15,20,35,.88)!important}
+:root[data-theme="light"] #pfm .sheet.pf-scrolled .sheet-head{background:rgba(255,255,255,.88)!important}
+#pfm .sheet.pf-scrolled .sheet-head h3{color:var(--tx);text-shadow:none}
 </style>
 </body>
 </html>
