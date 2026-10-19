@@ -288,5 +288,108 @@ create policy "own schedule" on public.schedule for all using (auth.uid() = user
 </style>
 <style id="scroll-opt">html,html.lenis,html.lenis body,.lenis.lenis-smooth,.lenis.lenis-smooth *{scroll-behavior:auto!important}@media (prefers-reduced-motion:no-preference){html{will-change:scroll-position}}@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto!important;will-change:auto}}body{overscroll-behavior-y:none}
 </style>
+<style id="custom-style">
+/* ===== هدر مودال‌ها: چیدمان کلی ===== */
+:root .md .sheet-head {
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+/* ===== ۱) عنوان‌ها: وسط‌چین، بزرگ‌تر، ضخیم‌تر ===== */
+:root .md .sheet-head > h2,
+:root .md .sheet-head > h3,
+:root .md .sheet-head > .chd,
+:root .md .sheet-head > .mh {
+  flex: 1 1 auto !important;
+  text-align: center !important;
+  justify-content: center !important;
+  font-size: 1.3rem !important;
+  font-weight: 800 !important;
+  padding-inline: 56px !important;
+  margin: 0 !important;
+}
+:root .md .sheet-head > .chd h3,
+:root .md .sheet-head > .mh h3,
+:root .md .sheet-head > .mh h2 {
+  font-size: 1.3rem !important;
+  font-weight: 800 !important;
+  text-align: center !important;
+}
+/* مودال آب‌وهوا: جای بیشتر برای دو دکمه */
+:root #wxm .sheet-head > h2 {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding-inline: 104px !important;
+}
+
+/* ===== ۲) دکمه‌های کناری: گوشه‌های بالا ===== */
+/* دکمه بستن (X): بالا سمت چپ */
+:root .md .sheet-head .xb {
+  position: absolute !important;
+  top: 10px !important;
+  left: 12px !important;
+  right: auto !important;
+  float: none !important;
+  margin: 0 !important;
+  transform: none !important;
+  z-index: 60 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+/* سایر دکمه‌های مستقیم هدر: بالا سمت راست */
+:root .md .sheet-head > button:not(.xb) {
+  position: absolute !important;
+  top: 10px !important;
+  right: 12px !important;
+  left: auto !important;
+  float: none !important;
+  margin: 0 !important;
+  z-index: 60 !important;
+}
+/* آب‌وهوا: مداد و رفرش کنار هم با فاصله منظم */
+:root #wxm .sheet-head #wxp {
+  position: absolute !important;
+  top: 10px !important;
+  right: 12px !important;
+  left: auto !important;
+  margin: 0 !important;
+  float: none !important;
+  width: 36px !important;
+  height: 36px !important;
+}
+:root #wxm .sheet-head #wxrf {
+  position: absolute !important;
+  top: 10px !important;
+  right: 56px !important;
+  left: auto !important;
+  margin: 0 !important;
+  float: none !important;
+  width: 36px !important;
+  height: 36px !important;
+}
+/* دکمه‌های مخفی باید مخفی بمانند */
+:root #wxm .sheet-head #wxp[hidden],
+:root #wxm .sheet-head #wxrf[hidden] {
+  display: none !important;
+}
+
+/* ===== ۳) متن‌های زیر عنوان (تاریخ، نام شهر، ...) ===== */
+:root .md .sheet-head small,
+:root .md .sheet-head p,
+:root .md .sheet-head .sub,
+:root #prayer .pr-topmain,
+:root #prayer .pr-topmain small {
+  display: block !important;
+  text-align: center !important;
+}
+:root .md .sheet-head small,
+:root .md .sheet-head p,
+:root .md .sheet-head .sub,
+:root #prayer .pr-topmain small {
+  margin-top: 8px !important;
+}
+</style>
+
 </body>
 </html>
