@@ -655,5 +655,43 @@ html:root .hrC > #hl .hbio {
     emptyDivs.forEach(div => div.remove());
   });
 </script>
+<!-- 👇 کد قدرتمند برای حذف خطوط جداکننده (تست نهایی) 👇 -->
+<style id="bruteforce-remove-dividers">
+  /* حذف تمام خطوط بالا و پایین (border) در بخش‌های داخلی مودال‌ها */
+  .md .sheet .sc-listhead,
+  .md .sheet .cv,
+  .md .sheet .nrembox,
+  .md .sheet .pr-city.show,
+  .md .sheet .card.glass::after,
+  .md .sheet .occ,
+  .md .sheet .cdl {
+    border: none !important;
+    border-top: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important; /* اگر خط با سایه ساخته شده باشه */
+    background-image: none !important; /* اگر خط با بک‌گراند ساخته شده باشه */
+  }
+
+  /* حذف پس‌زمینه‌های خط‌چین یا توپرِ خطوط */
+  .md .sheet hr,
+  .md .sheet .divider {
+    display: none !important;
+    border: none !important;
+    height: 0 !important;
+  }
+
+  /* حذف خط بالای «دروس این روز» در برنامه هفتگی (اگر با ::after ساخته شده باشه) */
+  .md .sheet .sc-listhead::after,
+  .md .sheet .sc-listhead::before {
+    content: none !important;
+    display: none !important;
+  }
+  
+  /* برای اطمینان، خطوط بین آیتم‌های لیست‌ها رو هم برمی‌داریم */
+  .md .sheet .evl li {
+    border: none !important;
+    border-bottom: none !important;
+  }
+</style>
 </body>
 </html>
