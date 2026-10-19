@@ -183,5 +183,19 @@ create policy "own schedule" on public.schedule for all using (auth.uid() = user
 </script>
 <style id="perf-opt">.blob,.pane,.wxe,.spg{will-change:transform;transform:translateZ(0);backface-visibility:hidden}.tg.go #ti,.sw.go{will-change:transform}.wxch svg{contain:paint}@media (prefers-reduced-motion:reduce){.blob,.pane,.wxe,.spg{will-change:auto}}
 </style>
+<style id="mobile-blur">
+/* ===== موبایل: بلور پس‌زمینهٔ مودال‌ها (قبلاً روی دستگاه لمسی غیرفعال بود) ===== */
+@media (pointer:coarse),(max-width:768px){
+  :root .md{
+    background:rgba(8,11,22,.55)!important;
+    -webkit-backdrop-filter:blur(10px) saturate(150%)!important;
+    backdrop-filter:blur(10px) saturate(150%)!important;
+  }
+  @media (prefers-color-scheme:light){
+    :root:not([data-theme="dark"]) .md{background:rgba(16,22,44,.36)!important}
+  }
+  :root[data-theme="light"] .md{background:rgba(16,22,44,.36)!important}
+}
+</style>
 </body>
 </html>
