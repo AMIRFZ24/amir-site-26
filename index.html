@@ -1235,13 +1235,38 @@ function show(p,c,w){
  const T=n=>fa(Math.round(n))+'°';
  const ext=mk('div','wxext');ext.hidden=true;
  const mb=mk('button','wxmore','نتایج بیشتر ▾');mb.type='button';mb.setAttribute('aria-expanded','false');
- const lb=mk('button','wxmore wxless','نمایش کمتر ▴');lb.type='button';let isOpen=false;const tgl=want=>{if(want===isOpen)return;const sh=document.getElementById('wxs'),from=sh?sh.offsetHeight:0;isOpen=want;let to=0;
- if(sh){ext.hidden=!isOpen;sh.style.transition='none';sh.style.overflow='hidden';sh.style.height='auto';to=sh.offsetHeight}
- if(isOpen){ext.classList.remove('wxcl');ext.hidden=false}else{ext.classList.add('wxcl');ext.hidden=false;setTimeout(()=>{if(!isOpen)ext.hidden=true},230)}
- if(sh){sh.style.height=from+'px';void sh.offsetHeight;sh.style.transition='height .42s cubic-bezier(.2,.9,.25,1)';sh.style.height=to+'px';clearTimeout(sh._t);
-  sh._t=setTimeout(()=>{sh.style.height='';sh.style.transition='';sh.style.overflow=''},460);
-  setTimeout(()=>{try{(sh.querySelector('.sheet-body')||sh).scrollTo({top:isOpen?Math.max(0,ext.offsetTop-70):0,behavior:'smooth'})}catch(e){}},isOpen?140:0)}
- mb.hidden=isOpen;mb.setAttribute('aria-expanded',String(isOpen))};mb.onclick=()=>tgl(true);
+ const lb=mk('button','wxmore wxless','نمایش کمتر ▴');lb.type='button';let isOpen=false;
+ /* باز/بستهٔ لیست: ارتفاع پنجره یکنواخت کم/زیاد می‌شود و در پایان هیچ پرشی ندارد */
+ const tgl=want=>{
+  if(want===isOpen)return;
+  const sh=document.getElementById('wxs');
+  const rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const dur=rm?0:420;
+  if(!sh){isOpen=want;mb.hidden=isOpen;ext.hidden=!isOpen;mb.setAttribute('aria-expanded',String(isOpen));return}
+  const from=sh.offsetHeight;
+  /* ۱) قفل‌کردن ارتفاع فعلی، تا پیش از شروع انیمیشن چیزی جابه‌جا نشود */
+  sh.style.transition='none';sh.style.overflow='hidden';sh.style.height=from+'px';
+  /* ۲) اول وضعیت دکمه‌ها را عوض کن، بعد هدف را اندازه بگیر
+     (دکمهٔ «نتایج بیشتر» که هنگام بستن ظاهر می‌شود هم باید در ارتفاع هدف حساب شود) */
+  isOpen=want;mb.hidden=isOpen;mb.setAttribute('aria-expanded',String(isOpen));
+  ext.classList.toggle('wxcl',!isOpen);ext.hidden=false;
+  /* ۳) ارتفاع هدف: با لیست بسته و «نتایج بیشتر» باز */
+  if(!isOpen)ext.hidden=true;
+  sh.style.height='auto';
+  const to=sh.offsetHeight;
+  if(!isOpen)ext.hidden=false;
+  /* ۴) انیمیشن یکنواخت از from به to */
+  sh.style.height=from+'px';void sh.offsetHeight;
+  sh.style.transition='height '+dur+'ms cubic-bezier(.2,.9,.25,1)';
+  sh.style.height=to+'px';
+  clearTimeout(sh._t);
+  sh._t=setTimeout(()=>{
+   if(!isOpen)ext.hidden=true;
+   sh.style.transition='';sh.style.overflow='';sh.style.height='';
+  },dur+30);
+  setTimeout(()=>{try{(sh.querySelector('.sheet-body')||sh).scrollTo({top:isOpen?Math.max(0,ext.offsetTop-70):0,behavior:rm?'auto':'smooth'})}catch(e){}},isOpen?140:0);
+ };
+ mb.onclick=()=>tgl(true);
   /* دکمهٔ پایین لیست: اول نرم به بالا برمی‌گردد، بعد لیست بسته می‌شود */
   lb.onclick=()=>{const bd=document.querySelector('#wxs .sheet-body');if(!bd||bd.scrollTop<40){tgl(false);return}let done=0;const t0=performance.now(),fin=()=>{if(done)return;done=1;tgl(false)};try{bd.scrollTo({top:0,behavior:'smooth'})}catch(e){bd.scrollTop=0}const chk=()=>{if(bd.scrollTop<=3||performance.now()-t0>800)fin();else requestAnimationFrame(chk)};requestAnimationFrame(chk)};
  try{const h=w&&w.hourly;if(h&&h.time&&h.time.length){
