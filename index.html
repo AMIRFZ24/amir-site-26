@@ -850,125 +850,284 @@ html:root .hrC > #hl .hbio {
     }
   })();
 </script>
-<!-- 👇 کد اصلاح چیدمان داشبورد (۳ ستونه، وسط‌چین، آیکون‌ها) 👇 -->
-<style id="dashboard-layout-fixes">
-  /* ۱. چیدمان ۳ ستونه برای کارت‌های ابزار (خرید شارژ، تقویم و...) در موبایل و دسکتاپ */
-  .lks {
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 10px !important;
-    justify-content: center !important;
-    align-items: stretch !important;
-    max-width: 100% !important;
-    margin: 10px auto !important;
-  }
-  
-  /* تنظیم اندازه کارت‌ها برای جا شدن در ۳ ستون */
-  .lks > .lk {
-    padding: 12px 6px !important;
-    min-height: 90px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-    text-align: center !important;
-    box-sizing: border-box !important;
-  }
-  
-  .lks > .lk b {
-    font-size: 0.8rem !important;
-    margin-top: 6px;
-  }
-  
-  .lks > .lk .li {
-    width: 36px !important;
-    height: 36px !important;
-  }
-  
-  .lks > .lk .li svg {
-    width: 20px !important;
-    height: 20px !important;
-  }
+<style id="custom-style">
+/* =====================================================
+   ۱) پاپ‌آپ آپدیت (.amir-toast): بالای صفحه
+   با کلاس .on یا .show از بالا پایین می‌آید
+   ===================================================== */
+html:root body .amir-toast {
+  position: fixed !important;
+  top: -100px !important;
+  bottom: auto !important;
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%) !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  z-index: 2147483000 !important;
+  transition: top .5s cubic-bezier(.2,.9,.25,1.12), opacity .35s ease, visibility 0s linear .5s !important;
+}
+html:root body .amir-toast.on,
+html:root body .amir-toast.show {
+  top: calc(20px + env(safe-area-inset-top, 0px)) !important;
+  bottom: auto !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transition: top .5s cubic-bezier(.2,.9,.25,1.12), opacity .35s ease, visibility 0s linear 0s !important;
+}
+html:root body .amir-toast .at-x,
+html:root body .amir-toast .at-btn {
+  position: relative !important;
+  z-index: 2 !important;
+  cursor: pointer !important;
+}
+/* بعد از بسته شدن توسط کاربر: کاملاً حذف از چیدمان (مگر اینکه دوباره .on/.show بگیرد) */
+html:root body .amir-toast.closed:not(.on):not(.show) {
+  display: none !important;
+}
 
-  /* وسط‌چین کردن دو کارت اول (خرید شارژ و خرید اینترنت) در ردیف اول */
-  .lks > .lk:nth-child(1) {
-    grid-column: 2 / 3 !important; /* قرار گرفتن در ستون وسط */
-  }
-  .lks > .lk:nth-child(2) {
-    grid-column: 1 / 2 !important; /* قرار گرفتن در ستون چپ */
-  }
-  /* توجه: برای اینکه دقیقاً کنار هم و وسط باشند، به جای این کار از روش زیر استفاده می‌کنیم تا ۳ ستونه به هم نریزد: */
-  .lks {
-    grid-template-columns: repeat(6, 1fr) !important; /* ایجاد ۶ ستون نامرئی برای دقت بالا */
-  }
-  .lks > .lk:nth-child(1) {
-    grid-column: 2 / 4 !important; /* نصف ستون‌های وسط را می‌گیرد */
-  }
-  .lks > .lk:nth-child(2) {
-    grid-column: 4 / 6 !important; /* نصف دیگر را می‌گیرد */
-  }
-  /* بقیه کارت‌ها (از سوم به بعد) هر کدام ۲ ستون از ۶ ستون را می‌گیرند تا ۳ ستونه شوند */
-  .lks > .lk:nth-child(n+3) {
-    grid-column: span 2 !important;
-  }
+/* =====================================================
+   ۲) کارت‌های ابزار: ۳ ستون (با ترفند ۶ ستونه برای وسط‌چین)
+   ===================================================== */
+html:root body .lks {
+  display: grid !important;
+  grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+  width: 100% !important;
+  margin: 12px 0 !important;
+}
+html:root body .lks > .lk,
+html:root body .lks > .lk.gg {
+  grid-column: span 2 !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  gap: 5px !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  min-height: 80px !important;
+  padding: 8px 3px !important;
+  border-radius: 16px !important;
+}
+/* دو کارت اول (خرید شارژ و اینترنت) وسط‌چین */
+html:root body .lks > .lk:nth-child(1) { grid-column: 2 / span 2 !important; }
+html:root body .lks > .lk:nth-child(2) { grid-column: 4 / span 2 !important; }
+html:root body .lks > .lk .li {
+  width: 30px !important;
+  height: 30px !important;
+  border-radius: 10px !important;
+  font-size: 1rem !important;
+}
+html:root body .lks > .lk .li svg {
+  width: 17px !important;
+  height: 17px !important;
+}
+html:root body .lks > .lk b {
+  font-size: .72rem !important;
+  line-height: 1.4 !important;
+  text-align: center !important;
+  overflow-wrap: anywhere !important;
+}
+html:root body .lks > .lk small,
+html:root body .lks > .lk .vpn2 {
+  font-size: .55rem !important;
+  line-height: 1.4 !important;
+  text-align: center !important;
+}
 
-  /* ۲. مرتب‌سازی ۵ آیکون بالای صفحه (پروفایل، ورود، مداد، پالت، تم) */
-  header .hb, 
-  header .am-header-tools {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 8px !important;
-    flex-wrap: nowrap !important;
-    width: 100% !important;
-    margin: 8px 0 !important;
-  }
-
-  /* هم‌اندازه کردن تمام دکمه‌های بالای صفحه */
-  header .hb > .tg,
-  header .hb > button,
-  header .am-header-tools > button,
-  header #hl .av2 {
-    width: 44px !important;
-    height: 44px !important;
-    min-width: 44px !important;
-    min-height: 44px !important;
-    max-width: 44px !important;
-    max-height: 44px !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    display: grid !important;
-    place-items: center !important;
-    border-radius: 13px !important;
-    box-sizing: border-box !important;
-  }
-
-  /* تنظیم سایز آیکون‌ها داخل دکمه‌ها */
-  header .hb > .tg svg,
-  header .hb > button svg,
-  header .am-header-tools > button svg {
-    width: 22px !important;
-    height: 22px !important;
-    display: block !important;
-  }
-
-  /* مخفی کردن متن‌های زیر آیکون‌ها (مثل کلمه "تاریک") */
-  header .hb > .tg small,
-  header .hb > button small,
-  header .am-header-tools > button small {
-    display: none !important;
-  }
-  
-  /* پروفایل وسط‌چین و مرتب */
-  header #hl {
-    flex-direction: column !important;
-    gap: 4px !important;
-    height: auto !important;
-  }
-  header #hl b {
-    display: none !important; /* اسم رو توی هدر مخفی می‌کنیم */
-  }
+/* =====================================================
+   ۳) ۵ آیکون بالای صفحه: یک ردیف، هم‌اندازه 44×44
+   ===================================================== */
+html:root body .hrC,
+html:root body div:has(> #tg) {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  width: 100% !important;
+}
+html:root body #tg,
+html:root body #cb12,
+html:root body #edb,
+html:root body #authb,
+html:root body #hl {
+  flex: 0 0 44px !important;
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  min-height: 44px !important;
+  max-width: 44px !important;
+  max-height: 44px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 14px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  grid-column: auto !important;
+  grid-row: auto !important;
+  order: 0 !important;
+  overflow: visible !important;
+}
+html:root body #tg,
+html:root body #cb12,
+html:root body #edb,
+html:root body #authb,
+html:root body #hl:not([hidden]) {
+  display: flex !important;
+}
+html:root body #hl[hidden] {
+  display: none !important;
+}
+/* آیکون‌های داخل دکمه‌ها */
+html:root body #tg svg,
+html:root body #cb12 svg,
+html:root body #edb svg,
+html:root body #authb svg {
+  box-sizing: content-box !important;
+  width: 20px !important;
+  height: 20px !important;
+  padding: 7px !important;
+  border-radius: 11px !important;
+}
+html:root body #ti {
+  width: 34px !important;
+  height: 34px !important;
+  border-radius: 11px !important;
+  font-size: 1.1rem !important;
+}
+/* متن زیر آیکون‌ها (مثل «تاریک») مخفی */
+html:root body #tg small,
+html:root body #tl,
+html:root body #cb12 small,
+html:root body #edb small,
+html:root body #authb small {
+  display: none !important;
+}
+/* عکس پروفایل */
+html:root body #hl {
+  background: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+html:root body #hl .avw,
+html:root body #hl .av2 {
+  width: 44px !important;
+  height: 44px !important;
+  margin: 0 !important;
+}
+html:root body #hl .av2 svg {
+  width: 28px !important;
+  height: 28px !important;
+}
+html:root body #hl b,
+html:root body #hl small,
+html:root body #hl .hbio {
+  display: none !important;
+}
 </style>
+
+<script id="custom-script">
+(function () {
+  'use strict';
+
+  /* استایل inline با !important: روی هر CSS دیگری (حتی بعدی) غلبه می‌کند */
+  function I(el, o) {
+    for (var k in o) el.style.setProperty(k, o[k], 'important');
+  }
+
+  /* ---------- پاپ‌آپ: انتقال به body + دکمه بستن ---------- */
+  function fixToast() {
+    document.querySelectorAll('.amir-toast').forEach(function (t) {
+      // اگر داخل المانی با transform/overflow گیر کرده باشد، position:fixed کار نمی‌کند
+      if (document.body && t.parentElement !== document.body) document.body.appendChild(t);
+    });
+  }
+
+  function closeToast(t) {
+    if (!t) return;
+    t.classList.remove('on', 'show');
+    clearTimeout(t._ct);
+    // بعد از پایان انیمیشن کاملاً مخفی (display: none)
+    t._ct = setTimeout(function () { t.classList.add('closed'); }, 550);
+  }
+
+  // با capture گوش می‌دهیم تا حتی اگر کد قبلی خطا بدهد یا جلوی رویداد را بگیرد، ✕ کار کند
+  document.addEventListener('click', function (e) {
+    var x = e.target.closest ? e.target.closest('.amir-toast .at-x') : null;
+    if (!x) return;
+    closeToast(x.closest('.amir-toast'));
+  }, true);
+
+  // اگر پاپ‌آپ دوباره نمایش داده شود، حالت closed برداشته می‌شود
+  new MutationObserver(function (list) {
+    list.forEach(function (m) {
+      var t = m.target;
+      if (t.classList && t.classList.contains('amir-toast') &&
+          (t.classList.contains('on') || t.classList.contains('show'))) {
+        clearTimeout(t._ct);
+        t.classList.remove('closed');
+      }
+    });
+  }).observe(document.documentElement, { subtree: true, attributes: true, attributeFilter: ['class'] });
+
+  /* ---------- کارت‌ها: ۳ ستون، ردیف اول (۲ کارت) و ردیف آخر وسط‌چین ---------- */
+  function fixCards() {
+    var box = document.querySelector('.lks');
+    if (!box) return;
+    I(box, { display: 'grid', 'grid-template-columns': 'repeat(6,minmax(0,1fr))', gap: '8px', width: '100%' });
+    var items = [].filter.call(box.children, function (e) { return e.classList.contains('lk'); });
+    var N = items.length, idx = 0, first = true;
+    while (idx < N) {
+      var size = first ? Math.min(2, N) : Math.min(3, N - idx);
+      var startCol = 1 + (6 - size * 2) / 2;
+      for (var j = 0; j < size; j++) {
+        I(items[idx + j], { 'grid-column': (startCol + j * 2) + ' / span 2' });
+      }
+      idx += size;
+      first = false;
+    }
+  }
+
+  /* ---------- آیکون‌های بالا: ردیف افقی و هم‌اندازه ---------- */
+  function fixHeader() {
+    var tg = document.getElementById('tg');
+    if (!tg) return;
+    I(tg.parentElement, {
+      'flex-direction': 'row', 'flex-wrap': 'nowrap',
+      'justify-content': 'center', 'align-items': 'center',
+      gap: '8px', width: '100%'
+    });
+    ['tg', 'hl', 'cb12', 'edb', 'authb'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      I(el, {
+        width: '44px', height: '44px',
+        'min-width': '44px', 'min-height': '44px',
+        'max-width': '44px', 'max-height': '44px',
+        margin: '0', padding: '0', 'border-radius': '14px',
+        flex: '0 0 44px', 'grid-column': 'auto', 'grid-row': 'auto'
+      });
+    });
+  }
+
+  function fixAll() {
+    try { fixToast(); } catch (e) {}
+    try { fixCards(); } catch (e) {}
+    try { fixHeader(); } catch (e) {}
+  }
+
+  fixAll();
+  document.addEventListener('DOMContentLoaded', fixAll);
+  window.addEventListener('load', fixAll);
+  [300, 1000, 2500, 5000].forEach(function (ms) { setTimeout(fixAll, ms); });
+})();
+</script>
+
 </body>
 </html>
