@@ -693,21 +693,15 @@ html:root .hrC > #hl .hbio {
     border-bottom: none !important;
   }
 </style>
-<!-- 🚀 کد نهایی و قوی برای اصلاح پاپ‌آپ و چیدمان -->
-<style id="super-force-fixes">
-  /* === ۱. نابودی کامل استایل‌های قبلی پاپ‌آپ و ساخت نسخه جدید در بالا === */
-  #upToast, .up-toast, .amir-toast {
-    display: none !important; /* مخفی کردن نسخه‌های خراب قبلی */
-  }
-  
+<!-- 🚀 کد نهایی و بدون باگ برای پاپ‌آپ آپدیت -->
+<style id="final-update-toast-style">
   #my-new-update-toast {
     position: fixed !important;
-    top: -150px !important; /* مخفی در بالا */
+    top: -150px !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
     z-index: 999999 !important;
     display: flex !important;
-    flex-direction: row !important;
     align-items: center !important;
     gap: 12px !important;
     padding: 12px 16px !important;
@@ -717,117 +711,90 @@ html:root .hrC > #hl .hbio {
     box-shadow: 0 10px 40px rgba(0,0,0,0.3) !important;
     width: max-content !important;
     max-width: 95vw !important;
-    transition: top 0.4s ease !important;
+    transition: top 0.4s ease, opacity 0.4s ease !important;
     direction: rtl !important;
-    box-sizing: border-box !important;
+    opacity: 0;
   }
-  
   #my-new-update-toast.show {
-    top: 20px !important; /* نمایش در بالا */
+    top: 20px !important;
+    opacity: 1;
   }
-  
   #my-new-update-toast .ut-text { display: flex; flex-direction: column; gap: 2px; }
-  #my-new-update-toast .ut-text b { font-size: 0.9rem; color: var(--tx); }
-  #my-new-update-toast .ut-text small { font-size: 0.75rem; color: var(--mu); }
-  
   #my-new-update-toast .ut-btn {
-    background: var(--b1, #5b7cff) !important;
-    color: #fff !important;
-    border: none !important;
-    padding: 8px 14px !important;
-    border-radius: 10px !important;
-    font: inherit !important;
-    font-size: 0.8rem !important;
-    font-weight: 700 !important;
-    cursor: pointer !important;
+    background: var(--b1, #5b7cff) !important; color: #fff !important; border: none !important;
+    padding: 8px 14px !important; border-radius: 10px !important; cursor: pointer !important;
   }
-  
   #my-new-update-toast .ut-close {
-    background: rgba(255,0,0,0.1) !important;
-    color: #e5384f !important;
-    border: none !important;
-    border-radius: 50% !important;
-    width: 28px !important;
-    height: 28px !important;
-    display: grid !important;
-    place-items: center !important;
-    font-size: 1rem !important;
-    cursor: pointer !important;
-    margin-right: 8px !important;
+    background: rgba(255,0,0,0.1) !important; color: #e5384f !important; border: none !important;
+    border-radius: 50% !important; width: 28px !important; height: 28px !important; cursor: pointer !important;
   }
-
-  /* === ۲. چیدمان ۳ ستونه کارت‌ها (فقط برای صفحه اصلی) === */
-  .lks {
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 10px !important;
-    width: 100% !important;
-    margin: 10px auto !important;
-  }
-  .lks > .lk {
-    min-height: 85px !important;
-    padding: 10px 4px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-    text-align: center !important;
-    box-sizing: border-box !important;
-  }
-  .lks > .lk b { font-size: 0.75rem !important; margin-top: 5px; }
-  .lks > .lk .li { width: 34px !important; height: 34px !important; }
-  .lks > .lk .li svg { width: 18px !important; height: 18px !important; }
 </style>
 
-<!-- ساختار HTML پاپ‌آپ جدید -->
 <div id="my-new-update-toast">
   <span style="font-size:1.4rem;">🚀</span>
   <div class="ut-text">
     <b>نسخه جدید آماده است!</b>
-    <small>برای آپدیت کلیک کنید.</small>
   </div>
   <button id="my-btn-update" class="ut-btn">آپدیت</button>
-  <button id="my-btn-close" class="ut-close" title="بستن">✕</button>
+  <button id="my-btn-close" class="ut-close">✕</button>
 </div>
 
-<script id="super-force-fixes-js">
-  // ۱. بستن پنجره با دکمه ضربدر (با قدرت بالا)
-  document.getElementById('my-btn-close').addEventListener('click', function(e) {
-    e.preventDefault();
-    e.stopPropagation();
+<script id="final-update-toast-script">
+  (function() {
     var toast = document.getElementById('my-new-update-toast');
-    toast.classList.remove('show');
-    // بعد از بسته شدن انیمیشن، کاملاً مخفی شود
-    setTimeout(function() { toast.style.display = 'none'; }, 400);
-  });
+    var btnUpdate = document.getElementById('my-btn-update');
+    var btnClose = document.getElementById('my-btn-close');
+    var waitingWorker = null;
 
-  // ۲. دکمه آپدیت
-  document.getElementById('my-btn-update').addEventListener('click', function() {
-    window.location.reload(); // رفرش صفحه
-  });
+    // بستن پنجره با ضربدر
+    btnClose.addEventListener('click', function() {
+      toast.classList.remove('show');
+    });
 
-  // ۳. بررسی آپدیت جدید از Service Worker
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js').then(function(reg) {
-      // اگر نسخه جدید آماده است
-      if (reg.waiting) {
-        document.getElementById('my-new-update-toast').style.display = 'flex';
-        setTimeout(function() { document.getElementById('my-new-update-toast').classList.add('show'); }, 100);
+    // دکمه آپدیت: پیام به سرویس ورکر و رفرش
+    btnUpdate.addEventListener('click', function() {
+      if (waitingWorker) {
+        // به سرویس ورکر میگیم نسخه جدید رو جایگزین کن
+        waitingWorker.postMessage({ type: 'SKIP_WAITING' });
       }
-      // گوش دادن به نسخه‌های جدید
-      reg.addEventListener('updatefound', function() {
-        var newWorker = reg.installing;
-        if (newWorker) {
-          newWorker.addEventListener('statechange', function() {
-            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-              document.getElementById('my-new-update-toast').style.display = 'flex';
-              setTimeout(function() { document.getElementById('my-new-update-toast').classList.add('show'); }, 100);
-            }
-          });
+      // بعد از نیم ثانیه صفحه رو رفرش می‌کنیم
+      setTimeout(function() {
+        window.location.reload();
+      }, 500);
+    });
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').then(function(reg) {
+        // اگر نسخه جدید در انتظار بود، نشون بده
+        if (reg.waiting) {
+          waitingWorker = reg.waiting;
+          setTimeout(function() { toast.classList.add('show'); }, 1000);
+        }
+        
+        // اگر آپدیت جدیدی پیدا شد
+        reg.addEventListener('updatefound', function() {
+          var newWorker = reg.installing;
+          if (newWorker) {
+            newWorker.addEventListener('statechange', function() {
+              if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                waitingWorker = newWorker;
+                setTimeout(function() { toast.classList.add('show'); }, 1000);
+              }
+            });
+          }
+        });
+      }).catch(function(err) { console.log('SW Error:', err); });
+      
+      // وقتی سرویس ورکر جدید فعال شد، یک بار صفحه رو رفرش کن
+      var refreshing = false;
+      navigator.serviceWorker.addEventListener('controllerchange', function() {
+        if (!refreshing) {
+          refreshing = true;
+          window.location.reload();
         }
       });
-    }).catch(function(err) { console.log('SW Error:', err); });
-  }
+    }
+  })();
 </script>
 </body>
 </html>
