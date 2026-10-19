@@ -390,6 +390,49 @@ create policy "own schedule" on public.schedule for all using (auth.uid() = user
   margin-top: 8px !important;
 }
 </style>
+<style id="custom-style">
+/* مخفی کردن کادرهای «حالت خالی» (یادداشت‌ها و ...) */
+#nl .nempty,
+.nempty {
+  display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  height: 0 !important;
+  min-height: 0 !important;
+}
+</style>
+
+<script id="custom-script">
+(function () {
+  'use strict';
+
+  /* حذف کادرهای حالت خالی از DOM (بدون دست زدن به توابع اصلی) */
+  function clean(root) {
+    try {
+      // یادداشت‌ها: <li class="nempty">
+      root.querySelectorAll('.nempty').forEach(function (el) { el.remove(); });
+      // فلش‌کارت‌ها: «هنوز کارتی نداری...»
+      root.querySelectorAll('.exn').forEach(function (el) {
+        if (/کارتی\s*ندار/.test(el.textContent)) el.remove();
+      });
+    } catch (e) {}
+  }
+
+  /* هر بار که لیستی دوباره ساخته شد، حالت خالی‌اش پاک می‌شود */
+  function watch(id) {
+    var box = document.getElementById(id);
+    if (!box) return;
+    new MutationObserver(function () { clean(box); })
+      .observe(box, { childList: true });
+    clean(box);
+  }
+
+  watch('nl');   // لیست یادداشت‌ها
+  watch('fcv');  // فلش‌کارت‌ها
+  clean(document);
+})();
+</script>
 
 </body>
 </html>
