@@ -693,441 +693,141 @@ html:root .hrC > #hl .hbio {
     border-bottom: none !important;
   }
 </style>
+<!-- 🚀 کد نهایی و قوی برای اصلاح پاپ‌آپ و چیدمان -->
+<style id="super-force-fixes">
+  /* === ۱. نابودی کامل استایل‌های قبلی پاپ‌آپ و ساخت نسخه جدید در بالا === */
+  #upToast, .up-toast, .amir-toast {
+    display: none !important; /* مخفی کردن نسخه‌های خراب قبلی */
+  }
+  
+  #my-new-update-toast {
+    position: fixed !important;
+    top: -150px !important; /* مخفی در بالا */
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 999999 !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 12px !important;
+    padding: 12px 16px !important;
+    border-radius: 16px !important;
+    background: var(--bg1, #fff) !important;
+    border: 2px solid var(--b1, #5b7cff) !important;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3) !important;
+    width: max-content !important;
+    max-width: 95vw !important;
+    transition: top 0.4s ease !important;
+    direction: rtl !important;
+    box-sizing: border-box !important;
+  }
+  
+  #my-new-update-toast.show {
+    top: 20px !important; /* نمایش در بالا */
+  }
+  
+  #my-new-update-toast .ut-text { display: flex; flex-direction: column; gap: 2px; }
+  #my-new-update-toast .ut-text b { font-size: 0.9rem; color: var(--tx); }
+  #my-new-update-toast .ut-text small { font-size: 0.75rem; color: var(--mu); }
+  
+  #my-new-update-toast .ut-btn {
+    background: var(--b1, #5b7cff) !important;
+    color: #fff !important;
+    border: none !important;
+    padding: 8px 14px !important;
+    border-radius: 10px !important;
+    font: inherit !important;
+    font-size: 0.8rem !important;
+    font-weight: 700 !important;
+    cursor: pointer !important;
+  }
+  
+  #my-new-update-toast .ut-close {
+    background: rgba(255,0,0,0.1) !important;
+    color: #e5384f !important;
+    border: none !important;
+    border-radius: 50% !important;
+    width: 28px !important;
+    height: 28px !important;
+    display: grid !important;
+    place-items: center !important;
+    font-size: 1rem !important;
+    cursor: pointer !important;
+    margin-right: 8px !important;
+  }
 
-<!-- 👇 کد پنجره پاپ‌آپ آپدیت جدید 👇 -->
-<style id="update-toast-style">
-  .update-toast {
-    position: fixed;
-    bottom: -100px; /* در ابتدا مخفی */
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 16px;
-    border-radius: 16px;
-    background: var(--glass);
-    border: 1px solid var(--bd);
-    box-shadow: var(--sh), 0 10px 30px rgba(0,0,0,0.2);
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
-    transition: bottom 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.2);
-    width: max-content;
-    max-width: calc(100% - 32px);
-    direction: rtl;
-    font-family: inherit;
+  /* === ۲. چیدمان ۳ ستونه کارت‌ها (فقط برای صفحه اصلی) === */
+  .lks {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 10px !important;
+    width: 100% !important;
+    margin: 10px auto !important;
   }
-  .update-toast.show {
-    bottom: 24px; /* مکان نمایش */
+  .lks > .lk {
+    min-height: 85px !important;
+    padding: 10px 4px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
   }
-  .ut-icon {
-    font-size: 1.5rem;
-  }
-  .ut-text {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-  .ut-text b {
-    font-size: 0.9rem;
-    color: var(--tx);
-  }
-  .ut-text small {
-    font-size: 0.75rem;
-    color: var(--mu);
-  }
-  .ut-btn {
-    background: var(--b1);
-    color: #fff;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 10px;
-    font: inherit;
-    font-size: 0.8rem;
-    font-weight: 700;
-    cursor: pointer;
-    white-space: nowrap;
-    margin-right: 10px;
-  }
-  .ut-close {
-    background: none;
-    border: none;
-    color: var(--mu);
-    font-size: 1.2rem;
-    cursor: pointer;
-    padding: 4px;
-    display: grid;
-    place-items: center;
-  }
-  @media (max-width: 400px) {
-    .update-toast {
-      flex-wrap: wrap;
-      justify-content: center;
-      text-align: center;
-      padding: 16px;
-    }
-    .ut-btn {
-      width: 100%;
-      margin-right: 0;
-      margin-top: 8px;
-    }
-    .ut-close {
-      position: absolute;
-      top: 8px;
-      left: 8px;
-    }
-  }
+  .lks > .lk b { font-size: 0.75rem !important; margin-top: 5px; }
+  .lks > .lk .li { width: 34px !important; height: 34px !important; }
+  .lks > .lk .li svg { width: 18px !important; height: 18px !important; }
 </style>
 
-<div id="updateToast" class="update-toast">
-  <span class="ut-icon">🚀</span>
+<!-- ساختار HTML پاپ‌آپ جدید -->
+<div id="my-new-update-toast">
+  <span style="font-size:1.4rem;">🚀</span>
   <div class="ut-text">
-    <b>نسخه جدید سایت منتشر شد!</b>
-    <small>برای اعمال تغییرات، صفحه را به‌روز کنید.</small>
+    <b>نسخه جدید آماده است!</b>
+    <small>برای آپدیت کلیک کنید.</small>
   </div>
-  <button id="btnUpdate" class="ut-btn">آپدیت و رفرش</button>
-  <button id="btnCloseUpdate" class="ut-close">✕</button>
+  <button id="my-btn-update" class="ut-btn">آپدیت</button>
+  <button id="my-btn-close" class="ut-close" title="بستن">✕</button>
 </div>
 
-<script id="update-toast-script">
-  (function() {
-    const toast = document.getElementById('updateToast');
-    const btnUpdate = document.getElementById('btnUpdate');
-    const btnClose = document.getElementById('btnCloseUpdate');
-    let waitingWorker = null;
+<script id="super-force-fixes-js">
+  // ۱. بستن پنجره با دکمه ضربدر (با قدرت بالا)
+  document.getElementById('my-btn-close').addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    var toast = document.getElementById('my-new-update-toast');
+    toast.classList.remove('show');
+    // بعد از بسته شدن انیمیشن، کاملاً مخفی شود
+    setTimeout(function() { toast.style.display = 'none'; }, 400);
+  });
 
-    // بستن پاپ‌آپ
-    btnClose.addEventListener('click', () => {
-      toast.classList.remove('show');
-    });
+  // ۲. دکمه آپدیت
+  document.getElementById('my-btn-update').addEventListener('click', function() {
+    window.location.reload(); // رفرش صفحه
+  });
 
-    // دکمه آپدیت و رفرش
-    btnUpdate.addEventListener('click', () => {
-      if (waitingWorker) {
-        // ارسال پیام به Service Worker برای فعال‌سازی نسخه جدید
-        waitingWorker.postMessage({ type: 'SKIP_WAITING' });
+  // ۳. بررسی آپدیت جدید از Service Worker
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').then(function(reg) {
+      // اگر نسخه جدید آماده است
+      if (reg.waiting) {
+        document.getElementById('my-new-update-toast').style.display = 'flex';
+        setTimeout(function() { document.getElementById('my-new-update-toast').classList.add('show'); }, 100);
       }
-      // رفرش صفحه بعد از یک مکث کوتاه
-      setTimeout(() => {
-        window.location.reload();
-      }, 500);
-    });
-
-    // بررسی وضعیت Service Worker
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js').then((reg) => {
-        // اگر نسخه جدید در انتظار است
-        if (reg.waiting) {
-          waitingWorker = reg.waiting;
-          toast.classList.add('show');
-        }
-
-        // گوش دادن به رویداد نصب نسخه جدید
-        reg.addEventListener('updatefound', () => {
-          const newWorker = reg.installing;
-          if (newWorker) {
-            newWorker.addEventListener('statechange', () => {
-              if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                waitingWorker = newWorker;
-                toast.classList.add('show');
-              }
-            });
-          }
-        });
-      }).catch((err) => {
-        console.warn('Service Worker registration failed:', err);
-      });
-
-      // وقتی Service Worker کنترل صفحه را به دست گرفت (نسخه جدید فعال شد)، صفحه را رفرش کن
-      let refreshing = false;
-      navigator.serviceWorker.addEventListener('controllerchange', () => {
-        if (!refreshing) {
-          refreshing = true;
-          window.location.reload();
+      // گوش دادن به نسخه‌های جدید
+      reg.addEventListener('updatefound', function() {
+        var newWorker = reg.installing;
+        if (newWorker) {
+          newWorker.addEventListener('statechange', function() {
+            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+              document.getElementById('my-new-update-toast').style.display = 'flex';
+              setTimeout(function() { document.getElementById('my-new-update-toast').classList.add('show'); }, 100);
+            }
+          });
         }
       });
-    }
-  })();
+    }).catch(function(err) { console.log('SW Error:', err); });
+  }
 </script>
-<style id="custom-style">
-/* =====================================================
-   ۱) پاپ‌آپ‌ها (آپدیت #upToast و نصب #toastIns): بالای صفحه
-   با کلاس .on یا .show از بالا پایین می‌آیند
-   ===================================================== */
-html:root body :is(.amir-toast, .up-toast) {
-  position: fixed !important;
-  top: -140px !important;
-  bottom: auto !important;
-  left: 50% !important;
-  right: auto !important;
-  transform: translateX(-50%) !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
-  z-index: 2147483000 !important;
-  transition: top .5s cubic-bezier(.2,.9,.25,1.12), opacity .35s ease, visibility 0s linear .5s !important;
-}
-html:root body :is(.amir-toast, .up-toast).on,
-html:root body :is(.amir-toast, .up-toast).show {
-  top: calc(20px + env(safe-area-inset-top, 0px)) !important;
-  bottom: auto !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  pointer-events: auto !important;
-  transition: top .5s cubic-bezier(.2,.9,.25,1.12), opacity .35s ease, visibility 0s linear 0s !important;
-}
-html:root body :is(.amir-toast, .up-toast) :is(.at-x, .at-btn, .ut-x, .ut-go) {
-  position: relative !important;
-  z-index: 2 !important;
-  cursor: pointer !important;
-  pointer-events: auto !important;
-}
-/* بعد از بسته شدن: کاملاً حذف از چیدمان (مگر اینکه دوباره .on/.show بگیرد) */
-html:root body :is(.amir-toast, .up-toast).closed:not(.on):not(.show) {
-  display: none !important;
-}
-
-/* =====================================================
-   ۲) کارت‌های ابزار: ۳ ستون (با ترفند ۶ ستونه برای وسط‌چین)
-   ===================================================== */
-html:root body .lks {
-  display: grid !important;
-  grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
-  gap: 8px !important;
-  width: 100% !important;
-  margin: 12px 0 !important;
-}
-html:root body .lks > .lk,
-html:root body .lks > .lk.gg {
-  grid-column: span 2 !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  text-align: center !important;
-  gap: 5px !important;
-  width: 100% !important;
-  max-width: none !important;
-  min-width: 0 !important;
-  min-height: 80px !important;
-  padding: 8px 3px !important;
-  border-radius: 16px !important;
-}
-/* دو کارت اول (خرید شارژ و اینترنت) وسط‌چین */
-html:root body .lks > .lk:nth-child(1) { grid-column: 2 / span 2 !important; }
-html:root body .lks > .lk:nth-child(2) { grid-column: 4 / span 2 !important; }
-html:root body .lks > .lk .li {
-  width: 30px !important;
-  height: 30px !important;
-  border-radius: 10px !important;
-  font-size: 1rem !important;
-}
-html:root body .lks > .lk .li svg {
-  width: 17px !important;
-  height: 17px !important;
-}
-html:root body .lks > .lk b {
-  font-size: .72rem !important;
-  line-height: 1.4 !important;
-  text-align: center !important;
-  overflow-wrap: anywhere !important;
-}
-html:root body .lks > .lk small,
-html:root body .lks > .lk .vpn2 {
-  font-size: .55rem !important;
-  line-height: 1.4 !important;
-  text-align: center !important;
-}
-
-/* =====================================================
-   ۳) ۵ آیکون بالای صفحه: یک ردیف، هم‌اندازه 44×44
-   ===================================================== */
-html:root body .hrC,
-html:root body div:has(> #tg) {
-  display: flex !important;
-  flex-direction: row !important;
-  flex-wrap: nowrap !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 8px !important;
-  width: 100% !important;
-}
-html:root body #tg,
-html:root body #cb12,
-html:root body #edb,
-html:root body #authb,
-html:root body #hl {
-  flex: 0 0 44px !important;
-  width: 44px !important;
-  height: 44px !important;
-  min-width: 44px !important;
-  min-height: 44px !important;
-  max-width: 44px !important;
-  max-height: 44px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border-radius: 14px !important;
-  align-items: center !important;
-  justify-content: center !important;
-  grid-column: auto !important;
-  grid-row: auto !important;
-  order: 0 !important;
-  overflow: visible !important;
-}
-html:root body #tg,
-html:root body #cb12,
-html:root body #edb,
-html:root body #authb,
-html:root body #hl:not([hidden]) {
-  display: flex !important;
-}
-html:root body #hl[hidden] {
-  display: none !important;
-}
-/* آیکون‌های داخل دکمه‌ها */
-html:root body #tg svg,
-html:root body #cb12 svg,
-html:root body #edb svg,
-html:root body #authb svg {
-  box-sizing: content-box !important;
-  width: 20px !important;
-  height: 20px !important;
-  padding: 7px !important;
-  border-radius: 11px !important;
-}
-html:root body #ti {
-  width: 34px !important;
-  height: 34px !important;
-  border-radius: 11px !important;
-  font-size: 1.1rem !important;
-}
-/* متن زیر آیکون‌ها (مثل «تاریک») مخفی */
-html:root body #tg small,
-html:root body #tl,
-html:root body #cb12 small,
-html:root body #edb small,
-html:root body #authb small {
-  display: none !important;
-}
-/* عکس پروفایل */
-html:root body #hl {
-  background: none !important;
-  border: 0 !important;
-  box-shadow: none !important;
-}
-html:root body #hl .avw,
-html:root body #hl .av2 {
-  width: 44px !important;
-  height: 44px !important;
-  margin: 0 !important;
-}
-html:root body #hl .av2 svg {
-  width: 28px !important;
-  height: 28px !important;
-}
-html:root body #hl b,
-html:root body #hl small,
-html:root body #hl .hbio {
-  display: none !important;
-}
-</style>
-
-<script id="custom-script">
-(function () {
-  'use strict';
-
-  /* استایل inline با !important: روی هر CSS دیگری (حتی بعدی) غلبه می‌کند */
-  function I(el, o) {
-    for (var k in o) el.style.setProperty(k, o[k], 'important');
-  }
-
-  /* ---------- پاپ‌آپ: انتقال به body + دکمه بستن ---------- */
-  function fixToast() {
-    document.querySelectorAll('.amir-toast, .up-toast').forEach(function (t) {
-      // اگر داخل المانی با transform/overflow گیر کرده باشد، position:fixed کار نمی‌کند
-      if (document.body && t.parentElement !== document.body) document.body.appendChild(t);
-    });
-  }
-
-  function closeToast(t) {
-    if (!t) return;
-    t.classList.remove('on', 'show');
-    clearTimeout(t._ct);
-    // بعد از پایان انیمیشن کاملاً مخفی (display: none)
-    t._ct = setTimeout(function () { t.classList.add('closed'); }, 550);
-  }
-
-  // با capture گوش می‌دهیم تا حتی اگر کد قبلی خطا بدهد یا جلوی رویداد را بگیرد، ✕ کار کند
-  document.addEventListener('click', function (e) {
-    var x = e.target.closest ? e.target.closest('.amir-toast .at-x, .up-toast .ut-x') : null;
-    if (!x) return;
-    closeToast(x.closest('.amir-toast, .up-toast'));
-  }, true);
-
-  // اگر پاپ‌آپ دوباره نمایش داده شود، حالت closed برداشته می‌شود
-  new MutationObserver(function (list) {
-    list.forEach(function (m) {
-      var t = m.target;
-      if (t.classList && (t.classList.contains('amir-toast') || t.classList.contains('up-toast')) &&
-          (t.classList.contains('on') || t.classList.contains('show'))) {
-        clearTimeout(t._ct);
-        t.classList.remove('closed');
-      }
-    });
-  }).observe(document.documentElement, { subtree: true, attributes: true, attributeFilter: ['class'] });
-
-  /* ---------- کارت‌ها: ۳ ستون، ردیف اول (۲ کارت) و ردیف آخر وسط‌چین ---------- */
-  function fixCards() {
-    var box = document.querySelector('.lks');
-    if (!box) return;
-    I(box, { display: 'grid', 'grid-template-columns': 'repeat(6,minmax(0,1fr))', gap: '8px', width: '100%' });
-    var items = [].filter.call(box.children, function (e) { return e.classList.contains('lk'); });
-    var N = items.length, idx = 0, first = true;
-    while (idx < N) {
-      var size = first ? Math.min(2, N) : Math.min(3, N - idx);
-      var startCol = 1 + (6 - size * 2) / 2;
-      for (var j = 0; j < size; j++) {
-        I(items[idx + j], { 'grid-column': (startCol + j * 2) + ' / span 2' });
-      }
-      idx += size;
-      first = false;
-    }
-  }
-
-  /* ---------- آیکون‌های بالا: ردیف افقی و هم‌اندازه ---------- */
-  function fixHeader() {
-    var tg = document.getElementById('tg');
-    if (!tg) return;
-    I(tg.parentElement, {
-      'flex-direction': 'row', 'flex-wrap': 'nowrap',
-      'justify-content': 'center', 'align-items': 'center',
-      gap: '8px', width: '100%'
-    });
-    ['tg', 'hl', 'cb12', 'edb', 'authb'].forEach(function (id) {
-      var el = document.getElementById(id);
-      if (!el) return;
-      I(el, {
-        width: '44px', height: '44px',
-        'min-width': '44px', 'min-height': '44px',
-        'max-width': '44px', 'max-height': '44px',
-        margin: '0', padding: '0', 'border-radius': '14px',
-        flex: '0 0 44px', 'grid-column': 'auto', 'grid-row': 'auto'
-      });
-    });
-  }
-
-  function fixAll() {
-    try { fixToast(); } catch (e) {}
-    try { fixCards(); } catch (e) {}
-    try { fixHeader(); } catch (e) {}
-  }
-
-  fixAll();
-  document.addEventListener('DOMContentLoaded', fixAll);
-  window.addEventListener('load', fixAll);
-  [300, 1000, 2500, 5000].forEach(function (ms) { setTimeout(fixAll, ms); });
-})();
-</script>
-
 </body>
 </html>
