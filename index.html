@@ -1893,7 +1893,7 @@ body.editing .edhidden{display:flex!important;opacity:.4;filter:grayscale(.7)}
 /* ===== AUTH: JS (Supabase) ===== */
 (function(){
 /* ⚠️ این دو مقدار را با اطلاعات پروژهٔ Supabase خودت جایگزین کن */
-var SUPABASE_URL='YOUR_SUPABASE_URL',SUPABASE_ANON_KEY='YOUR_SUPABASE_ANON_KEY';
+var SUPABASE_URL='https://hmbbzlbbesijdjflvejk.supabase.co',SUPABASE_ANON_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhtYmJ6bGJiZXNpamRqZmx2ZWprIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIzODI1NzAsImV4cCI6MjEwNzk1ODU3MH0.kONm52l1aGNhRiAblj2tJ1k2rBd63Bc4xAdzHnDz6k4';
 var configured=function(){return !/^YOUR_/.test(SUPABASE_URL)&&!/^YOUR_/.test(SUPABASE_ANON_KEY)};
 var $=function(i){return document.getElementById(i)},sb=null,user=null,applying=false,timers={},dirty={};
 var MAP={nl:['notes',[]],tdl:['todos',[]],xp:['expenses',[]],sc:['schedule',{}]};
