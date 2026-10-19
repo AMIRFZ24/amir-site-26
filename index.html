@@ -693,5 +693,162 @@ html:root .hrC > #hl .hbio {
     border-bottom: none !important;
   }
 </style>
+
+<!-- 👇 کد پنجره پاپ‌آپ آپدیت جدید 👇 -->
+<style id="update-toast-style">
+  .update-toast {
+    position: fixed;
+    bottom: -100px; /* در ابتدا مخفی */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 16px;
+    background: var(--glass);
+    border: 1px solid var(--bd);
+    box-shadow: var(--sh), 0 10px 30px rgba(0,0,0,0.2);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    transition: bottom 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+    width: max-content;
+    max-width: calc(100% - 32px);
+    direction: rtl;
+    font-family: inherit;
+  }
+  .update-toast.show {
+    bottom: 24px; /* مکان نمایش */
+  }
+  .ut-icon {
+    font-size: 1.5rem;
+  }
+  .ut-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .ut-text b {
+    font-size: 0.9rem;
+    color: var(--tx);
+  }
+  .ut-text small {
+    font-size: 0.75rem;
+    color: var(--mu);
+  }
+  .ut-btn {
+    background: var(--b1);
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 10px;
+    font: inherit;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    margin-right: 10px;
+  }
+  .ut-close {
+    background: none;
+    border: none;
+    color: var(--mu);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 4px;
+    display: grid;
+    place-items: center;
+  }
+  @media (max-width: 400px) {
+    .update-toast {
+      flex-wrap: wrap;
+      justify-content: center;
+      text-align: center;
+      padding: 16px;
+    }
+    .ut-btn {
+      width: 100%;
+      margin-right: 0;
+      margin-top: 8px;
+    }
+    .ut-close {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+    }
+  }
+</style>
+
+<div id="updateToast" class="update-toast">
+  <span class="ut-icon">🚀</span>
+  <div class="ut-text">
+    <b>نسخه جدید سایت منتشر شد!</b>
+    <small>برای اعمال تغییرات، صفحه را به‌روز کنید.</small>
+  </div>
+  <button id="btnUpdate" class="ut-btn">آپدیت و رفرش</button>
+  <button id="btnCloseUpdate" class="ut-close">✕</button>
+</div>
+
+<script id="update-toast-script">
+  (function() {
+    const toast = document.getElementById('updateToast');
+    const btnUpdate = document.getElementById('btnUpdate');
+    const btnClose = document.getElementById('btnCloseUpdate');
+    let waitingWorker = null;
+
+    // بستن پاپ‌آپ
+    btnClose.addEventListener('click', () => {
+      toast.classList.remove('show');
+    });
+
+    // دکمه آپدیت و رفرش
+    btnUpdate.addEventListener('click', () => {
+      if (waitingWorker) {
+        // ارسال پیام به Service Worker برای فعال‌سازی نسخه جدید
+        waitingWorker.postMessage({ type: 'SKIP_WAITING' });
+      }
+      // رفرش صفحه بعد از یک مکث کوتاه
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
+    });
+
+    // بررسی وضعیت Service Worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').then((reg) => {
+        // اگر نسخه جدید در انتظار است
+        if (reg.waiting) {
+          waitingWorker = reg.waiting;
+          toast.classList.add('show');
+        }
+
+        // گوش دادن به رویداد نصب نسخه جدید
+        reg.addEventListener('updatefound', () => {
+          const newWorker = reg.installing;
+          if (newWorker) {
+            newWorker.addEventListener('statechange', () => {
+              if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                waitingWorker = newWorker;
+                toast.classList.add('show');
+              }
+            });
+          }
+        });
+      }).catch((err) => {
+        console.warn('Service Worker registration failed:', err);
+      });
+
+      // وقتی Service Worker کنترل صفحه را به دست گرفت (نسخه جدید فعال شد)، صفحه را رفرش کن
+      let refreshing = false;
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (!refreshing) {
+          refreshing = true;
+          window.location.reload();
+        }
+      });
+    }
+  })();
+</script>
 </body>
 </html>
