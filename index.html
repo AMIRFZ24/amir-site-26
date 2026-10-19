@@ -850,5 +850,125 @@ html:root .hrC > #hl .hbio {
     }
   })();
 </script>
+<!-- 👇 کد اصلاح چیدمان داشبورد (۳ ستونه، وسط‌چین، آیکون‌ها) 👇 -->
+<style id="dashboard-layout-fixes">
+  /* ۱. چیدمان ۳ ستونه برای کارت‌های ابزار (خرید شارژ، تقویم و...) در موبایل و دسکتاپ */
+  .lks {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 10px !important;
+    justify-content: center !important;
+    align-items: stretch !important;
+    max-width: 100% !important;
+    margin: 10px auto !important;
+  }
+  
+  /* تنظیم اندازه کارت‌ها برای جا شدن در ۳ ستون */
+  .lks > .lk {
+    padding: 12px 6px !important;
+    min-height: 90px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+  }
+  
+  .lks > .lk b {
+    font-size: 0.8rem !important;
+    margin-top: 6px;
+  }
+  
+  .lks > .lk .li {
+    width: 36px !important;
+    height: 36px !important;
+  }
+  
+  .lks > .lk .li svg {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  /* وسط‌چین کردن دو کارت اول (خرید شارژ و خرید اینترنت) در ردیف اول */
+  .lks > .lk:nth-child(1) {
+    grid-column: 2 / 3 !important; /* قرار گرفتن در ستون وسط */
+  }
+  .lks > .lk:nth-child(2) {
+    grid-column: 1 / 2 !important; /* قرار گرفتن در ستون چپ */
+  }
+  /* توجه: برای اینکه دقیقاً کنار هم و وسط باشند، به جای این کار از روش زیر استفاده می‌کنیم تا ۳ ستونه به هم نریزد: */
+  .lks {
+    grid-template-columns: repeat(6, 1fr) !important; /* ایجاد ۶ ستون نامرئی برای دقت بالا */
+  }
+  .lks > .lk:nth-child(1) {
+    grid-column: 2 / 4 !important; /* نصف ستون‌های وسط را می‌گیرد */
+  }
+  .lks > .lk:nth-child(2) {
+    grid-column: 4 / 6 !important; /* نصف دیگر را می‌گیرد */
+  }
+  /* بقیه کارت‌ها (از سوم به بعد) هر کدام ۲ ستون از ۶ ستون را می‌گیرند تا ۳ ستونه شوند */
+  .lks > .lk:nth-child(n+3) {
+    grid-column: span 2 !important;
+  }
+
+  /* ۲. مرتب‌سازی ۵ آیکون بالای صفحه (پروفایل، ورود، مداد، پالت، تم) */
+  header .hb, 
+  header .am-header-tools {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    flex-wrap: nowrap !important;
+    width: 100% !important;
+    margin: 8px 0 !important;
+  }
+
+  /* هم‌اندازه کردن تمام دکمه‌های بالای صفحه */
+  header .hb > .tg,
+  header .hb > button,
+  header .am-header-tools > button,
+  header #hl .av2 {
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    max-width: 44px !important;
+    max-height: 44px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: grid !important;
+    place-items: center !important;
+    border-radius: 13px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* تنظیم سایز آیکون‌ها داخل دکمه‌ها */
+  header .hb > .tg svg,
+  header .hb > button svg,
+  header .am-header-tools > button svg {
+    width: 22px !important;
+    height: 22px !important;
+    display: block !important;
+  }
+
+  /* مخفی کردن متن‌های زیر آیکون‌ها (مثل کلمه "تاریک") */
+  header .hb > .tg small,
+  header .hb > button small,
+  header .am-header-tools > button small {
+    display: none !important;
+  }
+  
+  /* پروفایل وسط‌چین و مرتب */
+  header #hl {
+    flex-direction: column !important;
+    gap: 4px !important;
+    height: auto !important;
+  }
+  header #hl b {
+    display: none !important; /* اسم رو توی هدر مخفی می‌کنیم */
+  }
+</style>
 </body>
 </html>
