@@ -615,6 +615,45 @@ html:root .hrC > #hl .hbio {
   display: none !important;
 }
 </style>
+<!-- 👇 کدهای حذف خطوط جداکننده در مودال‌ها 👇 -->
+<style id="remove-dividers-css">
+  /* حذف خطوط جداکننده (Divider) از تمام مودال‌ها */
+  /* (استثنا: حاشیه کارت‌های اصلی و کادرهای ورودی دست نخورده باقی می‌مانند) */
+  
+  .md .sheet-body hr {
+    display: none !important;
+  }
 
+  .md .sheet .sc-listhead:after,
+  .md .sheet .cv,
+  .md .sheet .nrembox,
+  .md .sheet .pr-city.show,
+  .md .sheet .card.glass::after {
+    border: none !important;
+    border-top: none !important;
+    border-bottom: none !important;
+  }
+
+  /* حذف خط زیر عنوان‌ها در برنامه هفتگی (دروس این روز) */
+  .md .sheet .sc-listhead {
+    margin-top: 10px !important;
+  }
+  .md .sheet .sc-listhead::after {
+    display: none !important;
+  }
+</style>
+
+<script id="remove-dividers-js">
+  // حذف تگ‌های <hr> و المان‌های اضافی که فقط نقش خط جداکننده دارند
+  document.addEventListener("DOMContentLoaded", function() {
+    // پیدا کردن و حذف تمام تگ‌های hr داخل مودال‌ها
+    const hrs = document.querySelectorAll('.md .sheet hr');
+    hrs.forEach(hr => hr.remove());
+
+    // پیدا کردن دیوهای خالی که فقط برای خط ساخته شدن (در صورت وجود)
+    const emptyDivs = document.querySelectorAll('.md .sheet .divider, .md .sheet .separator');
+    emptyDivs.forEach(div => div.remove());
+  });
+</script>
 </body>
 </html>
