@@ -1740,13 +1740,6 @@ header .aupill{padding:4px!important;gap:0!important}
   #netbar .nb-i{gap:4px!important}
 }
 </style>
-<style id="edb-pos">
-/* مداد: گوشهٔ چپ، زیر ردیف آیکون‌ها (زیر آیکون تغییر ظاهر) */
-header>.hrC{position:relative}
-header>.hrC>#edb{position:absolute!important;left:0!important;top:calc(100% + 6px)!important;margin:0!important;z-index:3}
-header{padding-bottom:48px!important}
-@media (max-width:767px){header{padding-bottom:52px!important}}
-</style>
 <style id="wx-live">
 /* کاور آب‌وهوا: رنگ زنده بر اساس ساعت ایران (همان پالت اوقات شرعی) */
 #wx,#wx .wxc,.wxc{
@@ -1790,5 +1783,11 @@ header{padding-bottom:48px!important}
   load();setInterval(apply,60000);
 })();
 </script>
+<style id="edb-pos">
+/* مداد: هم‌ردیف و هم‌سطح با آیکون‌های سربرگ (کنار حساب کاربری) */
+header{padding-bottom:0!important}
+header>.hrC>#edb{position:static!important;left:auto!important;top:auto!important;margin:0!important;z-index:auto}
+@media (max-width:767px){header{padding-bottom:0!important}}
+</style>
 </body>
 </html>
