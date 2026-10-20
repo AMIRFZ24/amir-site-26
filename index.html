@@ -2173,5 +2173,26 @@ header>.hrC>#edb{position:static!important;left:auto!important;top:auto!importan
 .tp-trigger::after{content:none!important;display:none!important}
 .tp-trigger{background-image:none!important}
 </style>
+<style id="netbar-glass">
+/* نوار وضعیت شبکه با همان حالت شیشه‌ای tpop */
+#netbar{
+  background:linear-gradient(135deg,rgba(255,255,255,.52),rgba(255,255,255,.22))!important;
+  -webkit-backdrop-filter:blur(26px) saturate(190%)!important;
+  backdrop-filter:blur(26px) saturate(190%)!important;
+  border:1px solid var(--bd)!important;
+  border-radius:18px!important;
+  box-shadow:0 12px 40px rgba(0,0,0,.16),inset 0 1px 0 rgba(255,255,255,.6)!important;
+}
+:root[data-theme="dark"] #netbar{
+  background:linear-gradient(135deg,rgba(255,255,255,.16),rgba(255,255,255,.06))!important;
+  box-shadow:0 12px 40px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.18)!important;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) #netbar{
+    background:linear-gradient(135deg,rgba(255,255,255,.16),rgba(255,255,255,.06))!important;
+    box-shadow:0 12px 40px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.18)!important;
+  }
+}
+</style>
 </body>
 </html>
