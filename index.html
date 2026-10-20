@@ -2127,5 +2127,36 @@ header>.hrC>#edb{position:static!important;left:auto!important;top:auto!importan
   scan();setTimeout(scan,800);setTimeout(scan,2000);
   setInterval(()=>bound.forEach(label),1500);
 })();
-</script></body>
+</script><style id="picker-nested">
+.md.behind{opacity:0!important;pointer-events:none!important;transition:opacity .2s ease}
+</style>
+<script id="picker-nested-js">
+/* لایه‌ای: بستن پنجرهٔ پشتی هنگام باز شدن پیکر ساعت/تاریخ و بازگرداندنش */
+(function(){
+  let pending=null;
+  document.addEventListener('click',function(e){
+    const tr=e.target.closest&&e.target.closest('.tp-trigger,.dp-trigger');
+    if(!tr)return;
+    const isTime=tr.classList.contains('tp-trigger');
+    const inp=tr.parentNode.querySelector('input');
+    pending={input:inp,modal:document.getElementById(isTime?'tpModal':'dpModal'),id:isTime?'tp':'dp'};
+  },true);
+  function hideUnder(){
+    if(!pending||!pending.input)return;
+    const p=pending.input.closest('.md');
+    if(p&&p!==pending.modal){p.classList.add('behind');p.dataset.pickerBehind='1'}
+  }
+  function showUnder(){
+    document.querySelectorAll('.md.behind[data-picker-behind]').forEach(el=>{el.classList.remove('behind');delete el.dataset.pickerBehind});
+  }
+  ['tpModal','dpModal'].forEach(id=>{
+    const t=document.getElementById(id);if(!t)return;
+    new MutationObserver(()=>{
+      if(t.classList.contains('out')||t.hidden)setTimeout(showUnder,10);
+      else setTimeout(hideUnder,30);
+    }).observe(t,{attributes:true,attributeFilter:['hidden','class']});
+  });
+})();
+</script>
+</body>
 </html>
