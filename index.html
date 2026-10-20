@@ -2042,5 +2042,90 @@ header>.hrC>#edb{position:static!important;left:auto!important;top:auto!importan
 })();
 </script>
 <style id="tp-fix">#tpModal .tp-actions{grid-template-columns:1fr auto auto}#tpModal .tp-clear{min-width:56px}</style>
-</body>
+<style id="dp-css">
+/* پیکر تاریخ شیشه‌ای */
+.dp-native{position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important;clip:rect(0 0 0 0)!important;overflow:hidden!important}
+.dp-trigger{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;box-sizing:border-box;font:inherit;font-weight:700;padding:10px 8px;border-radius:12px;border:1px solid var(--bd);background:var(--glass);color:var(--tx);cursor:pointer}
+.dp-trigger::after{content:"📅";font-size:.85em;opacity:.6}
+#dpModal .dp-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:4px 0 10px}
+#dpModal .dp-head b{font-size:.95rem}
+#dpModal .dp-nav{width:34px;height:34px;border-radius:10px;border:1px solid var(--bd);background:var(--glass);color:var(--tx);font-size:1.1rem;cursor:pointer}
+#dpModal .dp-wk{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:6px;color:var(--mu);font-size:.7rem;text-align:center}
+#dpModal .dp-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+#dpModal .dp-grid button{aspect-ratio:1;border-radius:10px;border:1px solid transparent;background:var(--glass);color:var(--tx);font:inherit;font-size:.82rem;font-weight:700;cursor:pointer}
+#dpModal .dp-grid button.today{border-color:color-mix(in srgb,var(--ac) 60%,var(--bd))}
+#dpModal .dp-grid button.on{background:linear-gradient(135deg,var(--b1),color-mix(in srgb,var(--b1) 60%,var(--b2)));color:#fff}
+#dpModal .dp-grid button:active{transform:scale(.94)}
+#dpModal .dp-actions{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:12px}
+#dpModal .dp-actions .wb{margin:0}
+#dpModal .dp-clear{width:auto;padding:10px 14px;border-radius:12px;border:1px solid var(--bd);background:var(--glass);color:var(--mu);font:inherit;font-size:.8rem;font-weight:700;cursor:pointer}
+</style>
+<script id="dp-js">
+/* پیکر تاریخ شیشه‌ای (شمسی) — همگام با تاریخ سیستم */
+(function(){
+  const p2=n=>String(n).padStart(2,'0');
+  let modal=null,cur=null,vy=0,vm=0,bound=[];
+  function jNow(){try{return gj(new Date())}catch(e){const d=new Date();return[d.getFullYear(),d.getMonth()+1,d.getDate()]}}
+  function build(){
+    if(modal)return;
+    modal=document.createElement('div');modal.className='md';modal.id='dpModal';modal.hidden=true;
+    modal.innerHTML='<div class="sheet"><div class="sheet-head"><h3>انتخاب تاریخ</h3><button class="xb" id="dpX" type="button" aria-label="بستن">✕</button></div><div class="sheet-body" data-lenis-prevent><div class="dp-head"><button class="dp-nav" id="dpPrev" type="button" aria-label="ماه قبل">‹</button><b id="dpTitle"></b><button class="dp-nav" id="dpNext" type="button" aria-label="ماه بعد">›</button></div><div class="dp-wk"><span>ش</span><span>ی</span><span>د</span><span>س</span><span>چ</span><span>پ</span><span>ج</span></div><div class="dp-grid" id="dpGrid"></div><div class="dp-actions"><button class="wb" id="dpToday" type="button">امروز</button><button class="dp-clear" id="dpClear" type="button">پاک</button></div></div></div>';
+    document.body.appendChild(modal);
+    document.getElementById('dpX').onclick=()=>closeP(modal);
+    modal.addEventListener('click',e=>{if(e.target===modal)closeP(modal)});
+    document.getElementById('dpPrev').onclick=()=>{vm--;if(vm<1){vm=12;vy--}render()};
+    document.getElementById('dpNext').onclick=()=>{vm++;if(vm>12){vm=1;vy++}render()};
+    document.getElementById('dpToday').onclick=()=>{const j=jNow();vy=j[0];vm=j[1];render();commit(j[2])};
+    document.getElementById('dpClear').onclick=()=>{if(cur){cur.value='';fire(cur)}closeP(modal)};
+  }
+  function fire(inp){try{inp.dispatchEvent(new Event('input',{bubbles:true}));inp.dispatchEvent(new Event('change',{bubbles:true}))}catch(e){}}
+  function label(inp){
+    const tr=inp.parentNode&&inp.parentNode.querySelector('.dp-trigger');if(!tr)return;
+    if(!inp.value){tr.textContent='انتخاب تاریخ';return}
+    const d=new Date(inp.value+'T12:00:00');
+    tr.textContent=d.toLocaleDateString('fa-IR-u-ca-persian',{day:'numeric',month:'long',year:'numeric'});
+  }
+  function iso(gy,gm,gd){return gy+'-'+p2(gm)+'-'+p2(gd)}
+  function commit(day){
+    if(!cur)return;
+    const f=jfirst(vy,vm);const g=new Date(f.getFullYear(),f.getMonth(),f.getDate()+day-1,12);
+    cur.value=iso(g.getFullYear(),g.getMonth()+1,g.getDate());
+    fire(cur);label(cur);closeP(modal);
+  }
+  function render(){
+    if(typeof jfirst!=='function')return;
+    document.getElementById('dpTitle').textContent=(typeof MN!=='undefined'?MN[vm-1]:vm)+' '+(typeof FA==='function'?FA(String(vy)):vy);
+    const g=document.getElementById('dpGrid');g.innerHTML='';
+    const f=jfirst(vy,vm),len=jlen(vy,vm),off=wdIdx(f);
+    const today=jNow();
+    const curV=cur&&cur.value?new Date(cur.value+'T12:00:00'):null;
+    for(let i=0;i<off;i++){const s=document.createElement('span');g.append(s)}
+    for(let d=1;d<=len;d++){
+      const b=document.createElement('button');b.type='button';b.textContent=typeof FA==='function'?FA(String(d)):d;
+      const gg=new Date(f.getFullYear(),f.getMonth(),f.getDate()+d-1,12);
+      if(curV&&gg.toDateString()===curV.toDateString())b.classList.add('on');
+      if(today[0]===vy&&today[1]===vm&&today[2]===d)b.classList.add('today');
+      b.onclick=()=>commit(d);g.append(b);
+    }
+  }
+  function openFor(inp){
+    build();cur=inp;
+    if(inp.value){const j=gj(new Date(inp.value+'T12:00:00'));vy=j[0];vm=j[1]}
+    else{const j=jNow();vy=j[0];vm=j[1]}
+    render();modal.hidden=false;
+  }
+  function bind(inp){
+    if(!inp||inp.dataset.dpBound)return;
+    inp.dataset.dpBound='1';
+    inp.classList.add('dp-native');inp.tabIndex=-1;inp.setAttribute('aria-hidden','true');
+    const tr=document.createElement('button');tr.type='button';tr.className='dp-trigger';tr.setAttribute('aria-label','انتخاب تاریخ');
+    tr.onclick=e=>{e.preventDefault();e.stopPropagation();openFor(inp)};
+    inp.parentNode.insertBefore(tr,inp.nextSibling);
+    label(inp);bound.push(inp);
+  }
+  function scan(){document.querySelectorAll('input[type="date"]').forEach(bind)}
+  scan();setTimeout(scan,800);setTimeout(scan,2000);
+  setInterval(()=>bound.forEach(label),1500);
+})();
+</script></body>
 </html>
