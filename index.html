@@ -1747,5 +1747,48 @@ header>.hrC>#edb{position:absolute!important;left:0!important;top:calc(100% + 6p
 header{padding-bottom:48px!important}
 @media (max-width:767px){header{padding-bottom:52px!important}}
 </style>
+<style id="wx-live">
+/* کاور آب‌وهوا: رنگ زنده بر اساس ساعت ایران (همان پالت اوقات شرعی) */
+#wx,#wx .wxc,.wxc{
+  background:linear-gradient(160deg,var(--wx1,#7dd3fc),var(--wx2,#3b82f6))!important;
+  border-color:rgba(255,255,255,.32)!important;
+  color:#fff!important;
+  transition:background .9s ease,box-shadow .9s ease;
+}
+#wx b,#wx .wxt b,.wxc b{color:#fff!important}
+#wx small,#wx .wxt small,.wxc small{color:rgba(255,255,255,.88)!important}
+</style>
+<script id="wx-live-js">
+/* رنگ زندهٔ کاور آب‌وهوا بر اساس زمان‌های اذان (روش ۷) */
+(function(){
+  const G={dawn:['#1b1f4b','#4b2a6b'],day:['#7dd3fc','#3b82f6'],afternoon:['#fde68a','#fb923c'],sunset:['#fb923c','#ef4444'],night:['#2e1065','#0b1220']};
+  let times=null;
+  const p2=n=>String(n).padStart(2,'0');
+  const hm=s=>{const a=String(s).slice(0,5).split(':').map(Number);return a[0]*60+a[1]};
+  function apply(){
+    const r=document.documentElement;
+    if(!times){r.style.setProperty('--wx1',G.day[0]);r.style.setProperty('--wx2',G.day[1]);return}
+    const now=new Date(),m=now.getHours()*60+now.getMinutes();
+    let p='night';
+    if(m>=times.Fajr&&m<times.Sunrise)p='dawn';
+    else if(m>=times.Sunrise&&m<times.Dhuhr)p='day';
+    else if(m>=times.Dhuhr&&m<times.Sunset)p='afternoon';
+    else if(m>=times.Sunset&&m<times.Maghrib)p='sunset';
+    else p='night';
+    const c=G[p];r.style.setProperty('--wx1',c[0]);r.style.setProperty('--wx2',c[1]);
+    r.dataset.wxphase=p;
+  }
+  async function load(){
+    let c={lat:35.7,lon:51.4};
+    try{const s=JSON.parse(localStorage.getItem('prayerCity')||'null');if(s&&s.lat!=null)c=s}catch(e){}
+    const d=new Date();
+    const url='https://api.aladhan.com/v1/timings/'+p2(d.getDate())+'-'+p2(d.getMonth()+1)+'-'+d.getFullYear()+'?latitude='+c.lat+'&longitude='+c.lon+'&method=7';
+    try{const j=await(await fetch(url,{cache:'no-store'})).json();const t=j&&j.data&&j.data.timings;
+      if(t)times={Fajr:hm(t.Fajr),Sunrise:hm(t.Sunrise),Dhuhr:hm(t.Dhuhr),Sunset:hm(t.Sunset),Maghrib:hm(t.Maghrib)};}catch(e){}
+    apply();
+  }
+  load();setInterval(apply,60000);
+})();
+</script>
 </body>
 </html>
