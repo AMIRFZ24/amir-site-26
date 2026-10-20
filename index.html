@@ -1980,26 +1980,27 @@ header>.hrC>#edb{position:static!important;left:auto!important;top:auto!importan
 #tpModal .tp-clear{width:auto;padding:10px 14px;border-radius:12px;border:1px solid var(--bd);background:var(--glass);color:var(--mu);font:inherit;font-size:.8rem;font-weight:700;cursor:pointer}
 </style>
 <script id="tp-js">
-/* Ù¾ÛŒÚ©Ø± Ø³Ø§Ø¹Øª Ø´ÛŒØ´Ù‡â€ŒØ§ÛŒ Ø¨Ù‡â€ŒØ¬Ø§ÛŒ Ù¾ÛŒÚ©Ø± Ø¨ÙˆÙ…ÛŒ Ù…Ø±ÙˆØ±Ú¯Ø± */
+/* پیکر ساعت شیشه‌ای — همگام با ساعت سیستم */
 (function(){
-  const FAd=s=>String(s).replace(/\d/g,d=>'Û°Û±Û²Û³Û´ÛµÛ¶Û·Û¸Û¹'[+d]);
+  const FAd=s=>String(s).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[+d]);
   const p2=n=>String(n).padStart(2,'0');
   let modal=null,cur=null,H=0,M=0,bound=[];
   function build(){
     if(modal)return modal;
     modal=document.createElement('div');modal.className='md';modal.id='tpModal';modal.hidden=true;
-    modal.innerHTML='<div class="sheet"><div class="sheet-head"><h3>Ø§Ù†ØªØ®Ø§Ø¨ Ø³Ø§Ø¹Øª</h3><button class="xb" id="tpX" type="button" aria-label="Ø¨Ø³ØªÙ†">âœ•</button></div><div class="sheet-body" data-lenis-prevent><div class="tp-cols"><div class="tpcol" id="tpH"><h5>Ø³Ø§Ø¹Øª</h5></div><div class="tpcol" id="tpM"><h5>Ø¯Ù‚ÛŒÙ‚Ù‡</h5></div></div><div class="tp-actions"><button class="wb" id="tpOk" type="button">ØªØ£ÛŒÛŒØ¯</button><button class="tp-clear" id="tpClear" type="button">Ù¾Ø§Ú© Ú©Ø±Ø¯Ù†</button></div></div></div>';
+    modal.innerHTML='<div class="sheet"><div class="sheet-head"><h3>انتخاب ساعت</h3><button class="xb" id="tpX" type="button" aria-label="بستن">✕</button></div><div class="sheet-body" data-lenis-prevent><div class="tp-cols"><div class="tpcol" id="tpH"><h5>ساعت</h5></div><div class="tpcol" id="tpM"><h5>دقیقه</h5></div></div><div class="tp-actions"><button class="wb" id="tpOk" type="button">تأیید</button><button class="tp-clear" id="tpNow" type="button">اکنون</button><button class="tp-clear" id="tpClear" type="button">پاک</button></div></div></div>';
     document.body.appendChild(modal);
     document.getElementById('tpX').onclick=()=>closeP(modal);
     modal.addEventListener('click',e=>{if(e.target===modal)closeP(modal)});
     document.getElementById('tpOk').onclick=commit;
+    document.getElementById('tpNow').onclick=()=>{const n=new Date();H=n.getHours();M=n.getMinutes();pick('h',H);pick('m',M)};
     document.getElementById('tpClear').onclick=()=>{if(cur){cur.value='';fire(cur)}closeP(modal)};
     return modal;
   }
   function fire(inp){try{inp.dispatchEvent(new Event('input',{bubbles:true}));inp.dispatchEvent(new Event('change',{bubbles:true}))}catch(e){}}
   function label(inp){
     const tr=inp.parentNode&&inp.parentNode.querySelector('.tp-trigger');if(!tr)return;
-    tr.textContent=inp.value?FAd(inp.value):'Ø§Ù†ØªØ®Ø§Ø¨ Ø³Ø§Ø¹Øª';
+    tr.textContent=inp.value?FAd(inp.value):'انتخاب ساعت';
   }
   function commit(){
     if(!cur)return;
@@ -2013,14 +2014,14 @@ header>.hrC>#edb{position:static!important;left:auto!important;top:auto!importan
   function openFor(inp){
     build();
     const v=(inp.value||'').match(/^(\d{1,2}):(\d{2})$/);
-    H=v?Math.min(23,+v[1]):new Date().getHours();
-    M=v?Math.min(59,+v[2]):0;
+    if(v){H=Math.min(23,+v[1]);M=Math.min(59,+v[2])}
+    else{const n=new Date();H=n.getHours();M=n.getMinutes()}   /* ساعت سیستم */
     cur=inp;
     const hb=document.getElementById('tpH'),mb=document.getElementById('tpM');
-    hb.querySelectorAll('button').forEach(b=>b.remove());
-    mb.querySelectorAll('button').forEach(b=>b.remove());
-    for(let i=0;i<24;i++){const b=document.createElement('button');b.type='button';b.dataset.v=i;b.textContent=p2(i);b.onclick=()=>pick('h',i);hb.append(b)}
-    for(let i=0;i<60;i++){const b=document.createElement('button');b.type='button';b.dataset.v=i;b.textContent=p2(i);b.onclick=()=>pick('m',i);mb.append(b)}
+    if(!hb.children.length||hb.children.length<2){
+      for(let i=0;i<24;i++){const b=document.createElement('button');b.type='button';b.dataset.v=i;b.textContent=p2(i);b.onclick=()=>pick('h',i);hb.append(b)}
+      for(let i=0;i<60;i++){const b=document.createElement('button');b.type='button';b.dataset.v=i;b.textContent=p2(i);b.onclick=()=>pick('m',i);mb.append(b)}
+    }
     pick('h',H);pick('m',M);
     modal.hidden=false;
     setTimeout(()=>{const on=modal.querySelector('.tpcol button.on');if(on)on.scrollIntoView({block:'center'})},120);
@@ -2029,16 +2030,17 @@ header>.hrC>#edb{position:static!important;left:auto!important;top:auto!importan
     if(!inp||inp.dataset.tpBound)return;
     inp.dataset.tpBound='1';
     inp.classList.add('tp-native');inp.tabIndex=-1;inp.setAttribute('aria-hidden','true');
-    const tr=document.createElement('button');tr.type='button';tr.className='tp-trigger';tr.setAttribute('aria-label','Ø§Ù†ØªØ®Ø§Ø¨ Ø³Ø§Ø¹Øª');
-    tr.onclick=()=>openFor(inp);
+    const tr=document.createElement('button');tr.type='button';tr.className='tp-trigger';tr.setAttribute('aria-label','انتخاب ساعت');
+    tr.onclick=e=>{e.preventDefault();e.stopPropagation();openFor(inp)};
     inp.parentNode.insertBefore(tr,inp.nextSibling);
     label(inp);
     bound.push(inp);
   }
   function scan(){document.querySelectorAll('input[type="time"]').forEach(bind)}
   scan();setTimeout(scan,800);setTimeout(scan,2000);
-  setInterval(()=>bound.forEach(label),1500);
+  setInterval(()=>bound.forEach(label),1000);
 })();
 </script>
+<style id="tp-fix">#tpModal .tp-actions{grid-template-columns:1fr auto auto}#tpModal .tp-clear{min-width:56px}</style>
 </body>
 </html>
