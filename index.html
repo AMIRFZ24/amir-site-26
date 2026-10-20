@@ -1949,5 +1949,18 @@ header>.hrC>#edb{position:static!important;left:auto!important;top:auto!importan
   setTimeout(build,1200);
 })();
 </script>
+<style id="daysum-live">
+/* کارت و مودال خلاصهٔ روز: رنگ زنده بر اساس ساعت ایران (همان پالت اوقات شرعی) */
+#cbd{
+  background:linear-gradient(160deg,var(--wx1,#7dd3fc),var(--wx2,#3b82f6))!important;
+  border-color:rgba(255,255,255,.32)!important;color:#fff!important;
+  transition:background .9s ease,box-shadow .9s ease;
+}
+#cbd svg,#cbd small{color:#fff!important}
+#daySum .sheet{
+  background-image:linear-gradient(165deg,color-mix(in srgb,var(--wx1,#7dd3fc) 26%,transparent),color-mix(in srgb,var(--wx2,#3b82f6) 20%,transparent))!important;
+}
+#daySum .ds-hero b{color:var(--tx)}
+</style>
 </body>
 </html>
