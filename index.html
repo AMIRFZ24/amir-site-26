@@ -1274,6 +1274,71 @@ html:root body .md .sheet :is(.glass, .card, .tpop, .nwi, .fmx, .cdw, .occ, .evl
   will-change: transform;
   translate: 0 0 .01px;   /* هم‌ارز translateZ(0) ولی بدون بازنویسی transform */
 }
+
+/* =====================================================
+   صفحهٔ شروع (Splash): شیشه‌ای مثل پشت پنجره‌ها، بدون پس‌زمینهٔ بنفش
+   ===================================================== */
+html:root body #splash {
+  background: rgba(255, 255, 255, .38) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(180%) !important;
+  backdrop-filter: blur(22px) saturate(180%) !important;
+}
+:root[data-theme="dark"] body #splash { background: rgba(20, 24, 40, .5) !important; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) body #splash { background: rgba(20, 24, 40, .5) !important; }
+}
+html:root body #splash::before,
+html:root body #splash::after {
+  background: none !important;
+  box-shadow: none !important;
+}
+/* کارت وسط صفحهٔ شروع */
+html:root body #splash .spc {
+  padding: 26px 34px !important;
+  border-radius: 26px !important;
+  background: var(--lg-c-bg, rgba(255,255,255,.4)) !important;
+  border: 1px solid var(--lg-c-bd, rgba(255,255,255,.6)) !important;
+  box-shadow: var(--lg-sh, 0 10px 30px -12px rgba(20,30,60,.25)) !important;
+}
+html:root body #splash .spl {
+  color: var(--tx) !important;
+  direction: ltr !important;
+}
+
+/* =====================================================
+   صفحهٔ شروع: همان ظاهر شیشه‌ای کارت «سلام، خوش اومدی»
+   (پس‌زمینهٔ تیره‌شده و محو + کارت شیشه‌ای با لکه‌های رنگی نرم)
+   ===================================================== */
+html:root body #splash {
+  background: rgba(150, 158, 178, .5) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
+  backdrop-filter: blur(16px) saturate(160%) !important;
+}
+:root[data-theme="dark"] body #splash { background: rgba(12, 15, 28, .6) !important; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) body #splash { background: rgba(12, 15, 28, .6) !important; }
+}
+html:root body #splash .spc {
+  position: relative !important;
+  width: min(86vw, 380px) !important;
+  padding: 30px 24px 26px !important;
+  border-radius: 30px !important;
+  background:
+    radial-gradient(circle at 12% 22%, rgba(245, 180, 60, .42), transparent 24%),
+    radial-gradient(circle at 90% 20%, rgba(240, 90, 110, .38), transparent 24%),
+    radial-gradient(circle at 24% 88%, rgba(80, 180, 240, .38), transparent 26%),
+    radial-gradient(circle at 78% 86%, rgba(80, 200, 140, .36), transparent 26%),
+    var(--lg-c-bg, rgba(255, 255, 255, .4)) !important;
+  border: 1px solid var(--lg-c-bd, rgba(255, 255, 255, .6)) !important;
+  box-shadow: 0 24px 60px -24px rgba(20, 30, 60, .45), inset 0 1px 1px rgba(255, 255, 255, .7) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(170%) !important;
+  backdrop-filter: blur(18px) saturate(170%) !important;
+}
+html:root body #splash .spl {
+  font-size: 1.5rem !important;
+  font-weight: 800 !important;
+  color: var(--tx) !important;
+}
 </style>
 <script id="custom-script">
 /* ===== wxc-live-theme.html ===== */
@@ -1444,8 +1509,7 @@ html:root body .md .sheet :is(.glass, .card, .tpop, .nwi, .fmx, .cdw, .occ, .evl
     var box = document.querySelector('.lks');
     if (!box) return;
     /* چیدمان کارت‌ها فقط با CSS کنترل می‌شود (بدون استایل inline) */
-    box.style.removeProperty('grid-template-columns');
-    [].forEach.call(box.children, function (e) { e.style.removeProperty('grid-column'); });
+    /* بدون دستکاری: چیدمان توسط پلاگین lks-match کنترل می‌شود */
   }
 
   function fixAll() {
@@ -1604,32 +1668,6 @@ html.is-scrolling .blob { pointer-events: none !important; }
   }, 250);
 })();
 </script>
-<style id="lks-3col">
-/* ===== کارت‌های شارژ و اینترنت: همیشه وسط‌چین (اندازه یک ستون از ۳ ستون) ===== */
-html:root:root body .lks{
-  display:grid !important;
-  grid-template-columns:repeat(6,minmax(0,1fr)) !important;
-  gap:10px !important;
-  width:100% !important;
-}
-html:root:root body .lks > .lk,
-html:root:root body .lks > .lk.gg{
-  grid-column:span 2 !important;
-  flex:none !important;
-  width:100% !important;
-  min-width:0 !important;
-  height:80px !important;
-  min-height:80px !important;
-  padding:8px 4px !important;
-  border-radius:20px !important;
-}
-/* کارت اول و دوم دقیقاً وسط */
-html:root:root body .lks > .lk:nth-child(1){grid-column:2 / span 2 !important}
-html:root:root body .lks > .lk:nth-child(2){grid-column:4 / span 2 !important}
-html:root:root body .lks > .lk .li{width:38px !important;height:38px !important;border-radius:13px !important}
-html:root:root body .lks > .lk .li svg{width:21px !important;height:21px !important}
-html:root:root body .lks > .lk b{font-size:.85rem !important;line-height:1.4 !important}
-</style>
 <style id="one-update-toast">#updbar{display:none!important;visibility:hidden!important}</style>
 <style id="perf-gpu-pack">
 /* ===== GPU: فقط مودال‌ها و منوهای بازشو (translate3d بدون !important تا انیمیشن/درگ sheet نشکند) ===== */
@@ -2345,5 +2383,255 @@ html:root body #cbd small{font-weight:700!important;text-shadow:none!important}
 html:root body .hrC>#edb{grid-column:3!important;grid-row:2!important;justify-self:center!important;align-self:center!important}
 html:root body .hrC>#authb{grid-column:1!important;grid-row:2!important;justify-self:center!important;align-self:center!important}
 </style>
+<style id="inst-pop-css">
+/* ===== پاپ‌آپ نصب (شیشه‌ای، هم‌شکل .tpop) ===== */
+#toastIns{display:none!important} /* پاپ‌آپ نصب قدیمی مخفی می‌شود تا تکراری نباشد */
+.ipop{position:fixed;top:max(20px,env(safe-area-inset-top));left:50%;z-index:60;
+  display:flex;align-items:center;gap:8px;padding:6px 6px 6px 8px;border-radius:16px;
+  background:linear-gradient(135deg,#ffffff29,#ffffff0f);
+  backdrop-filter:blur(26px) saturate(190%);-webkit-backdrop-filter:blur(26px) saturate(190%);
+  border:1px solid var(--bd);box-shadow:0 12px 40px #00000047;color:var(--tx);
+  max-width:calc(100vw - 24px);white-space:nowrap;
+  opacity:0;transform:translate(-50%,-16px) scale(.96);pointer-events:none;
+  transition:opacity .3s ease,transform .3s cubic-bezier(.2,.8,.2,1)}
+.ipop[hidden]{display:none}
+.ipop.on{opacity:1;transform:translate(-50%,0) scale(1);pointer-events:auto}
+.ipop .ipi{font-size:1.25rem;padding:0 6px;line-height:1}
+.ipop .ipt{font-weight:700;font-size:.9rem;padding:0 4px}
+.ipop button{font:inherit;cursor:pointer;color:var(--tx);border-radius:12px;padding:8px 14px;
+  background:linear-gradient(180deg,#ffffff29,#ffffff0d);border:1px solid #ffffff2e;
+  box-shadow:inset 0 1px #ffffff4d,0 3px 10px #00000040}
+.ipop button.ipb{font-weight:700;background:var(--glass)}
+.ipop button.ipx{padding:8px 10px;opacity:.8}
+</style>
+<div id="instPop" class="ipop" role="dialog" aria-live="polite" hidden>
+  <span class="ipi">📲</span>
+  <span class="ipt">سایت را نصب کنید</span>
+  <button type="button" class="ipb" id="instPopGo">نصب</button>
+  <button type="button" class="ipx" id="instPopX" aria-label="بستن">✕</button>
+</div>
+<script>
+/* ===== منطق پاپ‌آپ نصب (PWA) ===== */
+(function () {
+  var el = document.getElementById('instPop'), dp = window.__deferredInstall || null, closed = false;
+  function standalone() {
+    return (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || window.navigator.standalone;
+  }
+  function show() {
+    if (closed || !dp || standalone()) return;           // فقط اگر مرورگر پشتیبانی کند
+    el.hidden = false;
+    requestAnimationFrame(function () { requestAnimationFrame(function () { el.classList.add('on'); }); });
+  }
+  function hide() {
+    closed = true; el.classList.remove('on');
+    setTimeout(function () { el.hidden = true; }, 350);
+  }
+  // رویداد نصب مرورگر
+  window.addEventListener('beforeinstallprompt', function (e) {
+    e.preventDefault(); dp = e; window.__deferredInstall = e; setTimeout(show, 800);
+  });
+  window.addEventListener('amir-install-ready', function () { dp = window.__deferredInstall; setTimeout(show, 800); });
+  window.addEventListener('appinstalled', hide);          // بعد از نصب موفق مخفی شود
+  if (dp) setTimeout(show, 1200);                         // اگر رویداد قبلاً رسیده بود
+  // کلیک روی «نصب»
+  document.getElementById('instPopGo').addEventListener('click', function () {
+    if (!dp) { hide(); return; }                          // پشتیبانی نشد → مخفی
+    dp.prompt();
+    dp.userChoice.then(function () { dp = null; window.__deferredInstall = null; hide(); })
+                 .catch(function () { hide(); });
+  });
+  document.getElementById('instPopX').addEventListener('click', hide);
+})();
+</script>
+<style id="hdr-align-fix">
+/* مداد زیر پالت (ستون چپ)، گوگل زیر تغییر تم (ستون راست) — هم‌ستون و هم‌ردیف */
+html:root:root body .hrC > #edb{grid-column:3 !important;grid-row:2 !important;justify-self:end !important;align-self:start !important;margin:0 !important}
+html:root:root body .hrC > #authb{grid-column:1 !important;grid-row:2 !important;justify-self:start !important;align-self:start !important;margin:0 !important}
+</style>
+<script id="lks-match">
+/* ===== کارت‌های شارژ و اینترنت: کپی دقیق ظاهر کارت‌های دیگر (.hb .tg) ===== */
+(function () {
+  function I(el, o) { for (var k in o) el.style.setProperty(k, o[k], 'important'); }
+  function sync() {
+    var hb = document.querySelector('.hb'), lks = document.querySelector('.lks');
+    if (!hb || !lks) return;
+    var t = hb.querySelector('.tg'); if (!t || !t.offsetWidth) return;
+    var cs = getComputedStyle(t), hs = getComputedStyle(hb);
+    var sv = t.querySelector('svg'), sm = t.querySelector('small');
+    var n = hs.gridTemplateColumns.split(' ').length || 2;
+    // چیدمان گرید مثل بقیه کارت‌ها
+    I(lks, { display: 'grid', 'grid-template-columns': 'repeat(' + n + ',minmax(0,1fr))', gap: hs.gap, width: '100%', 'justify-content': 'stretch' });
+    [].forEach.call(lks.querySelectorAll('.lk'), function (c) {
+      I(c, { 'grid-column': 'auto', 'grid-row': 'auto', width: '100%', 'max-width': 'none', 'min-width': '0', flex: 'none',
+        height: cs.height, 'min-height': cs.height, padding: cs.padding, margin: '0',
+        'border-radius': cs.borderRadius, background: cs.background, 'background-color': cs.backgroundColor,
+        border: cs.border, 'box-shadow': cs.boxShadow, 'backdrop-filter': cs.backdropFilter, '-webkit-backdrop-filter': cs.backdropFilter,
+        display: 'flex', 'flex-direction': cs.flexDirection, 'align-items': cs.alignItems, 'justify-content': cs.justifyContent, gap: cs.gap });
+      var li = c.querySelector('.li'), b = c.querySelector('b');
+      if (li && sv) {
+        var ss = getComputedStyle(sv), w = sv.getBoundingClientRect().width;
+        I(li, { width: w + 'px', height: w + 'px', 'min-width': w + 'px', 'border-radius': ss.borderRadius, border: ss.border,
+          'box-shadow': ss.boxShadow, padding: '0', display: 'grid', 'place-items': 'center', margin: '0' });
+        var is = li.querySelector('svg');
+        if (is) I(is, { width: ss.width, height: ss.height, padding: '0', background: 'none', border: '0', 'box-shadow': 'none' });
+      }
+      if (b && sm) {
+        var ms = getComputedStyle(sm);
+        I(b, { 'font-size': ms.fontSize, 'font-weight': ms.fontWeight, 'line-height': ms.lineHeight, color: ms.color, 'text-align': 'center' });
+      }
+    });
+  }
+  var tm; function later() { clearTimeout(tm); tm = setTimeout(sync, 120); }
+  window.addEventListener('load', function () { later(); setTimeout(sync, 800); setTimeout(sync, 2500); });
+  window.addEventListener('resize', later);
+  new MutationObserver(later).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+})();
+</script>
+<style id="swipe-dismiss-css">
+/* ===== دستگیرهٔ کشیدن بالای هدر مودال ===== */
+.sheet-head{position:relative;touch-action:none;user-select:none;-webkit-user-select:none}
+.sheet-head::before{content:"";position:absolute;top:5px;left:50%;width:40px;height:4px;border-radius:4px;
+  background:rgba(128,128,128,.45);transform:translateX(-50%);pointer-events:none}
+.sheet.sw-drag{cursor:grabbing}
+</style>
+<script id="swipe-dismiss-js">
+/* ===== کشیدن دستگیره: پنجره پایین می‌آید ولی لبهٔ پایینی (کادر پایین) ثابت می‌ماند ===== */
+(function () {
+  var st = null, LIMIT = 100, EASE = 'cubic-bezier(.22,1,.36,1)';
+  function close(md, sheet) {
+    var x = sheet.querySelector('.sheet-head .xb, .sheet-head [aria-label="بستن"], .sheet-head [id$="x"]');
+    if (x) { x.click(); return; }
+    md.click();
+    setTimeout(function () {
+      if (!md.hidden && !md.classList.contains('out')) {
+        md.classList.add('out');
+        setTimeout(function () { md.hidden = true; md.classList.remove('out'); }, 250);
+      }
+    }, 80);
+  }
+  // پنجره t پیکسل پایین می‌آید و همان‌قدر از پایینش بریده می‌شود → لبهٔ پایینی سر جایش می‌ماند
+  function apply(sh, md, t, H, r) {
+    sh.style.setProperty('translate', '0 ' + t.toFixed(1) + 'px', 'important');
+    sh.style.setProperty('clip-path', 'inset(0 0 ' + t.toFixed(1) + 'px 0 round ' + r + ')', 'important');
+    /* پس‌زمینهٔ شیشه‌ای پشت پنجره بدون تغییر می‌ماند */
+  }
+  function trans(sh, md, ms) {
+    var tr = ms + 'ms ' + EASE;
+    sh.style.setProperty('transition', 'translate ' + tr + ',clip-path ' + tr, 'important');
+  }
+  function reset(sh, md) {
+    ['translate', 'clip-path', 'transition'].forEach(function (k) { sh.style.removeProperty(k); });
+    md.style.removeProperty('opacity'); md.style.removeProperty('transition');
+    sh.classList.remove('sw-drag');
+  }
+  document.addEventListener('pointerdown', function (e) {
+    if (e.button > 0 || st) return;
+    var head = e.target.closest && e.target.closest('.sheet-head');
+    if (!head || e.target.closest('button,a,input,select,textarea,[role="button"]')) return;
+    var sheet = head.closest('.sheet'), md = sheet && sheet.closest('.md');
+    if (!sheet || !md) return;
+    st = { y0: e.clientY, id: e.pointerId, head: head, sheet: sheet, md: md, t: 0,
+           r: getComputedStyle(sheet).borderRadius || '22px', H: Math.max(sheet.offsetHeight, 200) };
+    try { head.setPointerCapture(e.pointerId); } catch (_) {}
+    sheet.style.setProperty('transition', 'none', 'important');
+    sheet.classList.add('sw-drag');
+  });
+  document.addEventListener('pointermove', function (e) {
+    if (!st || e.pointerId !== st.id) return;
+    var dy = Math.max(0, e.clientY - st.y0);
+    st.t = Math.min(st.H, dy * (1 - Math.min(dy, 600) / 1800));   // کمی مقاومت
+    apply(st.sheet, st.md, st.t, st.H, st.r);
+  }, { passive: true });
+  function end(e, cancel) {
+    if (!st || e.pointerId !== st.id) return;
+    var s = st; st = null;
+    try { s.head.releasePointerCapture(e.pointerId); } catch (_) {}
+    if (!cancel && s.t > LIMIT) {
+      trans(s.sheet, s.md, 340);                          // ادامهٔ نرم تا فرو رفتن کامل در لبهٔ پایین
+      apply(s.sheet, s.md, s.H, s.H, s.r);
+      setTimeout(function () { close(s.md, s.sheet); }, 320);
+      setTimeout(function () { reset(s.sheet, s.md); }, 900);
+    } else {
+      trans(s.sheet, s.md, 380);                          // برگشت نرم
+      apply(s.sheet, s.md, 0, s.H, s.r);
+      setTimeout(function () { reset(s.sheet, s.md); }, 400);
+    }
+  }
+  document.addEventListener('pointerup', function (e) { end(e, false); });
+  document.addEventListener('pointercancel', function (e) { end(e, true); });
+})();
+</script>
+<style id="modal-lock-css">
+/* ===== قفل اسکرول سایت پشت پنجره‌ها ===== */
+html.md-open, html.md-open body{overflow:hidden!important;overscroll-behavior:none!important}
+.sheet-body{overscroll-behavior:contain}
+</style>
+<script id="modal-lock-js">
+(function () {
+  var de = document.documentElement, locked = false;
+  function isOpen() { return !!document.querySelector('.md:not([hidden])'); }
+  function update() {
+    var o = isOpen();
+    if (o === locked) return;
+    locked = o;
+    de.classList.toggle('md-open', o);
+    var l = window.__lenis;
+    try { if (l) { o ? l.stop() : l.start(); } } catch (_) {}      // توقف اسکرول نرم Lenis
+  }
+  new MutationObserver(update).observe(document.body, { subtree: true, attributes: true, attributeFilter: ['hidden', 'class'], childList: true });
+  update();
+  // جلوگیری از اسکرول سایت با لمس/چرخ ماوس خارج از بدنهٔ اسکرول‌شونده پنجره
+  function block(e) {
+    if (!locked) return;
+    if (e.target.closest && e.target.closest('.sheet-body,[data-lenis-prevent],textarea,input,select')) return;
+    e.preventDefault();
+  }
+  document.addEventListener('touchmove', block, { passive: false });
+  document.addEventListener('wheel', block, { passive: false });
+})();
+</script>
+<style id="nbar-back-css">
+/* ===== پشت نوار وظیفه (netbar): هم‌ظاهر پشت پنجره‌ها ===== */
+#netbar{isolation:isolate}
+#netbar::before{content:"";position:absolute;z-index:-1;pointer-events:none;
+  left:-16px;right:-16px;top:-90px;bottom:-8px;opacity:0;transition:opacity .25s ease;
+  background:var(--md-tint,#12182c6b);
+  -webkit-backdrop-filter:blur(18px) saturate(180%);backdrop-filter:blur(18px) saturate(180%);
+  -webkit-mask-image:linear-gradient(#000 calc(100% - 14px),transparent);mask-image:linear-gradient(#000 calc(100% - 14px),transparent)}
+#netbar.nb-stuck::before{opacity:1}
+</style>
+<script id="nbar-back-js">
+(function () {
+  var nb = document.getElementById('netbar'), de = document.documentElement, raf = 0;
+  if (!nb) return;
+  // رنگ پشت پنجره‌ها را از خود .md کپی می‌کند (سازگار با تم روشن/تاریک)
+  function tint() {
+    var m = document.querySelector('.md');
+    if (m) de.style.setProperty('--md-tint', getComputedStyle(m).backgroundColor);
+  }
+  function check() {
+    raf = 0;
+    nb.classList.toggle('nb-stuck', nb.getBoundingClientRect().top <= 14 && window.scrollY > 20);
+  }
+  addEventListener('scroll', function () { if (!raf) raf = requestAnimationFrame(check); }, { passive: true });
+  addEventListener('resize', check);
+  new MutationObserver(tint).observe(de, { attributes: true, attributeFilter: ['data-theme'] });
+  tint(); check(); setTimeout(tint, 1500);
+})();
+</script>
+<style id="splash-glass-css">
+/* ===== پشت کارت صفحهٔ ورود (splash): هم‌ظاهر پشت پنجره‌ها ===== */
+#splash{
+  background:var(--md-tint,#12182c6b) !important;
+  -webkit-backdrop-filter:blur(18px) saturate(180%) !important;
+  backdrop-filter:blur(18px) saturate(180%) !important;
+}
+</style>
+<script id="splash-glass-js">
+(function () {
+  var m = document.querySelector('.md');
+  if (m) document.documentElement.style.setProperty('--md-tint', getComputedStyle(m).backgroundColor);
+})();
+</script>
 </body>
 </html>
