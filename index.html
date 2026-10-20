@@ -1875,5 +1875,79 @@ header>.hrC>#edb{position:static!important;left:auto!important;top:auto!importan
 #nm #ncolors{margin:8px 0 16px!important}
 #nm #nt{margin-top:0!important}
 </style>
+<style id="daysum-css">
+/* خلاصهٔ روز */
+#daySum .ds-hero{text-align:center;margin:2px 0 12px}
+#daySum .ds-hero b{display:block;font-size:1.02rem;font-weight:800}
+#daySum .ds-hero small{display:block;color:var(--mu);font-size:.76rem;margin-top:2px}
+#daySum .ds-prayer{padding:14px;border-radius:16px;background:linear-gradient(160deg,color-mix(in srgb,var(--b1) 16%,var(--glass)),var(--glass));border:1px solid color-mix(in srgb,var(--b1) 30%,var(--bd));text-align:center;margin-bottom:10px}
+#daySum .ds-prayer small{color:var(--mu);font-size:.72rem}
+#daySum .ds-prayer b{display:block;font-size:.95rem;color:var(--ac);margin:3px 0}
+#daySum .ds-prayer i{font-style:normal;font-size:1.5rem;font-weight:800;direction:ltr;font-variant-numeric:tabular-nums}
+#daySum .ds-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+#daySum .ds-k{padding:11px 10px;border-radius:14px;background:var(--glass);border:1px solid var(--bd)}
+#daySum .ds-k small{display:block;color:var(--mu);font-size:.68rem;margin-bottom:3px}
+#daySum .ds-k b{font-size:.95rem;font-weight:800;direction:ltr}
+#daySum .ds-note{margin-top:12px;padding:10px 12px;border-radius:12px;background:color-mix(in srgb,var(--ac) 10%,transparent);color:var(--mu);font-size:.72rem;line-height:1.9;text-align:center}
+</style>
+<script id="daysum-js">
+/* کارت و مودال «خلاصهٔ روز» */
+(function(){
+  const f=v=>typeof FA==='function'?FA(String(v)):String(v);
+  const money=n=>Math.round(n).toLocaleString('fa-IR');
+  const p2=n=>String(n).padStart(2,'0');
+  function build(){
+    if(document.getElementById('daySum'))return;
+    const hb=document.querySelector('.hb');
+    if(hb&&!document.getElementById('cbd')){
+      const b=document.createElement('button');
+      b.className='tg glass';b.id='cbd';b.type='button';b.setAttribute('aria-label','خلاصهٔ روز');
+      b.innerHTML='<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ac)"><path d="M4 6h16M4 12h10M4 18h7"/><circle cx="18" cy="16" r="3"/><path d="M18 14.5V16l1 1"/></svg><small>خلاصهٔ روز</small>';
+      hb.prepend(b);
+    }
+    const m=document.createElement('div');m.className='md';m.id='daySum';m.hidden=true;
+    m.innerHTML='<div class="sheet"><div class="sheet-head"><h3>خلاصهٔ روز</h3><button class="xb" id="dsX" type="button" aria-label="بستن">✕</button></div><div class="sheet-body" data-lenis-prevent id="dsBody"></div></div>';
+    document.body.appendChild(m);
+    document.getElementById('dsX').onclick=()=>closeP(m);
+    m.addEventListener('click',e=>{if(e.target===m)closeP(m)});
+    const b2=document.getElementById('cbd');if(b2)b2.onclick=()=>{m.hidden=false;render()};
+  }
+  async function nextPrayer(){
+    try{
+      let c={lat:35.7,lon:51.4};
+      const s=JSON.parse(localStorage.getItem('prayerCity')||'null');if(s&&s.lat!=null)c=s;
+      const d=new Date();const url='https://api.aladhan.com/v1/timings/'+p2(d.getDate())+'-'+p2(d.getMonth()+1)+'-'+d.getFullYear()+'?latitude='+c.lat+'&longitude='+c.lon+'&method=7';
+      const j=await(await fetch(url,{cache:'no-store'})).json();const t=j&&j.data&&j.data.timings;if(!t)return null;
+      const names=[['Fajr','اذان صبح'],['Sunrise','طلوع آفتاب'],['Dhuhr','اذان ظهر'],['Sunset','غروب آفتاب'],['Maghrib','اذان مغرب']];
+      const base=new Date();const list=names.map(([k,n])=>{const [h,mi]=t[k].slice(0,5).split(':').map(Number);const at=new Date(base);at.setHours(h,mi,0,0);return{name:n,at,txt:t[k].slice(0,5)}}).filter(x=>x.at>new Date());
+      return list.length?list[0]:null;
+    }catch(e){return null}
+  }
+  async function render(){
+    const body=document.getElementById('dsBody');if(!body)return;
+    const now=new Date();
+    let j=null;try{j=gj(now)}catch(e){}
+    const persian=now.toLocaleDateString('fa-IR-u-ca-persian',{weekday:'long',day:'numeric',month:'long'});
+    const hour=now.getHours();
+    const hi=hour<12?'صبح بخیر':hour<17?'وقت بخیر':hour<20?'عصر بخیر':'شب بخیر';
+    body.innerHTML='<div class="ds-hero"><b>'+hi+' 👋</b><small>'+persian+'</small></div><div id="dsP"></div><div class="ds-grid" id="dsK"></div><div class="ds-note">امروز هم یک قدم کوچک، بهتر از هیچ است.</div>';
+    const nxp=await nextPrayer();
+    document.getElementById('dsP').innerHTML=nxp
+      ? '<div class="ds-prayer"><small>اذان بعدی</small><b>'+nxp.name+'</b><i>'+f(nxp.txt)+'</i></div>'
+      : '<div class="ds-prayer"><small>اوقات شرعی</small><b>در دسترس نیست</b><i>—</i></div>';
+    let done=0,tot=0;try{tot=TDL.length;done=TDL.filter(x=>x.d).length}catch(e){}
+    let today=0;try{today=XP.filter(x=>new Date(x.t).toDateString()===now.toDateString()).reduce((s,x)=>s+(+x.a||0),0)}catch(e){}
+    let notes=0;try{notes=NL.length}catch(e){}
+    let evs=0;try{if(j)evs=((EV&&EV[j[0]+'-'+j[1]+'-'+j[2]])||[]).length}catch(e){}
+    document.getElementById('dsK').innerHTML=
+      '<div class="ds-k"><small>کارهای انجام‌شده</small><b>'+f(done)+' / '+f(tot)+'</b></div>'+
+      '<div class="ds-k"><small>خرج امروز</small><b>'+money(today)+'</b></div>'+
+      '<div class="ds-k"><small>یادداشت‌ها</small><b>'+f(notes)+'</b></div>'+
+      '<div class="ds-k"><small>رویدادهای امروز</small><b>'+f(evs)+'</b></div>';
+  }
+  const t=setInterval(()=>{if(document.querySelector('.hb')){build();clearInterval(t)}},400);
+  setTimeout(build,1200);
+})();
+</script>
 </body>
 </html>
