@@ -1789,5 +1789,86 @@ header{padding-bottom:0!important}
 header>.hrC>#edb{position:static!important;left:auto!important;top:auto!important;margin:0!important;z-index:auto}
 @media (max-width:767px){header{padding-bottom:0!important}}
 </style>
+<style id="xp-report-css">
+/* گزارش ماهانهٔ خرج */
+#xpReport{margin:14px 0 6px;padding:12px;border-radius:16px;background:var(--glass);border:1px solid var(--bd)}
+#xpReport h4{margin:0 0 8px;font-size:.9rem;font-weight:800;display:flex;align-items:center;gap:8px}
+#xpReport .xpr-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px}
+#xpReport .xpr-k{text-align:center;padding:8px 4px;border-radius:12px;background:color-mix(in srgb,var(--tx) 5%,transparent)}
+#xpReport .xpr-k small{display:block;color:var(--mu);font-size:.65rem;margin-bottom:2px}
+#xpReport .xpr-k b{display:block;font-size:.82rem;font-weight:800;direction:ltr}
+#xpReport .xpr-row{display:grid;grid-template-columns:64px 1fr 42px;gap:8px;align-items:center;margin:6px 0;font-size:.72rem}
+#xpReport .xpr-row i{display:block;height:7px;border-radius:99px;background:var(--b1);opacity:.85}
+#xpReport .xpr-row em{font-style:normal;color:var(--mu);direction:ltr;text-align:left}
+#xpReport .xpr-actions{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+#xpReport .xpr-actions button{flex:1;min-width:100px;border:1px solid var(--bd);background:var(--glass);color:var(--tx);border-radius:11px;padding:8px 6px;font:inherit;font-size:.75rem;font-weight:800;cursor:pointer}
+#xpReport .xpr-actions button.primary{background:linear-gradient(135deg,var(--b1),color-mix(in srgb,var(--b1) 60%,var(--b2)));color:#fff;border-color:transparent}
+@media print{
+  body *{visibility:hidden!important}
+  #xpReport,#xpReport *{visibility:visible!important}
+  #xpReport{position:absolute;inset:0;margin:0;border:0;background:#fff;color:#000;font-size:12px}
+  #xpReport .xpr-actions{display:none!important}
+  #xpReport .xpr-row i{background:#333!important}
+}
+</style>
+<script id="xp-report-js">
+/* گزارش ماهانهٔ خرج + خروجی CSV و چاپ/PDF */
+(function(){
+  const CATS=typeof XC!=='undefined'?XC:[['خوراک'],['رفت‌وآمد'],['خرید'],['قبض'],['سرگرمی'],['سایر']];
+  const fa=v=>typeof FA==='function'?FA(String(v)):String(v);
+  const money=n=>Math.round(n).toLocaleString('fa-IR');
+  function todayJ(){try{return gj(new Date())}catch(e){return null}}
+  function ensure(){
+    const box=document.getElementById('xpq');if(!box)return null;
+    let r=document.getElementById('xpReport');
+    if(!r){r=document.createElement('div');r.id='xpReport';const body=box.querySelector('.sheet-body');body.insertBefore(r,body.querySelector('.xpr'));}
+    return r;
+  }
+  function render(){
+    const r=ensure();if(!r||typeof XP==='undefined')return;
+    const now=new Date(),T=typeof gj==='function'?gj(now):null;if(!T)return;
+    const month=XP.filter(x=>{const j=gj(new Date(x.t));return j[0]===T[0]&&j[1]===T[1]});
+    const total=month.reduce((s,x)=>s+(+x.a||0),0);
+    const cat=CATS.map(()=>0);month.forEach(x=>{if(cat[x.c]!=null)cat[x.c]+=+x.a||0});
+    const days=[...new Set(month.map(x=>gj(new Date(x.t))[2]))].length||0;
+    const avg=days?Math.round(total/days):0;
+    const top=cat.map((v,i)=>[v,i]).sort((a,b)=>b[0]-a[0])[0];
+    let h='<h4>📊 گزارش ماه '+fa(MN[T[1]-1])+'</h4>';
+    h+='<div class="xpr-kpis"><div class="xpr-k"><small>جمع خرج</small><b>'+money(total)+'</b></div>'+
+       '<div class="xpr-k"><small>تعداد</small><b>'+fa(month.length)+'</b></div>'+
+       '<div class="xpr-k"><small>میانگین روزانه</small><b>'+money(avg)+'</b></div></div>';
+    if(total>0){
+      CATS.forEach((c,i)=>{if(!cat[i])return;const p=Math.round(cat[i]/total*100);
+        h+='<div class="xpr-row"><span>'+c[0]+'</span><div><i style="width:'+p+'%"></i></div><em>'+fa(p)+'٪</em></div>'});
+      h+='<div class="xpr-note" style="font-size:.68rem;color:var(--mu);margin-top:6px">بیشترین خرج: '+CATS[top[1]][0]+' — '+money(top[0])+' تومان</div>';
+    }else{h+='<div style="text-align:center;color:var(--mu);font-size:.75rem;padding:8px">این ماه هنوز خرجی ثبت نشده است</div>'}
+    h+='<div class="xpr-actions"><button type="button" class="primary" id="xprCsv">دانلود CSV</button><button type="button" id="xprPdf">چاپ / PDF</button></div>';
+    r.innerHTML=h;
+    document.getElementById('xprCsv').onclick=()=>exportCsv(month,T);
+    document.getElementById('xprPdf').onclick=()=>{window.print()};
+    return r;
+  }
+  function exportCsv(rows,T){
+    const head=['تاریخ','دسته','مبلغ (تومان)','توضیح'];
+    const lines=[head.join(',')];
+    rows.slice().sort((a,b)=>a.t-b.t).forEach(x=>{
+      const d=new Date(x.t),j=gj(d);
+      lines.push([j[0]+'-'+String(j[1]).padStart(2,'0')+'-'+String(j[2]).padStart(2,'0'),CATS[x.c]?CATS[x.c][0]:'',String(x.a||0),'"'+String(x.n||'').replace(/"/g,'""')+'"'].join(','));
+    });
+    const blob=new Blob(['\uFEFF'+lines.join('\r\n')],{type:'text/csv;charset=utf-8'});
+    const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='expenses-'+T[0]+'-'+T[1]+'.csv';a.click();
+    setTimeout(()=>URL.revokeObjectURL(a.href),4000);
+  }
+  function wrap(){
+    if(typeof window.xpDraw!=='function')return;
+    if(window.xpDraw.__wrapped)return;
+    const old=window.xpDraw;
+    const nw=function(){old.apply(this,arguments);try{render()}catch(e){}};
+    nw.__wrapped=1;window.xpDraw=nw;
+  }
+  const t=setInterval(()=>{wrap();if(window.xpDraw&&window.xpDraw.__wrapped){clearInterval(t);try{render()}catch(e){}}},400);
+  setTimeout(()=>{wrap();try{render()}catch(e){}},1200);
+})();
+</script>
 </body>
 </html>
