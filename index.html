@@ -1950,17 +1950,18 @@ header>.hrC>#edb{position:static!important;left:auto!important;top:auto!importan
 })();
 </script>
 <style id="daysum-live">
-/* کارت و مودال خلاصهٔ روز: رنگ زنده بر اساس ساعت ایران (همان پالت اوقات شرعی) */
-#cbd{
+/* کارت اذان داخل خلاصهٔ روز: رنگ زندهٔ ساعت ایران */
+#daySum .ds-prayer{
   background:linear-gradient(160deg,var(--wx1,#7dd3fc),var(--wx2,#3b82f6))!important;
   border-color:rgba(255,255,255,.32)!important;color:#fff!important;
   transition:background .9s ease,box-shadow .9s ease;
 }
-#cbd svg,#cbd small{color:#fff!important}
-#daySum .sheet{
-  background-image:linear-gradient(165deg,color-mix(in srgb,var(--wx1,#7dd3fc) 26%,transparent),color-mix(in srgb,var(--wx2,#3b82f6) 20%,transparent))!important;
-}
-#daySum .ds-hero b{color:var(--tx)}
+#daySum .ds-prayer small{color:rgba(255,255,255,.86)!important}
+#daySum .ds-prayer b,#daySum .ds-prayer i{color:#fff!important}
+/* کارت داشبورد به حالت شیشه‌ای قبلی برگردد */
+#cbd{background:var(--glass)!important;border-color:var(--bd)!important;color:var(--tx)!important}
+#cbd svg{color:var(--ac)!important}
+#cbd small{color:var(--mu)!important}
 </style>
 </body>
 </html>
