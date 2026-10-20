@@ -2133,14 +2133,7 @@ header>.hrC>#edb{position:static!important;left:auto!important;top:auto!importan
 <script id="picker-nested-js">
 /* لایه‌ای: بستن پنجرهٔ پشتی هنگام باز شدن پیکر ساعت/تاریخ و بازگرداندنش */
 (function(){
-  let pending=null;
-  document.addEventListener('click',function(e){
-    const tr=e.target.closest&&e.target.closest('.tp-trigger,.dp-trigger');
-    if(!tr)return;
-    const isTime=tr.classList.contains('tp-trigger');
-    const inp=tr.parentNode.querySelector('input');
-    pending={input:inp,modal:document.getElementById(isTime?'tpModal':'dpModal'),id:isTime?'tp':'dp'};
-  },true);
+  let pending=null;const observed={};
   function hideUnder(){
     if(!pending||!pending.input)return;
     const p=pending.input.closest('.md');
@@ -2149,13 +2142,29 @@ header>.hrC>#edb{position:static!important;left:auto!important;top:auto!importan
   function showUnder(){
     document.querySelectorAll('.md.behind[data-picker-behind]').forEach(el=>{el.classList.remove('behind');delete el.dataset.pickerBehind});
   }
-  ['tpModal','dpModal'].forEach(id=>{
-    const t=document.getElementById(id);if(!t)return;
+  function observe(m){
+    if(!m||observed[m.id])return;observed[m.id]=1;
     new MutationObserver(()=>{
-      if(t.classList.contains('out')||t.hidden)setTimeout(showUnder,10);
-      else setTimeout(hideUnder,30);
-    }).observe(t,{attributes:true,attributeFilter:['hidden','class']});
-  });
+      if(m.hidden||m.classList.contains('out'))setTimeout(showUnder,0);
+      else setTimeout(hideUnder,20);
+    }).observe(m,{attributes:true,attributeFilter:['hidden','class']});
+  }
+  function handle(tr){
+    const isTime=tr.className.indexOf('tp-trigger')>=0;
+    const inp=tr.parentNode.querySelector('input');
+    const id=isTime?'tpModal':'dpModal';
+    setTimeout(function(){
+      const m=document.getElementById(id);if(!m)return;
+      pending={input:inp,modal:m};
+      observe(m);
+      if(!m.hidden)hideUnder();
+    },40);
+  }
+  document.addEventListener('click',function(e){
+    const tr=e.target.closest&&e.target.closest('.tp-trigger,.dp-trigger');
+    if(!tr)return;
+    handle(tr);
+  },true);
 })();
 </script>
 <style id="tp-icons-off">
