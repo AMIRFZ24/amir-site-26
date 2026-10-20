@@ -1963,5 +1963,82 @@ header>.hrC>#edb{position:static!important;left:auto!important;top:auto!importan
 #cbd svg{color:var(--ac)!important}
 #cbd small{color:var(--mu)!important}
 </style>
+<style id="tp-css">
+/* Ø§Ù†ØªØ®Ø§Ø¨ Ø³Ø§Ø¹Øª Ø´ÛŒØ´Ù‡â€ŒØ§ÛŒ (Ø¬Ø§ÛŒ Ù¾ÛŒÚ©Ø± Ø¨ÙˆÙ…ÛŒ) */
+.tp-native{position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important;clip:rect(0 0 0 0)!important;overflow:hidden!important}
+.tp-trigger{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;box-sizing:border-box;font:inherit;font-weight:800;padding:10px 8px;border-radius:12px;border:1px solid var(--bd);background:var(--glass);color:var(--tx);cursor:pointer;direction:ltr;font-variant-numeric:tabular-nums}
+.tp-trigger::after{content:"â±";font-size:.85em;opacity:.55}
+.tp-trigger:active{transform:scale(.97)}
+#tpModal .tp-cols{display:grid;grid-template-columns:1fr 1fr;gap:10px;height:230px;margin:6px 0 12px}
+#tpModal .tpcol{overflow-y:auto;overscroll-behavior:contain;border-radius:14px;background:var(--glass);border:1px solid var(--bd);padding:6px}
+#tpModal .tpcol h5{margin:4px 0 8px;text-align:center;font-size:.72rem;color:var(--mu)}
+#tpModal .tpcol button{display:block;width:100%;margin-bottom:5px;padding:8px 0;border-radius:10px;border:1px solid transparent;background:transparent;color:var(--tx);font:inherit;font-size:.9rem;font-weight:700;cursor:pointer;direction:ltr}
+#tpModal .tpcol button:hover{background:color-mix(in srgb,var(--b1) 12%,transparent)}
+#tpModal .tpcol button.on{background:linear-gradient(135deg,var(--b1),color-mix(in srgb,var(--b1) 60%,var(--b2)));color:#fff}
+#tpModal .tp-actions{display:grid;grid-template-columns:1fr auto;gap:8px}
+#tpModal .tp-actions .wb{margin:0}
+#tpModal .tp-clear{width:auto;padding:10px 14px;border-radius:12px;border:1px solid var(--bd);background:var(--glass);color:var(--mu);font:inherit;font-size:.8rem;font-weight:700;cursor:pointer}
+</style>
+<script id="tp-js">
+/* Ù¾ÛŒÚ©Ø± Ø³Ø§Ø¹Øª Ø´ÛŒØ´Ù‡â€ŒØ§ÛŒ Ø¨Ù‡â€ŒØ¬Ø§ÛŒ Ù¾ÛŒÚ©Ø± Ø¨ÙˆÙ…ÛŒ Ù…Ø±ÙˆØ±Ú¯Ø± */
+(function(){
+  const FAd=s=>String(s).replace(/\d/g,d=>'Û°Û±Û²Û³Û´ÛµÛ¶Û·Û¸Û¹'[+d]);
+  const p2=n=>String(n).padStart(2,'0');
+  let modal=null,cur=null,H=0,M=0,bound=[];
+  function build(){
+    if(modal)return modal;
+    modal=document.createElement('div');modal.className='md';modal.id='tpModal';modal.hidden=true;
+    modal.innerHTML='<div class="sheet"><div class="sheet-head"><h3>Ø§Ù†ØªØ®Ø§Ø¨ Ø³Ø§Ø¹Øª</h3><button class="xb" id="tpX" type="button" aria-label="Ø¨Ø³ØªÙ†">âœ•</button></div><div class="sheet-body" data-lenis-prevent><div class="tp-cols"><div class="tpcol" id="tpH"><h5>Ø³Ø§Ø¹Øª</h5></div><div class="tpcol" id="tpM"><h5>Ø¯Ù‚ÛŒÙ‚Ù‡</h5></div></div><div class="tp-actions"><button class="wb" id="tpOk" type="button">ØªØ£ÛŒÛŒØ¯</button><button class="tp-clear" id="tpClear" type="button">Ù¾Ø§Ú© Ú©Ø±Ø¯Ù†</button></div></div></div>';
+    document.body.appendChild(modal);
+    document.getElementById('tpX').onclick=()=>closeP(modal);
+    modal.addEventListener('click',e=>{if(e.target===modal)closeP(modal)});
+    document.getElementById('tpOk').onclick=commit;
+    document.getElementById('tpClear').onclick=()=>{if(cur){cur.value='';fire(cur)}closeP(modal)};
+    return modal;
+  }
+  function fire(inp){try{inp.dispatchEvent(new Event('input',{bubbles:true}));inp.dispatchEvent(new Event('change',{bubbles:true}))}catch(e){}}
+  function label(inp){
+    const tr=inp.parentNode&&inp.parentNode.querySelector('.tp-trigger');if(!tr)return;
+    tr.textContent=inp.value?FAd(inp.value):'Ø§Ù†ØªØ®Ø§Ø¨ Ø³Ø§Ø¹Øª';
+  }
+  function commit(){
+    if(!cur)return;
+    cur.value=p2(H)+':'+p2(M);fire(cur);label(cur);closeP(modal);
+  }
+  function pick(kind,val){
+    if(kind==='h')H=val;else M=val;
+    document.querySelectorAll('#tpH button').forEach(b=>b.classList.toggle('on',+b.dataset.v===H));
+    document.querySelectorAll('#tpM button').forEach(b=>b.classList.toggle('on',+b.dataset.v===M));
+  }
+  function openFor(inp){
+    build();
+    const v=(inp.value||'').match(/^(\d{1,2}):(\d{2})$/);
+    H=v?Math.min(23,+v[1]):new Date().getHours();
+    M=v?Math.min(59,+v[2]):0;
+    cur=inp;
+    const hb=document.getElementById('tpH'),mb=document.getElementById('tpM');
+    hb.querySelectorAll('button').forEach(b=>b.remove());
+    mb.querySelectorAll('button').forEach(b=>b.remove());
+    for(let i=0;i<24;i++){const b=document.createElement('button');b.type='button';b.dataset.v=i;b.textContent=p2(i);b.onclick=()=>pick('h',i);hb.append(b)}
+    for(let i=0;i<60;i++){const b=document.createElement('button');b.type='button';b.dataset.v=i;b.textContent=p2(i);b.onclick=()=>pick('m',i);mb.append(b)}
+    pick('h',H);pick('m',M);
+    modal.hidden=false;
+    setTimeout(()=>{const on=modal.querySelector('.tpcol button.on');if(on)on.scrollIntoView({block:'center'})},120);
+  }
+  function bind(inp){
+    if(!inp||inp.dataset.tpBound)return;
+    inp.dataset.tpBound='1';
+    inp.classList.add('tp-native');inp.tabIndex=-1;inp.setAttribute('aria-hidden','true');
+    const tr=document.createElement('button');tr.type='button';tr.className='tp-trigger';tr.setAttribute('aria-label','Ø§Ù†ØªØ®Ø§Ø¨ Ø³Ø§Ø¹Øª');
+    tr.onclick=()=>openFor(inp);
+    inp.parentNode.insertBefore(tr,inp.nextSibling);
+    label(inp);
+    bound.push(inp);
+  }
+  function scan(){document.querySelectorAll('input[type="time"]').forEach(bind)}
+  scan();setTimeout(scan,800);setTimeout(scan,2000);
+  setInterval(()=>bound.forEach(label),1500);
+})();
+</script>
 </body>
 </html>
