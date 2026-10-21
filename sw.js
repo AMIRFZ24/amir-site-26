@@ -3,7 +3,7 @@
    • کش‌کردن فایل‌ها (آفلاین) + تشخیص آپدیت با دکمه‌ی «آپدیت کن»
    • در هر انتشار جدید فقط VERSION را تغییر بده.
    ========================================================================== */
-const VERSION = 'v1.0.33';
+const VERSION = 'v1.0.34';
 const CACHE   = 'amir-' + VERSION;
 const FONTS   = 'amir-fonts';
 const PRECACHE = ['./', './index.html', './manifest.webmanifest'];
