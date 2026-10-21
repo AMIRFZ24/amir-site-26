@@ -1,12 +1,17 @@
 /* ==========================================================================
-   sw.js — سرویس‌ورکر «دستیار AMIR»
+   sw.js — سرویس‌ورکر «AMIR Assistant»
    • کش‌کردن فایل‌ها (آفلاین) + تشخیص آپدیت با دکمه‌ی «آپدیت کن»
    • در هر انتشار جدید فقط VERSION را تغییر بده.
    ========================================================================== */
-const VERSION = 'v1.0.34';
+const VERSION = 'v1.0.35';
 const CACHE   = 'amir-' + VERSION;
 const FONTS   = 'amir-fonts';
-const PRECACHE = ['./', './index.html', './manifest.webmanifest'];
+/* فایل‌هایی که وجود نداشته باشند بی‌صدا رد می‌شوند (allSettled) */
+const PRECACHE = [
+  './', './index.html',
+  './manifest.json', './manifest.webmanifest',
+  './icon-192.png', './icon-512.png', './icon-maskable-512.png'
+];
 
 /* --- نصب: کش‌کردن فایل‌های اصلی --- */
 self.addEventListener('install', (e) => {
@@ -17,8 +22,10 @@ self.addEventListener('install', (e) => {
       if (r.ok) await c.put(u, r);
     }));
     if (!self.registration.active) {
+      /* اولین نصب: بدون انتظار فعال شود */
       self.skipWaiting();
     } else {
+      /* آپدیت: نسخه‌ی جدید منتظر می‌ماند و به صفحه‌ها خبر می‌دهیم */
       const cs = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
       cs.forEach((client) => client.postMessage({ type: 'UPDATE_READY', version: VERSION }));
     }
@@ -42,6 +49,7 @@ self.addEventListener('message', (e) => {
 });
 
 /* --- کش --- */
+/* صفحه‌ها: اول شبکه، اگر آفلاین بود از کش (query مثل ?source=pwa نادیده گرفته می‌شود) */
 async function networkFirst(req) {
   const c = await caches.open(CACHE);
   try {
@@ -49,12 +57,18 @@ async function networkFirst(req) {
     if (r && r.ok) c.put(req, r.clone());
     return r;
   } catch (_) {
-    return (await c.match(req)) || (await c.match('./index.html')) || (await c.match('./')) || Response.error();
+    return (await c.match(req, { ignoreSearch: true })) ||
+           (await c.match('./index.html')) || (await c.match('./')) || Response.error();
   }
 }
-async function staleWhileRevalidate(req, name) {
+/* فایل‌های جانبی: از کش بده و پشت‌صحنه تازه کن (با waitUntil تا ورکر وسط کار بسته نشود) */
+async function staleWhileRevalidate(e, name) {
+  const req = e.request;
   const c = await caches.open(name), hit = await c.match(req);
-  const net = fetch(req).then((r) => { if (r && (r.ok || r.type === 'opaque')) c.put(req, r.clone()); return r; }).catch(() => null);
+  const net = fetch(req)
+    .then((r) => { if (r && (r.ok || r.type === 'opaque')) c.put(req, r.clone()); return r; })
+    .catch(() => null);
+  e.waitUntil(net);
   return hit || (await net) || Response.error();
 }
 self.addEventListener('fetch', (e) => {
@@ -63,9 +77,9 @@ self.addEventListener('fetch', (e) => {
   const url = new URL(req.url);
   if (url.origin === self.location.origin) {
     if (url.pathname.endsWith('/sw.js')) return;
-    e.respondWith(req.mode === 'navigate' ? networkFirst(req) : staleWhileRevalidate(req, CACHE));
+    e.respondWith(req.mode === 'navigate' ? networkFirst(req) : staleWhileRevalidate(e, CACHE));
   } else if (url.hostname === 'fonts.googleapis.com' || url.hostname === 'fonts.gstatic.com') {
-    e.respondWith(staleWhileRevalidate(req, FONTS));
+    e.respondWith(staleWhileRevalidate(e, FONTS));
   }
   /* بقیه‌ی درخواست‌ها (API آب‌وهوا، اخبار، ...) عمداً کش نمی‌شوند */
 });
