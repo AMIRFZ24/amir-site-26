@@ -173,12 +173,12 @@ html:root:root:root body #splash .spc{position:relative;z-index:1}
 </style>
 
 
-<div id="amirSplash" aria-hidden="true" style="transition: opacity 0.5s ease; animation: forceHide 0.1s forwards 1s;"></div>
+<div id="amirSplash" aria-hidden="true" style="transition: opacity 0.5s ease; animation: forceHide 0.1s forwards 5s;"></div>
 <div class="as-orb" aria-hidden="true"><span class="as-ring r1"></span><span class="as-ring r2"></span><span class="as-ring r3"></span><span class="as-sphere"></span></div></div></div>
 
 <script id="amir-splash-top">(function(){var el=document.getElementById("amirSplash");if(!el)return;var done=0,ready=0,t0=Date.now();
 function hide(){if(done)return;done=1;el.classList.add("out");setTimeout(function(){el.parentNode&&el.parentNode.removeChild(el)},600)}
-function tryHide(){if(!done&&ready&&Date.now()-t0>=1650)hide()}
+function tryHide(){if(!done&&ready&&Date.now()-t0>=5000)hide()}
 window.__splashReady=function(){ready=1;tryHide()};
 /* باز شدن مودال‌ها فقط بعد از محو کامل اسپلش */
 window.__afterSplash=function(cb){var run=0;function go(){if(run)return;run=1;setTimeout(cb,150)}
