@@ -1,6 +1,6 @@
 {
-  "name": "AMIR Assistant",
-  "short_name": "AMIR",
+  "name": "Amir Aura",
+  "short_name": "AURA",
   "description": "دستیار شخصی AMIR: قیمت‌ها، اوقات شرعی، آب‌وهوا، یادداشت و ابزارهای روزانه",
   "id": "./",
   "start_url": "./?source=pwa",
