@@ -1,12 +1,12 @@
 /* ==========================================================================
    sw.js — سرویس‌ورکر «دستیار AMIR»
    • کش‌کردن فایل‌ها (آفلاین) + تشخیص آپدیت با دکمه‌ی «آپدیت کن»
-   • هر بار که سایت را منتشر می‌کنی، فقط VERSION را عوض کن (مرورگر فقط تغییر همین فایل را می‌بیند)
+   • در هر انتشار جدید فقط VERSION را تغییر بده.
    ========================================================================== */
-const VERSION = 'v1.0.32';
+const VERSION = 'v1.0.33';
 const CACHE   = 'amir-' + VERSION;
 const FONTS   = 'amir-fonts';
-const PRECACHE = ['./', './index.html', './manifest.webmanifest'];   /* هر فایلی که نبود، بی‌صدا نادیده گرفته می‌شود */
+const PRECACHE = ['./', './index.html', './manifest.webmanifest'];
 
 /* --- نصب: کش‌کردن فایل‌های اصلی --- */
 self.addEventListener('install', (e) => {
@@ -17,11 +17,10 @@ self.addEventListener('install', (e) => {
       if (r.ok) await c.put(u, r);
     }));
     if (!self.registration.active) {
-      self.skipWaiting();            /* اولین نصب: کاربری هنوز کنترل نمی‌شود، پس همین حالا فعال شو */
+      self.skipWaiting();
     } else {
-      /* آپدیت: منتظر می‌مانیم تا کاربر «آپدیت کن» را بزند (پیام SKIP_WAITING) و به صفحه خبر می‌دهیم */
       const cs = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
-      cs.forEach((c) => c.postMessage({ type: 'UPDATE_READY' }));
+      cs.forEach((client) => client.postMessage({ type: 'UPDATE_READY', version: VERSION }));
     }
   })());
 });
@@ -62,7 +61,7 @@ self.addEventListener('fetch', (e) => {
   const req = e.request;
   if (req.method !== 'GET' || req.headers.has('range')) return;
   const url = new URL(req.url);
-  if (url.origin === location.origin) {
+  if (url.origin === self.location.origin) {
     if (url.pathname.endsWith('/sw.js')) return;
     e.respondWith(req.mode === 'navigate' ? networkFirst(req) : staleWhileRevalidate(req, CACHE));
   } else if (url.hostname === 'fonts.googleapis.com' || url.hostname === 'fonts.gstatic.com') {
