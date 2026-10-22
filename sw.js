@@ -5,7 +5,7 @@
    - Supabase و درخواست‌های غیر GET: هرگز کش نمی‌شوند
    - به‌روزرسانی: نسخهٔ جدید «در انتظار» می‌ماند تا کاربر روی «به‌روزرسانی» بزند (SKIP_WAITING)
    برای انتشار نسخهٔ جدید فقط VERSION را عوض کن. */
-const VERSION = '2026-10-22.1';
+const VERSION = '2026-10-22.2';
 const SHELL = 'amir-shell-' + VERSION;
 const STATIC = 'amir-static-' + VERSION;
 const API = 'amir-api-' + VERSION;
