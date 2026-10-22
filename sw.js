@@ -1,85 +1,110 @@
-/* ==========================================================================
-   sw.js — سرویس‌ورکر «AMIR Assistant»
-   • کش‌کردن فایل‌ها (آفلاین) + تشخیص آپدیت با دکمه‌ی «آپدیت کن»
-   • در هر انتشار جدید فقط VERSION را تغییر بده.
-   ========================================================================== */
-const VERSION = 'v1.0.39';
-const CACHE   = 'amir-' + VERSION;
-const FONTS   = 'amir-fonts';
-/* فایل‌هایی که وجود نداشته باشند بی‌صدا رد می‌شوند (allSettled) */
+/* =====================================================================
+   sw.js — Amir Aura PWA, integrated offline caching
+   On each release update VERSION. Existing UPDATE_READY / SKIP_WAITING
+   protocol is preserved for the site's update UI.
+   ===================================================================== */
+const VERSION = 'v1.0.36';
+const CACHE = 'amir-' + VERSION;
+const FONTS = 'amir-fonts'; // Keep this stable so cached fonts survive app updates.
+const STATIC_ASSETS = 'amir-static-' + VERSION;
+// This HTML currently links manifest.json. Also try the older webmanifest name
+// for deployments that still have it; missing optional assets do not block install.
 const PRECACHE = [
-  './', './index.html',
-  './manifest.json', './manifest.webmanifest',
-  './icon-192.png', './icon-512.png', './icon-maskable-512.png'
+  './', './index.html', './manifest.json', './manifest.webmanifest',
+  './IRANSansWeb_Light.woff2', './apple-touch-icon.png', './icon-192.png', './icon-512.png'
 ];
+const FONT_HOSTS = new Set(['fonts.googleapis.com', 'fonts.gstatic.com']);
+const STATIC_CDN_HOSTS = new Set(['cdn.jsdelivr.net']);
+const LENIS_URL = 'https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js';
 
-/* --- نصب: کش‌کردن فایل‌های اصلی --- */
-self.addEventListener('install', (e) => {
-  e.waitUntil((async () => {
-    const c = await caches.open(CACHE);
-    await Promise.allSettled(PRECACHE.map(async (u) => {
-      const r = await fetch(new Request(u, { cache: 'reload' }));
-      if (r.ok) await c.put(u, r);
+self.addEventListener('install', (event) => {
+  event.waitUntil((async () => {
+    const cache = await caches.open(CACHE);
+    await Promise.allSettled(PRECACHE.map(async (url) => {
+      try {
+        const response = await fetch(new Request(url, { cache: 'reload' }));
+        if (response && response.ok) await cache.put(url, response);
+      } catch (_) { /* Optional asset unavailable: keep install resilient. */ }
     }));
+    // Precache Lenis as an optional enhancement so it can work offline after install.
+    await Promise.allSettled([ (async () => {
+      try {
+        const assets = await caches.open(STATIC_ASSETS);
+        const response = await fetch(new Request(LENIS_URL, { mode: 'cors', cache: 'reload' }));
+        if (response && response.ok) await assets.put(LENIS_URL, response);
+      } catch (_) { /* Offline or CDN unavailable: native scrolling remains the fallback. */ }
+    })() ]);
     if (!self.registration.active) {
-      /* اولین نصب: بدون انتظار فعال شود */
-      self.skipWaiting();
+      await self.skipWaiting();
     } else {
-      /* آپدیت: نسخه‌ی جدید منتظر می‌ماند و به صفحه‌ها خبر می‌دهیم */
-      const cs = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
-      cs.forEach((client) => client.postMessage({ type: 'UPDATE_READY', version: VERSION }));
+      const clients = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
+      clients.forEach((client) => client.postMessage({ type: 'UPDATE_READY', version: VERSION }));
     }
   })());
 });
 
-/* --- فعال‌سازی: پاک‌کردن کش نسخه‌های قبل + کنترل صفحه‌های باز --- */
-self.addEventListener('activate', (e) => {
-  e.waitUntil((async () => {
+self.addEventListener('activate', (event) => {
+  event.waitUntil((async () => {
     const keys = await caches.keys();
-    await Promise.all(keys.filter((k) => k.startsWith('amir-') && k !== CACHE && k !== FONTS).map((k) => caches.delete(k)));
+    await Promise.all(keys.filter((key) => key.startsWith('amir-') &&
+      key !== CACHE && key !== FONTS && key !== STATIC_ASSETS).map((key) => caches.delete(key)));
     await self.clients.claim();
   })());
 });
 
-/* --- پیام از صفحه: «آپدیت کن» → نسخه‌ی جدید همین حالا فعال شود --- */
-self.addEventListener('message', (e) => {
-  const t = e.data && e.data.type;
-  if (t === 'SKIP_WAITING') self.skipWaiting();
-  else if (t === 'GET_VERSION' && e.source) e.source.postMessage({ type: 'VERSION', version: VERSION });
+self.addEventListener('message', (event) => {
+  const type = event.data && event.data.type;
+  if (type === 'SKIP_WAITING') self.skipWaiting();
+  else if (type === 'GET_VERSION' && event.source) {
+    event.source.postMessage({ type: 'VERSION', version: VERSION });
+  }
 });
 
-/* --- کش --- */
-/* صفحه‌ها: اول شبکه، اگر آفلاین بود از کش (query مثل ?source=pwa نادیده گرفته می‌شود) */
-async function networkFirst(req) {
-  const c = await caches.open(CACHE);
+async function networkFirst(request) {
+  const cache = await caches.open(CACHE);
   try {
-    const r = await fetch(req);
-    if (r && r.ok) c.put(req, r.clone());
-    return r;
+    const response = await fetch(request);
+    if (response && response.ok) await cache.put(request, response.clone());
+    return response;
   } catch (_) {
-    return (await c.match(req, { ignoreSearch: true })) ||
-           (await c.match('./index.html')) || (await c.match('./')) || Response.error();
+    return (await cache.match(request)) || (await cache.match('./index.html')) ||
+      (await cache.match('./')) || Response.error();
   }
 }
-/* فایل‌های جانبی: از کش بده و پشت‌صحنه تازه کن (با waitUntil تا ورکر وسط کار بسته نشود) */
-async function staleWhileRevalidate(e, name) {
-  const req = e.request;
-  const c = await caches.open(name), hit = await c.match(req);
-  const net = fetch(req)
-    .then((r) => { if (r && (r.ok || r.type === 'opaque')) c.put(req, r.clone()); return r; })
-    .catch(() => null);
-  e.waitUntil(net);
-  return hit || (await net) || Response.error();
+
+async function staleWhileRevalidate(request, cacheName) {
+  const cache = await caches.open(cacheName);
+  const cached = await cache.match(request);
+  const update = fetch(request).then(async (response) => {
+    if (response && (response.ok || response.type === 'opaque')) {
+      try { await cache.put(request, response.clone()); } catch (_) {}
+    }
+    return response;
+  }).catch(() => null);
+  return cached || (await update) || Response.error();
 }
-self.addEventListener('fetch', (e) => {
-  const req = e.request;
-  if (req.method !== 'GET' || req.headers.has('range')) return;
-  const url = new URL(req.url);
+
+self.addEventListener('fetch', (event) => {
+  const request = event.request;
+  if (request.method !== 'GET' || request.headers.has('range')) return;
+  const url = new URL(request.url);
+
   if (url.origin === self.location.origin) {
     if (url.pathname.endsWith('/sw.js')) return;
-    e.respondWith(req.mode === 'navigate' ? networkFirst(req) : staleWhileRevalidate(e, CACHE));
-  } else if (url.hostname === 'fonts.googleapis.com' || url.hostname === 'fonts.gstatic.com') {
-    e.respondWith(staleWhileRevalidate(e, FONTS));
+    // Navigations refresh from network when possible, with cached shell as offline fallback.
+    if (request.mode === 'navigate') {
+      event.respondWith(networkFirst(request));
+      return;
+    }
+    // Same-origin JS/CSS/images/fonts/manifests are cached and revalidated in background.
+    event.respondWith(staleWhileRevalidate(request, CACHE));
+    return;
   }
-  /* بقیه‌ی درخواست‌ها (API آب‌وهوا، اخبار، ...) عمداً کش نمی‌شوند */
+
+  // Cache only known static providers. Dynamic APIs (weather/news/etc.) stay network-only.
+  if (FONT_HOSTS.has(url.hostname)) {
+    event.respondWith(staleWhileRevalidate(request, FONTS));
+  } else if (STATIC_CDN_HOSTS.has(url.hostname) && /\/npm\/lenis@/i.test(url.pathname)) {
+    event.respondWith(staleWhileRevalidate(request, STATIC_ASSETS));
+  }
 });
