@@ -1,35 +1,23 @@
 {
-  "name": "Amir Aura",
-  "short_name": "AURA",
-  "description": "دستیار شخصی AMIR: قیمت‌ها، اوقات شرعی، آب‌وهوا، یادداشت و ابزارهای روزانه",
   "id": "./",
+  "name": "Amir Aura",
+  "short_name": "Amir Aura",
+  "description": "دستیار شخصی فارسی: تقویم، یادداشت، ماشین‌حساب، مالی، آب‌وهوا، اخبار و ابزارهای روزمره",
+  "lang": "fa",
+  "dir": "rtl",
   "start_url": "./?source=pwa",
   "scope": "./",
   "display": "standalone",
-  "orientation": "portrait",
-  "lang": "fa",
-  "dir": "rtl",
-  "background_color": "#4338ca",
-  "theme_color": "#2563eb",
-  "categories": ["utilities", "productivity"],
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#eaf0ff",
+  "theme_color": "#eaf0ff",
+  "categories": ["utilities", "productivity", "lifestyle"],
+  "prefer_related_applications": false,
   "icons": [
-    {
-      "src": "icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "icon-maskable-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
-    }
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ]
 }
