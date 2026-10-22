@@ -3,7 +3,7 @@
    On each release update VERSION. Existing UPDATE_READY / SKIP_WAITING
    protocol is preserved for the site's update UI.
    ===================================================================== */
-const VERSION = 'v1.0.36';
+const VERSION = 'v1.0.37';
 const CACHE = 'amir-' + VERSION;
 const FONTS = 'amir-fonts'; // Keep this stable so cached fonts survive app updates.
 const STATIC_ASSETS = 'amir-static-' + VERSION;
