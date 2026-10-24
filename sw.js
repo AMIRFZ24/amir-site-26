@@ -1,5 +1,5 @@
 /* FIX: sw.js — نسخه‌دار؛ بدون تست روی دستگاه واقعی */
-const CACHE_VERSION = 'v2'; // FIX: با هر انتشار این عدد را افزایش بده
+const CACHE_VERSION = 'v3'; // FIX: با هر انتشار این عدد را افزایش بده
 const STATIC = 'static-' + CACHE_VERSION, FONTS = 'fonts-' + CACHE_VERSION, API = 'api-' + CACHE_VERSION;
 const API_HOSTS = ['api.open-meteo.com','api.aladhan.com','geocoding-api.open-meteo.com','air-quality-api.open-meteo.com','nominatim.openstreetmap.org','wttr.in','api.rss2json.com','api.allorigins.win'];
 
